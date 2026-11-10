@@ -2,7 +2,7 @@
 # Рендер HTML в Playwright, стиль — как у сайта (Helvetica Neue / Inter, синий акцент, squircle).
 from playwright.sync_api import sync_playwright
 from PIL import Image
-import io, html
+import io, html, os
 
 CSS = '''
 *{box-sizing:border-box;margin:0}
@@ -37,7 +37,7 @@ def render_flow(out, steps, branches=(), size=(2400, 1200)):
         if i < len(steps) - 1: br.append('<div class="gap"></div>')
     doc = f'<html><head><style>{CSS}</style></head><body><div class="row">{"".join(cells)}</div><div class="br">{"".join(br)}</div></body></html>'
     with sync_playwright() as p:
-        b = p.chromium.launch(); pg = b.new_page(viewport={'width': 1200, 'height': 600}, device_scale_factor=size[0] / 1200)
+        b = p.chromium.launch(executable_path=os.environ.get('CHROME_PATH') or None); pg = b.new_page(viewport={'width': 1200, 'height': 600}, device_scale_factor=size[0] / 1200)
         pg.set_content(doc); pg.wait_for_timeout(200)
         img = Image.open(io.BytesIO(pg.screenshot())).convert('RGB')
         b.close()

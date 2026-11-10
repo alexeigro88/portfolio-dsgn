@@ -22,7 +22,7 @@
 | `index.html` | EN-версия, **генерируется**: `python3 i18n/build_en.py`. Руками не править. |
 | `i18n/build_en.py` | Словарь RU→EN `T` (замена целых текстовых узлов `>текст<`, атрибутов `="текст"` и JS-строк), карта JS-строк, замена переключателя языка, `data-suffix` (` лет`→` years`, ` команды`→` teams`). Печатает непереведённые ключи (`'Язык'` — ожидаемо) и остатки кириллицы. |
 | `cases/case-template.html` | Шаблон детальной страницы кейса (EN). |
-| `cases/tournament-guru.html`, `cases/bookkeeper-ai.html`, `cases/stulo.html` | Готовые кейсы. |
+| `cases/tournament-guru.html`, `cases/bookkeeper-ai.html`, `cases/stulo.html`, `cases/truescan.html` | Готовые кейсы. |
 | `cases/_tools/` | Пайплайн визуалов кейсов (см. ниже). |
 | `cases/_src/<проект>/` | Исходные скриншоты прототипов (DPR 2). |
 | `img/` | Картинки сайта: `portrait.jpg`, `skill-*.jpg`, `format-1..3.jpg` (+ svg-фолбэк), `av-*.jpg` (фото авторов отзывов), `reel-poster.jpg`, `cases/<проект>/*.jpg`. |
@@ -55,12 +55,13 @@
 ## Кейсы
 **Шаблон** (`cases/case-template.html`): раскладка по референсу anton-ux.framer.website/batmind, типографика и токены 1:1 с главной (Figtree / Inter Tight / Inter; `.h1`=h-xl, `.h2`=h-l, `.body`=lede-l). Секции: обложка → интро + meta (роль, команда, сроки, платформа, пользователи) → Design process (5 шагов) → Problems (сетка `.mix` 4 карточки + 4 картинки) → Solutions (так же) → User flow → Design system (шрифты + 6 цветов из реальных токенов прототипа) → UI design (`.screens`: широкий + 2) → Results → What I learned → Next case + CTA. Персона из шаблона в кейсах убрана.
 
-**Цепочка «следующий кейс»:** Tournament Guru → BookKeeper AI → StuLo → Tournament Guru. У карточки `.ncase` есть светлый градиент `.ncase .media::after` под подписью.
+**Цепочка «следующий кейс»:** Tournament Guru → BookKeeper AI → StuLo → TrueScan CRM → Tournament Guru. У карточки `.ncase` есть светлый градиент `.ncase .media::after` под подписью.
 
 | Кейс | Прототип | Суть | Шрифты / токены |
 |---|---|---|---|
 | Tournament Guru | https://tournament-guru.vercel.app/home.html | Выбор детских турниров с проверенными отзывами | Space Grotesk + Inter, navy/blue/red |
 | BookKeeper AI | https://bookkeeper-ai-tau.vercel.app/ | Внутренний AI-ассистент бухгалтерской фирмы: отвечает только по опубликованным SOP, с источниками; роли Bookkeeper / SME / QC Librarian | Manrope, `#1A73E8`, статусы Published/Needs Revalidation |
+| TrueScan CRM | Figma `rFFixRw1aznY4sWHRFKyJk` (Leads, Opportunities, Foundations) | Редизайн CRM: лиды → назначение → квалификация → конвертация в сделку; все флоу и состояния | Inter, brand `#EE6A1F`, sidebar `#0F1A2E` |
 | StuLo | https://stulo-v2.vercel.app/#signin («Explore the demo») | Управление федеральными студенческими кредитами США: синк займов, следующий шаг, AI-коуч + живые коучи, декодер писем, PSLF | Bricolage Grotesque + Manrope, navy `#121740`, bright `#465AFF` |
 
 Во всех кейсах **плейсхолдеры** ждут ответа Алексея: роль, команда, сроки, год, результаты (3 метрики), «What I learned». Также `[Роль]`/`[Срок]` в карточках на главной.
@@ -100,7 +101,7 @@ for c in ('tournament-guru','bookkeeper-ai','stulo'):
 - Русская версия ролика не нужна. Старые версии — `reel/drafts/`.
 
 ## Что дальше
-1. **Кейс TrueScan** (Figma, командный аккаунт): https://www.figma.com/design/rFFixRw1aznY4sWHRFKyJk/TrueScan-%E2%80%94-Entity-Profiles-Redesign?node-id=1-3
+1. ~~Кейс TrueScan~~ — готов (`cases/truescan.html`, `build_truescan.py`; экспорт фреймов Figma 2x через MCP `download_assets`, нужен доступ к www.figma.com; для `flow.py` — `CHROME_PATH=/opt/pw-browsers/chromium`). Исходный план: (Figma, командный аккаунт): https://www.figma.com/design/rFFixRw1aznY4sWHRFKyJk/TrueScan-%E2%80%94-Entity-Profiles-Redesign?node-id=1-3
    Страницы: Read me, Foundations (Foundations — V2, 12 Interaction states, 13 Filter dropdowns & sort), Icons, **Leads** (00 Notes, 01 List, 02 Profile, 03 Flows, 04 States), Opportunities, Proposals · Draft, Projects, Time tracking · Draft.
    План: прочитать Read me / Notes (задача и контекст) → экспортировать PNG 2x ключевых экранов в `cases/_src/truescan/` → токены из Foundations → `cases/_tools/build_truescan.py` (для фреймов из Figma вместо скринов браузера) → `cases/truescan.html` → добавить карточку 04 на главную (сейчас «01 / 03» … «03 / 03» — обновить нумерацию) и вставить в цепочку next case. Проверить, можно ли показывать проект публично (NDA); при необходимости обезличить данные.
 2. Ещё кейсы из прототипов: Listing Suite https://listing-suite.vercel.app/ · Care Around Me https://care-around-me.vercel.app/
