@@ -192,7 +192,9 @@ figure{margin:0}
   .fig .media{aspect-ratio:4/3}
 }
 /* веб-продукт: экраны в две колонки */
-.pairs{display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,2.4vw,32px) 16px}.pair .media{aspect-ratio:16/11;border-radius:24px}.pair .media img{width:100%;height:100%;object-fit:cover;display:block}.ptxt{display:flex;gap:16px;align-items:baseline;padding:18px 4px 0}.ptxt .n{font-family:var(--font-display);font-size:15px;color:var(--ink-3);font-variant-numeric:tabular-nums;flex:none}.ptxt p{font-size:clamp(16px,1.25vw,18px);line-height:1.5;color:var(--ink-2);max-width:46ch}@media (max-width:760px){.pairs{grid-template-columns:1fr}}
+.learn2{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.lcard{background:var(--band);border-radius:28px;padding:28px 28px 32px;display:flex;flex-direction:column;gap:12px}.lcard .n{align-self:flex-start;min-width:34px;height:26px;padding:0 8px;border-radius:13px;display:grid;place-items:center;font-size:13px;font-weight:600;color:#c2540f;background:rgba(238,106,31,.12);font-variant-numeric:tabular-nums;margin-bottom:12px}.lcard h3{font-family:var(--font-display);font-weight:500;font-size:clamp(20px,1.7vw,24px);letter-spacing:-.02em;line-height:1.2}.lcard p{font-size:16px;line-height:1.5;color:var(--ink-2)}@media (max-width:900px){.learn2{grid-template-columns:1fr}}
+.stages{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.stage{background:var(--band);border-radius:28px;padding:12px 12px 24px}.stage .media{aspect-ratio:1.54;border-radius:18px;background:#fff;box-shadow:0 0 0 1px rgba(0,0,0,.07)}.stage .media img{width:100%;height:100%;object-fit:cover;object-position:top left;display:block}.stxt{display:flex;gap:12px;align-items:flex-start;padding:20px 12px 0}.stxt .n{flex:none;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-size:12px;font-weight:600;background:#fff;color:var(--ink);box-shadow:0 0 0 1px rgba(0,0,0,.1)}.stxt .n.on{background:#EE6A1F;color:#fff;box-shadow:none}.stxt h3{font-family:var(--font-display);font-weight:500;font-size:20px;letter-spacing:-.02em}.stxt p{margin-top:6px;font-size:15px;line-height:1.45;color:var(--ink-2)}@media (max-width:900px){.stages{grid-template-columns:1fr}}
+.pairs{display:grid;grid-template-columns:1fr 1fr;gap:16px}.pair{background:var(--band);border-radius:28px;padding:12px 12px 28px;display:flex;flex-direction:column}.pair .media{aspect-ratio:16/11;border-radius:18px;background:#fff;box-shadow:0 0 0 1px rgba(0,0,0,.07),0 1px 2px rgba(0,0,0,.04)}.pair .media img{width:100%;height:100%;object-fit:cover;display:block}.ptxt{display:flex;gap:14px;align-items:flex-start;padding:24px 16px 0}.ptxt .n{flex:none;min-width:34px;height:26px;padding:0 8px;border-radius:13px;display:grid;place-items:center;font-size:13px;font-weight:600;color:#c2540f;background:rgba(238,106,31,.12);font-variant-numeric:tabular-nums}.ptxt h3{font-family:var(--font-display);font-weight:500;font-size:clamp(20px,1.7vw,24px);letter-spacing:-.02em;line-height:1.2;color:var(--ink)}.ptxt p{margin-top:8px;font-size:clamp(15px,1.15vw,17px);line-height:1.5;color:var(--ink-2);max-width:48ch}@media (max-width:760px){.pairs{grid-template-columns:1fr}.ptxt{padding:20px 8px 0}}
 .fig .media.nat{aspect-ratio:auto!important}.fig .media.nat img{height:auto;object-fit:contain}
 .wfs{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:16px}.wfs .media{aspect-ratio:16/10;border-radius:var(--r);overflow:hidden}.wfs img{width:100%;height:100%;object-fit:cover;display:block}@media (max-width:980px){.wfs{grid-template-columns:1fr}}
 .screens{grid-template-columns:1fr 1fr}.screens .media{aspect-ratio:16/10}.screens .media.span{grid-column:span 2;aspect-ratio:2/1}
@@ -200,6 +202,15 @@ figure{margin:0}
 </style>
 </head>
 <body>
+<script>
+/* кейс всегда открывается с начала страницы */
+(function(){
+  if('scrollRestoration' in history) history.scrollRestoration='manual';
+  function top(){ if(!location.hash) window.scrollTo(0,0); }
+  top(); addEventListener('load',top); addEventListener('pageshow',top);
+})();
+</script>
+
 
 <header class="gnav">
   <div class="wrap">
@@ -257,15 +268,7 @@ figure{margin:0}
       <h2 class="h2 rv">From wireframes to interface</h2>
       <p class="body rv">I started in grey boxes to agree on structure and rules with the team: what lives in the row, what moves to the ⋯ menu, when Convert becomes available. Only then came the UI kit, and the final screens were assembled from it.</p>
     </div>
-    <figure class="fig rv">
-      <div class="media nat"><img src="../img/cases/truescan/evolution.jpg" alt="Three stages: low-fidelity wireframe, UI kit, final interface" loading="lazy"></div>
-      <figcaption>Same Leads screen at three stages: wireframe with open questions in the margins, a UI kit with filters and interaction states, and the final interface.</figcaption>
-    </figure>
-    <div class="wfs">
-      <div class="media rv"><img src="../img/cases/truescan/wireframe-list.jpg" alt="Wireframe of the leads list" loading="lazy"></div>
-      <div class="media rv"><img src="../img/cases/truescan/wireframe-profile.jpg" alt="Wireframe of the lead profile" loading="lazy"></div>
-      <div class="media rv"><img src="../img/cases/truescan/wireframe-convert.jpg" alt="Wireframe of the convert dialog" loading="lazy"></div>
-    </div>
+    <div class="stages"><div class="stage rv"><div class="media"><img src="../img/cases/truescan/evo-1-wireframe.jpg" alt="Low-fidelity wireframe of the leads list" loading="lazy"></div><div class="stxt"><span class="n">1</span><div><h3>Wireframe</h3><p>Structure, rules and open questions in the margins</p></div></div></div><div class="stage rv"><div class="media"><img src="../img/cases/truescan/evo-2-uikit.jpg" alt="UI kit: buttons in default, hover and pressed states" loading="lazy"></div><div class="stxt"><span class="n">2</span><div><h3>UI kit</h3><p>Components and every state they can be in</p></div></div></div><div class="stage rv"><div class="media"><img src="../img/cases/truescan/evo-3-interface.jpg" alt="Final leads list interface" loading="lazy"></div><div class="stxt"><span class="n on">3</span><div><h3>Interface</h3><p>The final Leads screen, built from the kit</p></div></div></div></div>
   </div>
 </section>
 <section class="sec">
@@ -275,10 +278,10 @@ figure{margin:0}
       <p class="body rv">A CRM is used all day. Every extra click and every unclear state is paid for hundreds of times a week.</p>
     </div>
     <div class="pairs">
-      <div class="pair rv"><div class="media"><img src="../img/cases/truescan/problem-1-list.jpg" alt="Leads table with status tabs and counts" loading="lazy"></div><div class="ptxt"><span class="n">01</span><p>Thousands of inbound leads in different statuses. The team needs to see what’s new, what’s stuck and who owns what at a glance.</p></div></div>
-      <div class="pair rv"><div class="media"><img src="../img/cases/truescan/problem-2-filters.jpg" alt="Kanban with owner filter dropdown" loading="lazy"></div><div class="ptxt"><span class="n">02</span><p>Different people slice the list differently: by owner, source, date or AI score, in a table or on a board.</p></div></div>
-      <div class="pair rv"><div class="media"><img src="../img/cases/truescan/problem-3-actions.jpg" alt="Row menu with status submenu" loading="lazy"></div><div class="ptxt"><span class="n">03</span><p>Many actions on one lead — open, edit, reassign, change status, convert, archive — have to stay discoverable without cluttering every row.</p></div></div>
-      <div class="pair rv"><div class="media"><img src="../img/cases/truescan/problem-4-input.jpg" alt="New lead form with duplicate email warning" loading="lazy"></div><div class="ptxt"><span class="n">04</span><p>Manual entry creates duplicates and incomplete records, and a mistake in one field shouldn’t cost the whole form.</p></div></div>
+      <div class="pair rv"><div class="media"><img src="../img/cases/truescan/problem-1-list.jpg" alt="Leads table with status tabs and counts" loading="lazy"></div><div class="ptxt"><span class="n">01</span><div><h3>Thousands of leads</h3><p>Thousands of inbound leads in different statuses. The team needs to see what’s new, what’s stuck and who owns what at a glance.</p></div></div></div>
+      <div class="pair rv"><div class="media"><img src="../img/cases/truescan/problem-2-filters.jpg" alt="Kanban with owner filter dropdown" loading="lazy"></div><div class="ptxt"><span class="n">02</span><div><h3>Everyone slices differently</h3><p>Different people slice the list differently: by owner, source, date or AI score, in a table or on a board.</p></div></div></div>
+      <div class="pair rv"><div class="media"><img src="../img/cases/truescan/problem-3-actions.jpg" alt="Row menu with status submenu" loading="lazy"></div><div class="ptxt"><span class="n">03</span><div><h3>Many actions per lead</h3><p>Many actions on one lead — open, edit, reassign, change status, convert, archive — have to stay discoverable without cluttering every row.</p></div></div></div>
+      <div class="pair rv"><div class="media"><img src="../img/cases/truescan/problem-4-input.jpg" alt="New lead form with duplicate email warning" loading="lazy"></div><div class="ptxt"><span class="n">04</span><div><h3>Messy manual entry</h3><p>Manual entry creates duplicates and incomplete records, and a mistake in one field shouldn’t cost the whole form.</p></div></div></div>
     </div>
   </div>
 </section>
@@ -289,10 +292,10 @@ figure{margin:0}
       <p class="body rv">Make the common path fast, make consequences visible before they happen, and always leave a way back.</p>
     </div>
     <div class="pairs">
-      <div class="pair rv"><div class="media"><img src="../img/cases/truescan/solution-1-convert.jpg" alt="Convert to opportunity confirmation with record preview" loading="lazy"></div><div class="ptxt"><span class="n">01</span><p>Conversion shows exactly what will be created — a new or existing account, a contact and an opportunity in Prospecting — with no fields to fill in.</p></div></div>
-      <div class="pair rv"><div class="media"><img src="../img/cases/truescan/solution-2-converted.jpg" alt="Opportunity profile with Converted from lead banner" loading="lazy"></div><div class="ptxt"><span class="n">02</span><p>After conversion the user lands on the new opportunity, with a one-time “Converted from lead” banner and a link back to the lead.</p></div></div>
-      <div class="pair rv"><div class="media"><img src="../img/cases/truescan/solution-3-assign.jpg" alt="Assign owner popover with Assign to me" loading="lazy"></div><div class="ptxt"><span class="n">03</span><p>Small changes apply instantly: assigning an owner or changing a status needs no Apply button, and archiving comes with an 8-second Undo.</p></div></div>
-      <div class="pair rv"><div class="media"><img src="../img/cases/truescan/solution-4-wizard.jpg" alt="New lead wizard with address autocomplete" loading="lazy"></div><div class="ptxt"><span class="n">04</span><p>A 3-step wizard validates one step at a time, checks duplicate emails when leaving the field and fills the address from a suggestion.</p></div></div>
+      <div class="pair rv"><div class="media"><img src="../img/cases/truescan/solution-1-convert.jpg" alt="Convert to opportunity confirmation with record preview" loading="lazy"></div><div class="ptxt"><span class="n">01</span><div><h3>Preview before converting</h3><p>Conversion shows exactly what will be created — a new or existing account, a contact and an opportunity in Prospecting — with no fields to fill in.</p></div></div></div>
+      <div class="pair rv"><div class="media"><img src="../img/cases/truescan/solution-2-converted.jpg" alt="Opportunity profile with Converted from lead banner" loading="lazy"></div><div class="ptxt"><span class="n">02</span><div><h3>Land on the result</h3><p>After conversion the user lands on the new opportunity, with a one-time “Converted from lead” banner and a link back to the lead.</p></div></div></div>
+      <div class="pair rv"><div class="media"><img src="../img/cases/truescan/solution-3-assign.jpg" alt="Assign owner popover with Assign to me" loading="lazy"></div><div class="ptxt"><span class="n">03</span><div><h3>Small changes apply instantly</h3><p>Small changes apply instantly: assigning an owner or changing a status needs no Apply button, and archiving comes with an 8-second Undo.</p></div></div></div>
+      <div class="pair rv"><div class="media"><img src="../img/cases/truescan/solution-4-wizard.jpg" alt="New lead wizard with address autocomplete" loading="lazy"></div><div class="ptxt"><span class="n">04</span><div><h3>Guided entry</h3><p>A 3-step wizard validates one step at a time, checks duplicate emails when leaving the field and fills the address from a suggestion.</p></div></div></div>
     </div>
   </div>
 </section>
@@ -374,10 +377,10 @@ figure{margin:0}
       <h2 class="h2 rv">What I learned</h2>
       <p class="body rv"></p>
     </div>
-    <div class="learn">
-      <div class="card rv"><span class="n">01</span><p>Notes next to every frame paid off. Behavior, edge cases and open assumptions lived beside the screens, so engineering asked about decisions, not about pixels.</p></div>
-      <div class="card rv"><span class="n">02</span><p>States are half of a CRM. Empty, loading, no results, errors and undo took as much thought as the happy path, and that is where the product feels finished.</p></div>
-      <div class="card rv"><span class="n">03</span><p>Next: a clickable prototype of Leads → Convert → Opportunity, and Account and Contact profiles on the same template.</p></div>
+    <div class="learn2">
+      <div class="lcard rv"><span class="n">01</span><h3>Notes beside every frame</h3><p>Behavior, edge cases and open assumptions lived next to the screens, so engineering asked about decisions, not about pixels.</p></div>
+      <div class="lcard rv"><span class="n">02</span><h3>States are half of a CRM</h3><p>Empty, loading, no results, errors and undo took as much thought as the happy path, and that is where the product feels finished.</p></div>
+      <div class="lcard rv"><span class="n">03</span><h3>What’s next</h3><p>A clickable prototype of Leads → Convert → Opportunity, then Account and Contact profiles on the same template.</p></div>
     </div>
   </div>
 </section>

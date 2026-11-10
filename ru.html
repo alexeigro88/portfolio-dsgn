@@ -108,12 +108,13 @@ html.vpin .gnav{transform:translateY(-100%)}
 .vbtn{width:40px;height:40px;border-radius:50%;border:0;cursor:pointer;display:grid;place-items:center;color:#fff;background:rgba(30,30,32,.55);backdrop-filter:blur(14px) saturate(160%);-webkit-backdrop-filter:blur(14px) saturate(160%);transition:background .2s}
 .vbtn:hover{background:rgba(30,30,32,.75)}
 .vbtn svg{width:16px;height:16px}
-.vbar{position:absolute;left:20px;right:124px;bottom:20px;z-index:2;height:40px;display:flex;align-items:center;gap:14px;padding:0 18px;border-radius:20px;color:#fff;background:rgba(30,30,32,.55);backdrop-filter:blur(14px) saturate(160%);-webkit-backdrop-filter:blur(14px) saturate(160%);cursor:pointer;touch-action:none;user-select:none;-webkit-user-select:none}
-.vbar .vtrack{position:relative;flex:1;height:4px;border-radius:2px;background:rgba(255,255,255,.28);transition:height .2s}
-.vbar:hover .vtrack{height:6px}
-.vbar .vtrack i{position:absolute;left:0;top:0;bottom:0;width:100%;border-radius:inherit;background:#fff;transform-origin:0 50%;transform:scaleX(0)}
-.vbar .vtime{font-size:12px;font-variant-numeric:tabular-nums;letter-spacing:.01em;opacity:.9;white-space:nowrap}
-@media (max-width:600px){.vbar{left:12px;right:108px;bottom:12px;padding:0 14px;gap:10px}.vctl{right:12px;bottom:12px}}
+.vbar{position:absolute;left:0;right:0;bottom:0;z-index:2;height:22px;display:block;color:#fff;cursor:pointer;touch-action:none;user-select:none;-webkit-user-select:none;outline:none}
+.vbar .vtrack{position:absolute;left:0;right:0;bottom:0;height:3px;background:rgba(29,29,31,.10);transition:height .2s var(--ease,ease)}
+.vbar:hover .vtrack,.vbar:focus-visible .vtrack{height:5px}
+.vbar .vtrack i{position:absolute;left:0;top:0;bottom:0;width:100%;background:rgba(29,29,31,.78);transform-origin:0 50%;transform:scaleX(0)}
+.vbar .vtime{position:absolute;left:20px;bottom:11px;font-size:11px;font-variant-numeric:tabular-nums;letter-spacing:.02em;white-space:nowrap;color:rgba(29,29,31,.5);transition:color .2s;pointer-events:none}
+.vbar:hover .vtime,.vbar:focus-visible .vtime{color:rgba(29,29,31,.8)}
+@media (max-width:600px){.vbar .vtime{left:12px}.vctl{right:12px;bottom:12px}}
 .grow .tag{position:absolute;z-index:2;left:24px;bottom:22px;font-size:13px;color:var(--ink);background:rgba(255,255,255,.72);backdrop-filter:blur(12px);padding:7px 14px;border-radius:980px}
 
 /* ---------- Trust ---------- */

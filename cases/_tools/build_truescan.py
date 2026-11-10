@@ -48,19 +48,13 @@ F.flow_text(f'{OUT}/flow.jpg', [
 
 # ---------- от вайрфрейма к интерфейсу ----------
 import scene as S
-for n, f in (('wf_list', S.wf_list), ('wf_profile', S.wf_profile), ('wf_convert', S.wf_convert)):
-    f(p(n))
-kit = Image.new('RGB', (2880, 1800), (246, 247, 249))
-fil = full('filters'); fil = fil.resize((2880, round(fil.height * 2880 / fil.width)), Image.LANCZOS)
-kit.paste(fil, (0, 0)); kit.paste(full('states').crop((0, 280, 2880, 280 + 1800 - fil.height)), (0, fil.height))
-kit.save(f'{TMP}/uikit.png')
-F.stages(f'{OUT}/evolution.jpg', [
-    (full('wf_list'), 'Wireframe', 'Structure, rules and open questions'),
-    (kit, 'UI kit', 'Tokens, components and their states'),
-    (full('lead_table'), 'Interface', 'The final Leads screen'),
-], TMP, size=(2400, 900))
-for n in ('wf_list', 'wf_profile', 'wf_convert'):
-    F.save(F.tile(full(n), size=(1600, 1000), pad=56, r=14), f'{OUT}/wireframe-{n[3:]}.jpg')
+S.wf_list(p('wf_list'))
+# один и тот же фрагмент (шапка + таблица) на трёх стадиях — крупно, чтобы было видно разницу
+EV = (262, 8, 986, 478)                                    # CSS-пиксели, пропорция ≈ 1.54
+for name, im in (('evo-1-wireframe', c('wf_list', *EV)),
+                 ('evo-2-uikit', F.crop(p('states'), (40, 128, 764, 598))),
+                 ('evo-3-interface', F.crop(f'{SRC}/x3/lead_table.png', EV, s=3))):
+    F.save(F.fit(im, w=1448), f'{OUT}/{name}.jpg')
 
 # ---------- дизайн-система: состояния контролов ----------
 F.save(F.tile(full('states').crop((0, 280, 2880, 1940)), size=(2400, 1200), pad=80, r=20), f'{OUT}/states.jpg')

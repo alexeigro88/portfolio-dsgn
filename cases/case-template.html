@@ -204,6 +204,15 @@ figure{margin:0}
 </style>
 </head>
 <body>
+<script>
+/* кейс всегда открывается с начала страницы */
+(function(){
+  if('scrollRestoration' in history) history.scrollRestoration='manual';
+  function top(){ if(!location.hash) window.scrollTo(0,0); }
+  top(); addEventListener('load',top); addEventListener('pageshow',top);
+})();
+</script>
+
 
 <header class="gnav">
   <div class="wrap">
