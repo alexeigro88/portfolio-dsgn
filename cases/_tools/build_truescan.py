@@ -19,7 +19,7 @@ def full(name): return Image.open(p(name)).convert('RGB')
 
 
 # ---------- обложка ----------
-F.save(F.cover(p('drone_raw1'), p('lead_table')), f'{OUT}/cover.jpg')
+F.save(F.cover(p('drone_raw1'), p('lead_table')), f'{OUT}/cover-flat.jpg')  # обложка кейса — cover.jpg, сгенерирована (cases/_src/truescan/ai/cover-drone.webp)
 
 # ---------- задачи и решения: крупные фрагменты, 16:11 ----------
 # кадр = окно в экран (экспорт 3x в cases/_src/truescan/x3): элемент целиком + контекст, без наложенных теней
