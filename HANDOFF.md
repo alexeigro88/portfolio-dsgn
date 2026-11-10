@@ -55,7 +55,7 @@
 ## Кейсы
 **Шаблон** (`cases/case-template.html`): раскладка по референсу anton-ux.framer.website/batmind, типографика и токены 1:1 с главной (Figtree / Inter Tight / Inter; `.h1`=h-xl, `.h2`=h-l, `.body`=lede-l). Секции: обложка → интро + meta (роль, команда, сроки, платформа, пользователи) → Design process (5 шагов) → Problems (сетка `.mix` 4 карточки + 4 картинки) → Solutions (так же) → User flow → Design system (шрифты + 6 цветов из реальных токенов прототипа) → UI design (`.screens`: широкий + 2) → Results → What I learned → Next case + CTA. Персона из шаблона в кейсах убрана.
 
-**Цепочка «следующий кейс»:** Tournament Guru → BookKeeper AI → StuLo → TrueScan → Tournament Guru. У карточки `.ncase` есть светлый градиент `.ncase .media::after` под подписью.
+**Цепочка «следующий кейс»:** Tournament Guru → BookKeeper AI → StuLo → TrueScan → Uncloud360 → Tournament Guru. У карточки `.ncase` есть светлый градиент `.ncase .media::after` под подписью.
 
 | Кейс | Прототип | Суть | Шрифты / токены |
 |---|---|---|---|
@@ -114,3 +114,9 @@ for c in ('tournament-guru','bookkeeper-ai','stulo'):
 - Экспорт фреймов из Figma: MCP `download_assets` (scale 2/3) → `cases/_src/truescan/` и `x3/`. Нужен хост www.figma.com в сети окружения.
 - `CHROME_PATH=/opt/pw-browsers/chromium python3 cases/_tools/build_truescan.py`.
 - Кейсы при открытии прокручиваются наверх (скрипт в начале body); прогресс-бар шоурила — тонкая линия по низу ролика.
+
+## Uncloud360 (кейс №1 на главной)
+- Figma `E9hPeByYOE9UiyuvSDhl5I`. Мобильный AI-коуч (выгорание, семья, работа), упор на мобилку, десктоп вторым.
+- **Маскот — 3D-персонаж с телом** (облако с руками и планшетом, позы presenting/pointing) — экраны концепта **v2** (страница «Mobile concept — v2», напр. 32:559). Не облако Nimbus/Kota из v4.
+- `cases/_tools/build_uncloud.py`: телефоны в плоских рамках, обложка, ряды экранов, позы маскота, слайды для презентации → `img/cases/uncloud/presentation/` (5 шт., 2880×1620, Manrope).
+- Плейсхолдеры: роль, команда, срок (в кейсе и в карточке на главной).

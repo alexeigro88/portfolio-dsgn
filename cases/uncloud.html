@@ -1,0 +1,410 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Uncloud360 — Case study · Alexei Grosul</title>
+<meta name="description" content="Uncloud360 — a mobile-first AI life coach: talk it through in one tap with a calm 3D mascot and leave with one clear next step. Product design case study by Alexei Grosul.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,800;1,900&family=Inter+Tight:wght@400;500;600&family=Inter:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap">
+<!-- Кейс собран из шаблона cases/case-template.html. Визуалы: python3 cases/_tools/build_uncloud.py (экспорты Figma) -->
+<style>
+:root{
+  --bg:#fff;--band:#f5f5f7;--ink:#1d1d1f;--ink-2:#5e5e63;--ink-3:#86868b;--line:#d2d2d7;--hair:rgba(0,0,0,.08);
+  --brand:#256fff;--dark:#1d2327;--dark-2:#272e33;
+  --font-display:"Helvetica Neue",Helvetica,"Inter Tight","Inter",Arial,sans-serif;
+  --font-body:"Helvetica Neue",Helvetica,"Inter",Arial,sans-serif;
+  --font-brand:"Figtree",-apple-system,BlinkMacSystemFont,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  --max:1200px;--gl:max(22px,env(safe-area-inset-left,0px));--gr:max(22px,env(safe-area-inset-right,0px));
+  --sp:clamp(72px,8vw,120px);--r:28px;--ease:cubic-bezier(.28,.11,.32,1);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font-body);font-size:17px;line-height:1.47;letter-spacing:-.005em;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+h1,h2,h3,p{margin:0}
+.wrap{max-width:var(--max);margin:0 auto;padding-left:var(--gl);padding-right:var(--gr)}
+.wide{max-width:1400px;margin:0 auto;padding-left:var(--gl);padding-right:var(--gr)}
+.sec{padding-block:var(--sp) 0}
+.band{background:var(--band)}
+/* скругления — squircle, где браузер поддерживает */
+@supports (corner-shape:squircle){*,*::before,*::after{corner-shape:squircle}.circle{corner-shape:round}}
+
+/* ---------- шапка: как на главной ---------- */
+.gnav{position:sticky;top:0;z-index:50;background:rgba(251,251,253,.8);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--hair)}
+.gnav .wrap{display:flex;align-items:center;justify-content:space-between;height:52px}
+.logo{font-family:var(--font-brand);font-weight:600;font-size:20px;letter-spacing:-.02em}
+.back{display:inline-flex;align-items:center;gap:8px;font-size:14.5px;color:rgba(0,0,0,.72);transition:color .2s}
+.back:hover{color:#000}
+.back svg{width:14px;height:14px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:33px;padding:0 16px;border-radius:999px;font-size:13px;background:var(--ink);color:#fff;transition:transform .25s var(--ease)}
+.btn:hover{transform:translateY(-1px)}
+.btn-lg{height:auto;padding:14px 26px;font-size:17px}
+.btn-line{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1px var(--line)}
+
+/* ---------- типографика: значения 1:1 с главной (index.html: .klabel, .h-xl, .h-l, .lede-l) ---------- */
+.klabel{font-size:clamp(17px,1.3vw,18.72px);letter-spacing:-.005em;color:var(--ink)}
+.klabel .kn{color:var(--ink-3);font-variant-numeric:tabular-nums;margin-right:6px}
+.h1{font-family:var(--font-display);font-weight:500;font-size:clamp(48px,7vw,96px);line-height:1.04;letter-spacing:-.015em}
+.h2{font-family:var(--font-display);font-weight:500;font-size:clamp(38px,5vw,64px);line-height:1.06;letter-spacing:-.015em}
+.h2 .mute,.h1 .mute{color:var(--ink-3)}
+.lead{font-family:var(--font-display);font-size:clamp(22px,2.4vw,32px);line-height:1.3;letter-spacing:-.018em;color:var(--ink)}
+.body{font-size:clamp(17px,1.4vw,20px);line-height:1.5;color:var(--ink-2);max-width:56ch}
+.shead{display:grid;grid-template-columns:1fr 1fr;gap:32px 64px;align-items:end;margin-bottom:clamp(32px,3.6vw,48px)}
+.shead .body{justify-self:end}
+
+/* ---------- плейсхолдер картинки ---------- */
+.ph{position:relative;width:100%;height:100%;display:grid;place-items:center;background:linear-gradient(135deg,#eceef3,#e2e5ec);color:var(--ink-3);font-size:13px;text-align:center;padding:16px}
+.ph::after{content:attr(data-label);max-width:30ch}
+.dark .ph{background:linear-gradient(135deg,#2a3238,#20272c);color:rgba(255,255,255,.45)}
+.media{position:relative;overflow:hidden;border-radius:var(--r);background:var(--band)}
+.media>img,.media>video{width:100%;height:100%;object-fit:cover}
+
+/* ---------- 1. обложка ---------- */
+.chero{padding-top:clamp(20px,2.4vw,32px)}
+.chero .top{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:16px;flex-wrap:wrap}
+.tags{display:flex;gap:8px;flex-wrap:wrap}
+.tag{font-size:13px;padding:8px 14px;border-radius:999px;background:var(--band);color:var(--ink)}
+.tag.acc{background:var(--brand);color:#fff}
+.year{font-size:15px;color:var(--ink-2);font-variant-numeric:tabular-nums}
+.chero .media{aspect-ratio:16/9;border-radius:36px}
+
+/* ---------- 2. суть и роль ---------- */
+.cintro .grid{display:grid;grid-template-columns:1.25fr 1fr;gap:40px 72px;margin-top:22px}
+.cintro .h1{margin-top:10px}
+.cintro .lead{margin-top:28px;max-width:30ch}
+.cintro .body{align-self:end}
+.meta{display:grid;grid-template-columns:repeat(5,1fr);gap:0;margin-top:clamp(40px,4.4vw,64px);border-top:1px solid var(--line)}
+.meta>div{padding:20px 20px 0 0}
+.meta dt{font-size:13px;color:var(--ink-3);margin-bottom:6px}
+.meta dd{margin:0;font-size:16px;font-weight:500;letter-spacing:-.01em}
+.meta dd small{display:block;font-weight:400;font-size:14px;color:var(--ink-2);margin-top:2px}
+
+/* ---------- 3. процесс ---------- */
+.steps{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.step{padding:22px;border-radius:24px;background:var(--band);display:flex;flex-direction:column;gap:10px;min-height:190px}
+.step .n{font-size:13px;color:var(--brand);font-variant-numeric:tabular-nums}
+.step b{font-family:var(--font-display);font-weight:500;font-size:clamp(22px,1.8vw,26px);line-height:1.15;letter-spacing:-.02em}
+.step p{font-size:16px;color:var(--ink-2);line-height:1.47}
+
+/* ---------- 4/6. проблемы и решения: карточки вперемешку с картинками ---------- */
+.mix{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.mix>*{aspect-ratio:3/3.4;border-radius:24px;overflow:hidden}
+.card{background:var(--band);padding:24px;display:flex;flex-direction:column;justify-content:space-between}
+.card .n{font-family:var(--font-display);font-size:44px;line-height:1;letter-spacing:-.03em;color:var(--ink-3)}
+.card p{font-size:16px;color:var(--ink-2);line-height:1.47}
+.mix .media{border-radius:24px}
+
+/* ---------- 5. персона ---------- */
+.persona{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px}
+.persona .media{aspect-ratio:3/4;border-radius:24px;grid-row:span 1}
+.persona .who{position:absolute;left:18px;bottom:16px;color:#fff;font-weight:500;font-size:19px;text-shadow:0 1px 12px rgba(0,0,0,.3)}
+.plist{background:var(--band);border-radius:24px;padding:24px}
+.plist h3{font-family:var(--font-display);font-size:clamp(22px,1.8vw,26px);font-weight:500;line-height:1.15;letter-spacing:-.02em;margin-bottom:16px}
+.plist ul{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.plist li{display:grid;grid-template-columns:18px 1fr;gap:10px;font-size:16px;color:var(--ink-2);line-height:1.45}
+.plist li::before{content:"";width:16px;height:16px;margin-top:3px;background:var(--brand);-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23000' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m3.5 8.4 2.9 2.9 6.1-6.6'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23000' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m3.5 8.4 2.9 2.9 6.1-6.6'/%3E%3C/svg%3E") center/contain no-repeat}
+
+/* ---------- 7. широкий визуал с подписью ---------- */
+.fig .media{aspect-ratio:16/8}
+.fig figcaption{margin-top:14px;font-size:14px;color:var(--ink-3)}
+figure{margin:0}
+
+/* ---------- 8. дизайн-система ---------- */
+.ds{display:grid;grid-template-columns:1.1fr 1fr;gap:12px}
+.type{background:var(--dark);color:#fff;border-radius:24px;padding:32px;display:flex;flex-direction:column;justify-content:space-between;min-height:360px}
+.type .aa{font-family:var(--font-display);font-size:clamp(72px,9vw,128px);line-height:.9;letter-spacing:-.04em}
+.type .fam{font-size:15px;color:rgba(255,255,255,.6)}
+.scale{background:var(--band);border-radius:24px;padding:28px;display:grid;gap:18px}
+.scale div{display:flex;justify-content:space-between;align-items:baseline;gap:16px;border-bottom:1px solid var(--hair);padding-bottom:14px}
+.scale div:last-child{border:0;padding:0}
+.scale small{font-size:13px;color:var(--ink-3);white-space:nowrap}
+.swatches{grid-column:1/-1;display:grid;grid-template-columns:repeat(6,1fr);gap:12px}
+.sw{border-radius:20px;overflow:hidden;background:var(--band)}
+.sw i{display:block;aspect-ratio:1/1;background:var(--c)}
+.sw span{display:block;padding:12px 14px;font-size:13px;color:var(--ink-2);font-variant-numeric:tabular-nums}
+.sw span b{display:block;color:var(--ink);font-weight:500}
+
+/* ---------- 9. экраны ---------- */
+.screens{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.screens .media{aspect-ratio:9/16}
+.screens .media.span{grid-column:span 3;aspect-ratio:16/8}
+
+/* ---------- 10. результаты (тёмный блок) ---------- */
+.results{background:var(--dark);color:#fff;border-radius:36px;padding:clamp(32px,5vw,64px)}
+.results .h2 .mute{color:rgba(255,255,255,.45)}
+.results .body{color:rgba(255,255,255,.62)}
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:clamp(32px,4vw,48px)}
+.kpi{background:var(--dark-2);border-radius:24px;padding:28px;display:flex;flex-direction:column;gap:12px}
+.kpi b{font-family:var(--font-display);font-weight:500;font-size:clamp(48px,6vw,80px);line-height:1;letter-spacing:-.04em}
+.kpi span{font-size:15px;color:rgba(255,255,255,.62);line-height:1.45}
+
+/* ---------- 11. выводы ---------- */
+.learn{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.learn .card{aspect-ratio:auto;min-height:220px;gap:24px}
+
+/* ---------- 12. следующий кейс и контакт ---------- */
+.next{display:grid;grid-template-columns:1.3fr 1fr;gap:12px;align-items:stretch}
+.ncase{position:relative;display:block;border-radius:var(--r);overflow:hidden;min-height:320px;background:var(--band)}
+.ncase .media{position:absolute;inset:0;border-radius:0}
+.ncase .media::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(245,245,247,.97) 0%,rgba(245,245,247,.8) 26%,rgba(245,245,247,0) 52%)}
+.ncase .lbl{position:absolute;left:24px;bottom:22px;right:24px;display:flex;justify-content:space-between;align-items:end;gap:16px}
+.ncase .lbl small{display:block;font-size:13px;color:var(--ink-2)}
+.ncase .lbl b{font-family:var(--font-display);font-weight:500;font-size:clamp(22px,1.8vw,26px);letter-spacing:-.02em}
+.ncase .arr{width:44px;height:44px;border-radius:50%;background:#fff;display:grid;place-items:center;flex:none;transition:transform .3s var(--ease)}
+.ncase:hover .arr{transform:translateX(4px)}
+.cta{background:var(--band);border-radius:var(--r);padding:32px;display:flex;flex-direction:column;justify-content:space-between;gap:28px}
+.cta .row{display:flex;gap:10px;flex-wrap:wrap}
+
+/* ---------- футер: как на главной ---------- */
+.kfoot{background:var(--dark);color:rgba(255,255,255,.62);margin-top:var(--sp);padding-block:40px calc(40px + env(safe-area-inset-bottom,0px))}
+.kfoot .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px 32px;flex-wrap:wrap;font-size:15px}
+.kfoot nav{display:flex;gap:10px 28px;flex-wrap:wrap}
+.kfoot a:hover{color:#fff}
+
+/* ---------- появление при прокрутке ---------- */
+.rv{opacity:0;transform:translateY(24px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+
+/* ---------- адаптив ---------- */
+@media (max-width:980px){
+  .shead,.cintro .grid{grid-template-columns:1fr}
+  .shead .body{justify-self:start}
+  .meta{grid-template-columns:repeat(2,1fr)}
+  .steps{grid-template-columns:repeat(2,1fr)}
+  .mix,.persona{grid-template-columns:repeat(2,1fr)}
+  .ds,.next{grid-template-columns:1fr}
+  .swatches{grid-template-columns:repeat(3,1fr)}
+  .kpis,.learn{grid-template-columns:1fr}
+  .screens{grid-template-columns:repeat(2,1fr)}
+  .screens .media.span{grid-column:span 2}
+}
+@media (max-width:600px){
+  .back span{display:none}
+  .chero .media{aspect-ratio:4/3.6;border-radius:28px}
+  .steps{grid-template-columns:1fr}
+  .step{min-height:0}
+  .mix>*{aspect-ratio:auto;min-height:200px}
+  .mix .media{aspect-ratio:auto}
+  .fig .media{aspect-ratio:4/3}
+}
+/* веб-продукт: экраны в две колонки */
+.mods.sq .mod .media{aspect-ratio:1/1;object-fit:cover}.mods.sq .mod .media img{object-position:center}.mods.sq .mod{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.mods.sq .mod:nth-child(even){grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.mods{display:flex;flex-direction:column;gap:16px}.mod{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(0,1fr);gap:clamp(24px,3vw,48px);align-items:center;background:var(--band);border-radius:32px;padding:14px clamp(24px,3vw,44px) 14px 14px}.mod:nth-child(even){grid-template-columns:minmax(0,1fr) minmax(0,1.55fr);padding:14px 14px 14px clamp(24px,3vw,44px)}.mod:nth-child(even) .media{order:2}.mod .media{aspect-ratio:16/10;border-radius:20px;background:#fff;box-shadow:0 0 0 1px rgba(0,0,0,.07)}.mod .media img{width:100%;height:100%;object-fit:cover;object-position:top left;display:block}.mtxt .ey{display:inline-block;font-size:13px;font-weight:600;color:#c2540f;background:rgba(238,106,31,.12);padding:5px 10px;border-radius:13px}.mtxt h3{margin-top:18px;font-family:var(--font-display);font-weight:500;font-size:clamp(24px,2.2vw,32px);letter-spacing:-.025em;line-height:1.15}.mtxt ul{margin:18px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:12px}.mtxt li{position:relative;padding-left:20px;font-size:clamp(15px,1.15vw,17px);line-height:1.45;color:var(--ink-2)}.mtxt li::before{content:"";position:absolute;left:2px;top:.62em;width:7px;height:7px;border-radius:50%;background:#EE6A1F}@media (max-width:900px){.mod,.mod:nth-child(even){grid-template-columns:1fr;padding:12px 12px 28px}.mod:nth-child(even) .media{order:0}.mtxt{padding:0 12px}}
+.learn2{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.lcard{background:var(--band);border-radius:28px;padding:28px 28px 32px;display:flex;flex-direction:column;gap:12px}.lcard .n{align-self:flex-start;min-width:34px;height:26px;padding:0 8px;border-radius:13px;display:grid;place-items:center;font-size:13px;font-weight:600;color:#c2540f;background:rgba(238,106,31,.12);font-variant-numeric:tabular-nums;margin-bottom:12px}.lcard h3{font-family:var(--font-display);font-weight:500;font-size:clamp(20px,1.7vw,24px);letter-spacing:-.02em;line-height:1.2}.lcard p{font-size:16px;line-height:1.5;color:var(--ink-2)}@media (max-width:900px){.learn2{grid-template-columns:1fr!important}}
+.stages{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.stage{background:var(--band);border-radius:28px;padding:12px 12px 24px}.stage .media{aspect-ratio:1.54;border-radius:18px;background:#fff;box-shadow:0 0 0 1px rgba(0,0,0,.07)}.stage .media img{width:100%;height:100%;object-fit:cover;object-position:top left;display:block}.stxt{display:flex;gap:12px;align-items:flex-start;padding:20px 12px 0}.stxt .n{flex:none;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-size:12px;font-weight:600;background:#fff;color:var(--ink);box-shadow:0 0 0 1px rgba(0,0,0,.1)}.stxt .n.on{background:#EE6A1F;color:#fff;box-shadow:none}.stxt h3{font-family:var(--font-display);font-weight:500;font-size:20px;letter-spacing:-.02em}.stxt p{margin-top:6px;font-size:15px;line-height:1.45;color:var(--ink-2)}@media (max-width:900px){.stages{grid-template-columns:1fr}}
+.pairs{display:grid;grid-template-columns:1fr 1fr;gap:16px}.pair{background:var(--band);border-radius:28px;padding:12px 12px 28px;display:flex;flex-direction:column}.pair .media{aspect-ratio:16/11;border-radius:18px;background:#fff;box-shadow:0 0 0 1px rgba(0,0,0,.07),0 1px 2px rgba(0,0,0,.04)}.pair .media img{width:100%;height:100%;object-fit:cover;display:block}.ptxt{display:flex;gap:14px;align-items:flex-start;padding:24px 16px 0}.ptxt .n{flex:none;min-width:34px;height:26px;padding:0 8px;border-radius:13px;display:grid;place-items:center;font-size:13px;font-weight:600;color:#c2540f;background:rgba(238,106,31,.12);font-variant-numeric:tabular-nums}.ptxt h3{font-family:var(--font-display);font-weight:500;font-size:clamp(20px,1.7vw,24px);letter-spacing:-.02em;line-height:1.2;color:var(--ink)}.ptxt p{margin-top:8px;font-size:clamp(15px,1.15vw,17px);line-height:1.5;color:var(--ink-2);max-width:48ch}@media (max-width:760px){.pairs{grid-template-columns:1fr}.ptxt{padding:20px 8px 0}}
+.fig .media.nat{aspect-ratio:auto!important}.fig .media.nat img{height:auto;object-fit:contain}
+.wfs{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:16px}.wfs .media{aspect-ratio:16/10;border-radius:var(--r);overflow:hidden}.wfs img{width:100%;height:100%;object-fit:cover;display:block}@media (max-width:980px){.wfs{grid-template-columns:1fr}}
+.screens{grid-template-columns:1fr 1fr}.screens .media{aspect-ratio:16/10}.screens .media.span{grid-column:span 2;aspect-ratio:2/1}
+@media (max-width:980px){.screens{grid-template-columns:1fr}.screens .media.span{grid-column:auto}}
+</style>
+</head>
+<body>
+<script>
+/* кейс всегда открывается с начала страницы */
+(function(){
+  if('scrollRestoration' in history) history.scrollRestoration='manual';
+  function top(){ if(!location.hash) window.scrollTo(0,0); }
+  top(); addEventListener('load',top); addEventListener('pageshow',top);
+})();
+</script>
+
+
+<header class="gnav">
+  <div class="wrap">
+    <a class="logo" href="../index.html" aria-label="Alexei Grosul — home">AG</a>
+    <a class="back" href="../index.html#work"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3 5 8l5 5"/></svg><span>All case studies</span></a>
+    <a class="btn" href="mailto:alexeigro@gmail.com">Contact</a>
+  </div>
+</header>
+
+<main>
+<section class="chero wide">
+  <div class="top">
+    <div class="tags"><span class="tag">Mobile app · AI coaching</span><span class="tag acc">[My role]</span></div>
+    <span class="year">Wellbeing &nbsp;·&nbsp; 2026</span>
+  </div>
+  <div class="media rv"><img src="../img/cases/uncloud/cover.jpg" alt="Uncloud360: home, AI Voice and session summary screens with the 3D character" loading="lazy"></div>
+</section>
+<section class="sec cintro">
+  <div class="wrap">
+    <p class="klabel"><span class="kn">//</span> Case study</p>
+    <div class="grid">
+      <div>
+        <h1 class="h1 rv">Uncloud360</h1>
+        <p class="lead rv">A private AI coach for work, emotions and life. Talk it through in one tap and leave with one clear next step.</p>
+      </div>
+      <p class="body rv">People open a coaching app when something is heavy: burnout at work, tension at home, a decision they keep putting off. In that moment the interface has to get out of the way. The task was a calm, clear product where a conversation with the assistant is always one tap away, a mascot that makes the AI feel approachable without being childish, and a visual style built on the Uncloud 360 brand book.</p>
+    </div>
+    <dl class="meta rv">
+      <div><dt>My role</dt><dd>[Role]<small>UX, UI, mascot, design system</small></dd></div>
+      <div><dt>Team</dt><dd>[Team]</dd></div>
+      <div><dt>Timeline</dt><dd>[Duration]<small>2026</small></dd></div>
+      <div><dt>Platform</dt><dd>iOS-first · desktop web</dd></div>
+      <div><dt>Users</dt><dd>Adults dealing with stress, burnout and life decisions</dd></div>
+    </dl>
+  </div>
+</section>
+<section class="sec">
+  <div class="wrap">
+    <div class="shead">
+      <h2 class="h2 rv">Design process</h2>
+      <p class="body rv">From the brand book to a mascot and a full mobile-first product, then the same system on desktop.</p>
+    </div>
+    <div class="steps">
+      <div class="step rv"><span class="n">01</span><b>Brief</b><p>Who comes to the app and in what state; what has to be reachable in one tap.</p></div>
+      <div class="step rv"><span class="n">02</span><b>Style concept</b><p>Light, calm, grown-up: Navy for structure, Teal for the one action, Mist for air.</p></div>
+      <div class="step rv"><span class="n">03</span><b>Mascot</b><p>Four directions explored; a 3D cloud character with poses for welcoming, pointing and presenting.</p></div>
+      <div class="step rv"><span class="n">04</span><b>Mobile first</b><p>20 screens from welcome to session summary, journal, paths and settings.</p></div>
+      <div class="step rv"><span class="n">05</span><b>Desktop</b><p>20 screens on the same components, with a sidebar and wider layouts.</p></div>
+    </div>
+  </div>
+</section>
+<section class="sec">
+  <div class="wrap">
+    <div class="shead">
+      <h2 class="h2 rv">The core flow</h2>
+      <p class="body rv">Open the app, tap AI Voice, talk, and get a summary with one next step. Typing is always there as an alternative.</p>
+    </div>
+    <figure class="fig rv"><div class="media nat"><img src="../img/cases/uncloud/screens-core.jpg" alt="Welcome, Home, AI Voice, Chat and Session summary screens" loading="lazy"></div></figure>
+  </div>
+</section>
+<section class="sec">
+  <div class="wrap">
+    <div class="shead">
+      <h2 class="h2 rv">Principles</h2>
+      <p class="body rv">Four rules that shaped every screen.</p>
+    </div>
+    <div class="learn2" style="grid-template-columns:repeat(4,1fr)">
+      <div class="lcard rv"><span class="n">01</span><h3>Lightness through air</h3><p>Soft mist gradients, hairline borders and generous spacing instead of glows, glass or dark slabs.</p></div>
+      <div class="lcard rv"><span class="n">02</span><h3>Warm, not childish</h3><p>A friendly character for the key moments, words for mood instead of emojis, one calm typeface.</p></div>
+      <div class="lcard rv"><span class="n">03</span><h3>One clear action</h3><p>Each screen has one primary button in Teal. AI Voice is the hero of Home and the centre of the tab bar.</p></div>
+      <div class="lcard rv"><span class="n">04</span><h3>Built for the thumb</h3><p>Bottom tab bar, 44 pt+ targets, primary actions in the lower half of the screen.</p></div>
+    </div>
+  </div>
+</section>
+<section class="sec">
+  <div class="wrap">
+    <div class="shead">
+      <h2 class="h2 rv">Key screens</h2>
+      <p class="body rv">Each one answers a single question: what do I do now?</p>
+    </div>
+    <div class="mods sq">
+      <div class="mod rv"><div class="media"><img src="../img/cases/uncloud/key-home.jpg" alt="Home screen with AI Voice as the hero action" loading="lazy"></div><div class="mtxt"><span class="ey">Home</span><h3>One hero action</h3><ul><li>“Talk it through” starts a voice session in one tap</li><li>Two quick actions: guided paths and live coaching</li><li>A one-word mood check-in and what’s up next</li></ul></div></div>
+      <div class="mod rv"><div class="media"><img src="../img/cases/uncloud/key-voice.jpg" alt="AI Voice screen with the 3D character listening" loading="lazy"></div><div class="mtxt"><span class="ey">AI Voice</span><h3>The mascot is the interface</h3><ul><li>The character is the centre of the screen, with a clear state: listening, thinking or speaking</li><li>A large live transcript under it</li><li>Pause, captions and end within thumb reach</li></ul></div></div>
+      <div class="mod rv"><div class="media"><img src="../img/cases/uncloud/key-summary.jpg" alt="Session summary with insight and key moments" loading="lazy"></div><div class="mtxt"><span class="ey">Session summary</span><h3>Nothing is lost</h3><ul><li>An insight in plain words and the topics it touched</li><li>One next step that can be added to the plan</li><li>Key moments with timestamps, saved to the journal</li></ul></div></div>
+      <div class="mod rv"><div class="media"><img src="../img/cases/uncloud/key-journal.jpg" alt="Journal with notes and session summaries" loading="lazy"></div><div class="mtxt"><span class="ey">Journal</span><h3>One private feed</h3><ul><li>Notes, session summaries and check-ins together</li><li>A daily prompt to start writing</li><li>Search and filters by type</li></ul></div></div>
+      <div class="mod rv"><div class="media"><img src="../img/cases/uncloud/key-crisis.jpg" alt="Crisis resources with one-tap call and text" loading="lazy"></div><div class="mtxt"><span class="ey">Crisis resources</span><h3>Safety comes first</h3><ul><li>A clear note that this is AI coaching, not therapy or emergency care</li><li>Free 24/7 lines with one-tap call or text</li><li>Reachable from Profile → Support at any time</li></ul></div></div>
+    </div>
+  </div>
+</section>
+<section class="sec">
+  <div class="wrap">
+    <div class="shead">
+      <h2 class="h2 rv">The mascot</h2>
+      <p class="body rv">A friendly guide with a job to do. The soft 3D cloud character welcomes people, points to the next action and presents insights, so the AI feels approachable from the very first screen.</p>
+    </div>
+    <figure class="fig rv"><div class="media nat"><img src="../img/cases/uncloud/mascot-poses.jpg" alt="3D cloud character in two poses: presenting and pointing" loading="lazy"></div><figcaption>Two poses with clear roles: presenting on Welcome, AI Voice and Profile; pointing on the Home hero and in hints next to buttons.</figcaption></figure>
+    <figure class="fig rv" style="margin-top:24px"><div class="media nat"><img src="../img/cases/uncloud/mascot-evolution.jpg" alt="Mascot directions explored: flat icon, 3D cloud and 3D character" loading="lazy"></div><figcaption>Directions explored along the way: a flat icon, a faceless 3D cloud and the 3D character.</figcaption></figure>
+  </div>
+</section>
+<section class="sec">
+  <div class="wrap">
+    <div class="shead">
+      <h2 class="h2 rv">Beyond the session</h2>
+      <p class="body rv">Journal, guided paths, crisis resources and a profile that groups plan, coaching and personal settings.</p>
+    </div>
+    <figure class="fig rv"><div class="media nat"><img src="../img/cases/uncloud/screens-more.jpg" alt="Journal, Paths and resources, Crisis resources and Profile screens" loading="lazy"></div></figure>
+  </div>
+</section>
+<section class="sec">
+  <div class="wrap">
+    <div class="shead">
+      <h2 class="h2 rv">Design system</h2>
+      <p class="body rv">Built on the Uncloud 360 brand book. Navy carries text and structure, Teal is reserved for the one primary action and AI Voice, Mist creates air between blocks.</p>
+    </div>
+    <div class="ds">
+      <div class="type rv"><span class="fam">Manrope</span><span class="aa" style="font-family:Manrope,var(--font-body);font-weight:700">Aa</span><span class="fam">Medium · Bold</span></div>
+      <div class="scale rv">
+        <div><span style="font-family:Manrope,var(--font-body);font-weight:700;font-size:32px;letter-spacing:-.03em">Display</span><small>Manrope · 48 / Bold</small></div>
+        <div><span style="font-family:Manrope,var(--font-body);font-weight:700;font-size:22px">Heading</span><small>Manrope · 28 / Bold</small></div>
+        <div><span style="font-family:Manrope,var(--font-body);font-weight:500;font-size:17px">Body for reading</span><small>Manrope · 17 / Medium</small></div>
+        <div><span style="font-family:Manrope,var(--font-body);font-weight:700;font-size:11px;letter-spacing:.12em;color:#00838A">LABEL</span><small>Manrope · 11 / Bold, caps</small></div>
+      </div>
+      <div class="swatches">
+        <div class="sw rv" style="--c:#000a1e"><i></i><span><b>Navy</b>#000A1E</span></div>
+        <div class="sw rv" style="--c:#00b4be"><i></i><span><b>Teal</b>#00B4BE</span></div>
+        <div class="sw rv" style="--c:#00838a"><i></i><span><b>Deep teal</b>#00838A</span></div>
+        <div class="sw rv" style="--c:#485052"><i></i><span><b>Graphite</b>#485052</span></div>
+        <div class="sw rv" style="--c:#f0f7f8;box-shadow:inset 0 0 0 1px var(--hair)"><i></i><span><b>Mist</b>#F0F7F8</span></div>
+        <div class="sw rv" style="--c:#ffffff;box-shadow:inset 0 0 0 1px var(--hair)"><i></i><span><b>White</b>#FFFFFF</span></div>
+      </div>
+    </div>
+    <p class="body rv" style="margin-top:20px;font-size:16px">Accessibility: white on Teal is only 2.5:1, so labels and icons on Teal buttons are Navy (7.8:1), and small teal text uses Deep teal (4.5:1, AA).</p>
+  </div>
+</section>
+<section class="sec">
+  <div class="wrap">
+    <div class="shead">
+      <h2 class="h2 rv">Desktop</h2>
+      <p class="body rv">The same coach on a bigger screen: sidebar navigation, a dashboard with a daily check-in, and the voice session with a live transcript and captured insights.</p>
+    </div>
+    <div class="screens">
+      <div class="media span rv"><img src="../img/cases/uncloud/desktop-dashboard.jpg" alt="Desktop dashboard on a laptop" loading="lazy"></div>
+    </div>
+    <figure class="fig rv" style="margin-top:16px"><div class="media nat"><img src="../img/cases/uncloud/desktop-voice.jpg" alt="Desktop AI Voice session with transcript" loading="lazy"></div></figure>
+  </div>
+</section>
+<section class="sec">
+  <div class="wrap">
+    <div class="results">
+      <div class="shead" style="margin-bottom:0">
+        <h2 class="h2 rv">Results <span class="mute">that matter.</span></h2>
+        <p class="body rv">A complete mobile-first concept with its own mascot and design system, mirrored on desktop and ready for development.</p>
+      </div>
+      <div class="kpis">
+        <div class="kpi rv"><b>1 tap</b><span>To a voice session from any screen</span></div>
+        <div class="kpi rv"><b>40</b><span>Screens: 20 mobile and 20 desktop</span></div>
+        <div class="kpi rv"><b>4</b><span>Mascot directions explored before the final character</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="sec">
+  <div class="wrap">
+    <div class="next">
+      <a class="ncase rv" href="tournament-guru.html">
+        <div class="media"><img src="../img/cases/tournament-guru/cover.jpg" alt="Tournament Guru" loading="lazy"></div>
+        <div class="lbl"><div><small>Next case study</small><b>Tournament Guru</b></div><span class="arr circle"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></div>
+      </a>
+      <div class="cta rv">
+        <div><h2 class="h2" style="font-size:clamp(30px,3.2vw,40px)">Let’s talk.</h2><p class="body" style="margin-top:12px">Tell me about the role or project — I reply within a day.</p></div>
+        <div class="row"><a class="btn btn-lg" href="mailto:alexeigro@gmail.com">Email me</a><a class="btn btn-lg btn-line" href="../index.html#work">All case studies</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="kfoot">
+  <div class="wrap">
+    <span>&copy; 2026 Alexei Grosul</span>
+    <nav aria-label="Footer"><a href="../index.html#work">Case studies</a><a href="https://md.linkedin.com/in/alexei-grosul-63aa6a73" target="_blank" rel="noopener">LinkedIn</a><a href="https://dribbble.com/AlexeiG" target="_blank" rel="noopener">Dribbble</a><a href="mailto:alexeigro@gmail.com">Email</a></nav>
+  </div>
+</footer>
+
+<script>
+/* мягкое появление блоков при прокрутке */
+(function(){
+  var els=document.querySelectorAll('.rv');
+  if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return}
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -8% 0px',threshold:.08});
+  els.forEach(function(e){io.observe(e)});
+})();
+</script>
+</body>
+</html>

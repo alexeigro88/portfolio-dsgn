@@ -557,7 +557,7 @@ html.kc.modal input:not([type=radio]),html.kc.modal textarea{cursor:text!importa
 .wstack{max-width:1440px;margin:0 auto;padding-left:var(--gl);padding-right:var(--gr);display:flex;flex-direction:column;gap:24px}
 .wk{--k:0;position:sticky;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);align-items:center;gap:24px;height:min(76vh,700px);min-height:520px;border-radius:32px;overflow:hidden;background:var(--bg);color:var(--fg);isolation:isolate;
   transform:scale(calc(1 - var(--k) * .06));transform-origin:50% 0;filter:brightness(calc(1 - var(--k) * .25));transition:filter .2s}
-.wk:nth-child(1){top:72px}.wk:nth-child(2){top:86px}.wk:nth-child(3){top:100px}.wk:nth-child(4){top:114px}
+.wk:nth-child(1){top:72px}.wk:nth-child(2){top:86px}.wk:nth-child(3){top:100px}.wk:nth-child(4){top:114px}.wk:nth-child(5){top:128px}
 .wk-info{padding:clamp(28px,4vw,56px);display:flex;flex-direction:column;gap:18px;align-self:stretch;justify-content:flex-end}
 .wk-n{font-size:13px;letter-spacing:.08em;color:var(--fg2);margin-bottom:auto;font-variant-numeric:tabular-nums}
 .wk h3{font-size:clamp(30px,3vw,44px);max-width:12ch;line-height:1.04;letter-spacing:-.03em;font-weight:500;color:var(--fg)}
@@ -951,9 +951,19 @@ dialog.sheet[open]{animation:pop .45s var(--ease)}
     <a class="more" href="#work">Все кейсы</a>
   </div>
   <div class="wstack" id="wstack">
+    <a class="wk wk-photo sq" data-r="28" data-cursor="Открыть кейс +" href="cases/uncloud.html" style="--bg:var(--band);--ih:80%;--fg:#1d1d1f;--fg2:#3a3a3c;--ln:rgba(0,0,0,.12)">
+      <div class="wk-info">
+        <span class="wk-n">01 / 05<i>AI-коучинг</i></span>
+        <h3>Uncloud360</h3>
+        <p>Мобильный AI-коуч для работы, эмоций и жизни: разговор с ассистентом в один тап, спокойный 3D-маскот и понятный интерфейс.</p>
+        <dl class="wk-kpi"><div><dt>Мобайл</dt><dd>Тип продукта</dd></div><div><dt>[Роль]</dt><dd>Моя роль</dd></div><div><dt>[Срок]</dt><dd>Длительность</dd></div></dl>
+        <span class="wk-cta">Смотреть кейс</span>
+      </div>
+      <div class="wk-vis wk-img pvw sq" data-r="20"><div class="pv-ph"><img src="img/cases/uncloud/cover.jpg" alt="Uncloud360" loading="lazy"></div></div>
+    </a>
     <a class="wk wk-photo sq" data-r="28" data-cursor="Открыть кейс +" href="cases/tournament-guru.html" style="--bg:var(--band);--ih:80%;--fg:#1d1d1f;--fg2:#3a3a3c;--ln:rgba(0,0,0,.12)">
       <div class="wk-info">
-        <span class="wk-n">01 / 04<i>Детский спорт</i></span>
+        <span class="wk-n">02 / 05<i>Детский спорт</i></span>
         <h3>Tournament Guru</h3>
         <p>Сервис для выбора детских турниров с проверенными отзывами команд, которые там играли.</p>
         <dl class="wk-kpi"><div><dt>Веб</dt><dd>Тип продукта</dd></div><div><dt>[Роль]</dt><dd>Моя роль</dd></div><div><dt>[Срок]</dt><dd>Длительность</dd></div></dl>
@@ -963,7 +973,7 @@ dialog.sheet[open]{animation:pop .45s var(--ease)}
     </a>
     <a class="wk wk-photo sq" data-r="28" data-cursor="Открыть кейс +" href="cases/bookkeeper-ai.html" style="--bg:var(--band);--ih:80%;--fg:#1d1d1f;--fg2:#3a3a3c;--ln:rgba(0,0,0,.12)">
       <div class="wk-info">
-        <span class="wk-n">02 / 04<i>Бухгалтерия</i></span>
+        <span class="wk-n">03 / 05<i>Бухгалтерия</i></span>
         <h3>BookKeeper AI</h3>
         <p>AI-ассистент для бухгалтеров, который отвечает только по проверенным регламентам и показывает источник.</p>
         <dl class="wk-kpi"><div><dt>Веб</dt><dd>Тип продукта</dd></div><div><dt>[Роль]</dt><dd>Моя роль</dd></div><div><dt>[Срок]</dt><dd>Длительность</dd></div></dl>
@@ -973,7 +983,7 @@ dialog.sheet[open]{animation:pop .45s var(--ease)}
     </a>
     <a class="wk wk-photo sq" data-r="28" data-cursor="Открыть кейс +" href="cases/stulo.html" style="--bg:var(--band);--ih:80%;--fg:#1d1d1f;--fg2:#3a3a3c;--ln:rgba(0,0,0,.12)">
       <div class="wk-info">
-        <span class="wk-n">03 / 04<i>Финтех</i></span>
+        <span class="wk-n">04 / 05<i>Финтех</i></span>
         <h3>StuLo</h3>
         <p>Сервис для управления студенческими кредитами: все займы в одном месте, понятный следующий шаг и коучи, которые готовят документы.</p>
         <dl class="wk-kpi"><div><dt>Веб</dt><dd>Тип продукта</dd></div><div><dt>[Роль]</dt><dd>Моя роль</dd></div><div><dt>[Срок]</dt><dd>Длительность</dd></div></dl>
@@ -983,7 +993,7 @@ dialog.sheet[open]{animation:pop .45s var(--ease)}
     </a>
     <a class="wk wk-photo sq" data-r="28" data-cursor="Открыть кейс +" href="cases/truescan.html" style="--bg:var(--band);--ih:80%;--fg:#1d1d1f;--fg2:#3a3a3c;--ln:rgba(0,0,0,.12)">
       <div class="wk-info">
-        <span class="wk-n">04 / 04<i>3D-сканирование</i></span>
+        <span class="wk-n">05 / 05<i>3D-сканирование</i></span>
         <h3>TrueScan</h3>
         <p>Операционная платформа с нуля для компании, которая 3D-сканирует здания: заявки, сделки, коммерческие предложения, проекты и учёт времени.</p>
         <dl class="wk-kpi"><div><dt>Веб</dt><dd>Тип продукта</dd></div><div><dt>Лид-дизайнер</dt><dd>Моя роль</dd></div><div><dt>2 недели</dt><dd>Длительность</dd></div></dl>
