@@ -1,0 +1,445 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>[Project name] — Case study · Alexei Grosul</title>
+<meta name="description" content="[One sentence: what the product is and what I did.]">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,800;1,900&family=Inter+Tight:wght@400;500;600&family=Inter:wght@400;500;600&display=swap">
+<!--
+  ШАБЛОН КЕЙСА. Как заполнить:
+  1. Скопируй файл: cases/<название-проекта>.html и замени всё в [квадратных скобках].
+  2. Картинки: каждый <div class="ph" data-label="…"> замени на <img src="../img/cases/<проект>/<файл>.jpg" alt="…">
+     внутри того же контейнера (пропорции задаёт контейнер, картинка обрежется по нему).
+     Рекомендуемые размеры указаны в data-label. Формат JPG/WebP, ширина ×2 от отображаемой.
+  3. Ненужные блоки (персона, дизайн-система и т.п.) можно удалить целиком — сетка не сломается.
+  4. На главной в карточке кейса поставь href на этот файл.
+  Порядок блоков: обложка → суть и роль → процесс → проблемы → персона → решения → флоу → дизайн-система →
+  экраны → результаты → выводы → следующий кейс. «Результаты» и «Моя роль» — главное для нанимающего менеджера.
+-->
+<style>
+:root{
+  --bg:#fff;--band:#f5f5f7;--ink:#1d1d1f;--ink-2:#5e5e63;--ink-3:#86868b;--line:#d2d2d7;--hair:rgba(0,0,0,.08);
+  --brand:#256fff;--dark:#1d2327;--dark-2:#272e33;
+  --font-display:"Helvetica Neue",Helvetica,"Inter Tight","Inter",Arial,sans-serif;
+  --font-body:"Helvetica Neue",Helvetica,"Inter",Arial,sans-serif;
+  --font-brand:"Figtree",-apple-system,BlinkMacSystemFont,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  --max:1200px;--gl:max(22px,env(safe-area-inset-left,0px));--gr:max(22px,env(safe-area-inset-right,0px));
+  --sp:clamp(72px,8vw,120px);--r:28px;--ease:cubic-bezier(.28,.11,.32,1);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font-body);font-size:17px;line-height:1.47;letter-spacing:-.005em;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+h1,h2,h3,p{margin:0}
+.wrap{max-width:var(--max);margin:0 auto;padding-left:var(--gl);padding-right:var(--gr)}
+.wide{max-width:1400px;margin:0 auto;padding-left:var(--gl);padding-right:var(--gr)}
+.sec{padding-block:var(--sp) 0}
+.band{background:var(--band)}
+/* скругления — squircle, где браузер поддерживает */
+@supports (corner-shape:squircle){*,*::before,*::after{corner-shape:squircle}.circle{corner-shape:round}}
+
+/* ---------- шапка: как на главной ---------- */
+.gnav{position:sticky;top:0;z-index:50;background:rgba(251,251,253,.8);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--hair)}
+.gnav .wrap{display:flex;align-items:center;justify-content:space-between;height:52px}
+.logo{font-family:var(--font-brand);font-weight:600;font-size:20px;letter-spacing:-.02em}
+.back{display:inline-flex;align-items:center;gap:8px;font-size:14.5px;color:rgba(0,0,0,.72);transition:color .2s}
+.back:hover{color:#000}
+.back svg{width:14px;height:14px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:33px;padding:0 16px;border-radius:999px;font-size:13px;background:var(--ink);color:#fff;transition:transform .25s var(--ease)}
+.btn:hover{transform:translateY(-1px)}
+.btn-lg{height:auto;padding:14px 26px;font-size:17px}
+.btn-line{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1px var(--line)}
+
+/* ---------- типографика: значения 1:1 с главной (index.html: .klabel, .h-xl, .h-l, .lede-l) ---------- */
+.klabel{font-size:clamp(17px,1.3vw,18.72px);letter-spacing:-.005em;color:var(--ink)}
+.klabel .kn{color:var(--ink-3);font-variant-numeric:tabular-nums;margin-right:6px}
+.h1{font-family:var(--font-display);font-weight:500;font-size:clamp(48px,7vw,96px);line-height:1.04;letter-spacing:-.015em}
+.h2{font-family:var(--font-display);font-weight:500;font-size:clamp(38px,5vw,64px);line-height:1.06;letter-spacing:-.015em}
+.h2 .mute,.h1 .mute{color:var(--ink-3)}
+.lead{font-family:var(--font-display);font-size:clamp(22px,2.4vw,32px);line-height:1.3;letter-spacing:-.018em;color:var(--ink)}
+.body{font-size:clamp(17px,1.4vw,20px);line-height:1.5;color:var(--ink-2);max-width:56ch}
+.shead{display:grid;grid-template-columns:1fr 1fr;gap:32px 64px;align-items:end;margin-bottom:clamp(32px,3.6vw,48px)}
+.shead .body{justify-self:end}
+
+/* ---------- плейсхолдер картинки ---------- */
+.ph{position:relative;width:100%;height:100%;display:grid;place-items:center;background:linear-gradient(135deg,#eceef3,#e2e5ec);color:var(--ink-3);font-size:13px;text-align:center;padding:16px}
+.ph::after{content:attr(data-label);max-width:30ch}
+.dark .ph{background:linear-gradient(135deg,#2a3238,#20272c);color:rgba(255,255,255,.45)}
+.media{position:relative;overflow:hidden;border-radius:var(--r);background:var(--band)}
+.media>img,.media>video{width:100%;height:100%;object-fit:cover}
+
+/* ---------- 1. обложка ---------- */
+.chero{padding-top:clamp(20px,2.4vw,32px)}
+.chero .top{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:16px;flex-wrap:wrap}
+.tags{display:flex;gap:8px;flex-wrap:wrap}
+.tag{font-size:13px;padding:8px 14px;border-radius:999px;background:var(--band);color:var(--ink)}
+.tag.acc{background:var(--brand);color:#fff}
+.year{font-size:15px;color:var(--ink-2);font-variant-numeric:tabular-nums}
+.chero .media{aspect-ratio:16/9;border-radius:36px}
+
+/* ---------- 2. суть и роль ---------- */
+.cintro .grid{display:grid;grid-template-columns:1.25fr 1fr;gap:40px 72px;margin-top:22px}
+.cintro .h1{margin-top:10px}
+.cintro .lead{margin-top:28px;max-width:30ch}
+.cintro .body{align-self:end}
+.meta{display:grid;grid-template-columns:repeat(5,1fr);gap:0;margin-top:clamp(40px,4.4vw,64px);border-top:1px solid var(--line)}
+.meta>div{padding:20px 20px 0 0}
+.meta dt{font-size:13px;color:var(--ink-3);margin-bottom:6px}
+.meta dd{margin:0;font-size:16px;font-weight:500;letter-spacing:-.01em}
+.meta dd small{display:block;font-weight:400;font-size:14px;color:var(--ink-2);margin-top:2px}
+
+/* ---------- 3. процесс ---------- */
+.steps{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.step{padding:22px;border-radius:24px;background:var(--band);display:flex;flex-direction:column;gap:10px;min-height:190px}
+.step .n{font-size:13px;color:var(--brand);font-variant-numeric:tabular-nums}
+.step b{font-family:var(--font-display);font-weight:500;font-size:clamp(22px,1.8vw,26px);line-height:1.15;letter-spacing:-.02em}
+.step p{font-size:16px;color:var(--ink-2);line-height:1.47}
+
+/* ---------- 4/6. проблемы и решения: карточки вперемешку с картинками ---------- */
+.mix{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.mix>*{aspect-ratio:3/3.4;border-radius:24px;overflow:hidden}
+.card{background:var(--band);padding:24px;display:flex;flex-direction:column;justify-content:space-between}
+.card .n{font-family:var(--font-display);font-size:44px;line-height:1;letter-spacing:-.03em;color:var(--ink-3)}
+.card p{font-size:16px;color:var(--ink-2);line-height:1.47}
+.mix .media{border-radius:24px}
+
+/* ---------- 5. персона ---------- */
+.persona{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px}
+.persona .media{aspect-ratio:3/4;border-radius:24px;grid-row:span 1}
+.persona .who{position:absolute;left:18px;bottom:16px;color:#fff;font-weight:500;font-size:19px;text-shadow:0 1px 12px rgba(0,0,0,.3)}
+.plist{background:var(--band);border-radius:24px;padding:24px}
+.plist h3{font-family:var(--font-display);font-size:clamp(22px,1.8vw,26px);font-weight:500;line-height:1.15;letter-spacing:-.02em;margin-bottom:16px}
+.plist ul{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.plist li{display:grid;grid-template-columns:18px 1fr;gap:10px;font-size:16px;color:var(--ink-2);line-height:1.45}
+.plist li::before{content:"";width:16px;height:16px;margin-top:3px;background:var(--brand);-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23000' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m3.5 8.4 2.9 2.9 6.1-6.6'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23000' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m3.5 8.4 2.9 2.9 6.1-6.6'/%3E%3C/svg%3E") center/contain no-repeat}
+
+/* ---------- 7. широкий визуал с подписью ---------- */
+.fig .media{aspect-ratio:16/8}
+.fig figcaption{margin-top:14px;font-size:14px;color:var(--ink-3)}
+figure{margin:0}
+
+/* ---------- 8. дизайн-система ---------- */
+.ds{display:grid;grid-template-columns:1.1fr 1fr;gap:12px}
+.type{background:var(--dark);color:#fff;border-radius:24px;padding:32px;display:flex;flex-direction:column;justify-content:space-between;min-height:360px}
+.type .aa{font-family:var(--font-display);font-size:clamp(72px,9vw,128px);line-height:.9;letter-spacing:-.04em}
+.type .fam{font-size:15px;color:rgba(255,255,255,.6)}
+.scale{background:var(--band);border-radius:24px;padding:28px;display:grid;gap:18px}
+.scale div{display:flex;justify-content:space-between;align-items:baseline;gap:16px;border-bottom:1px solid var(--hair);padding-bottom:14px}
+.scale div:last-child{border:0;padding:0}
+.scale small{font-size:13px;color:var(--ink-3);white-space:nowrap}
+.swatches{grid-column:1/-1;display:grid;grid-template-columns:repeat(6,1fr);gap:12px}
+.sw{border-radius:20px;overflow:hidden;background:var(--band)}
+.sw i{display:block;aspect-ratio:1/1;background:var(--c)}
+.sw span{display:block;padding:12px 14px;font-size:13px;color:var(--ink-2);font-variant-numeric:tabular-nums}
+.sw span b{display:block;color:var(--ink);font-weight:500}
+
+/* ---------- 9. экраны ---------- */
+.screens{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.screens .media{aspect-ratio:9/16}
+.screens .media.span{grid-column:span 3;aspect-ratio:16/8}
+
+/* ---------- 10. результаты (тёмный блок) ---------- */
+.results{background:var(--dark);color:#fff;border-radius:36px;padding:clamp(32px,5vw,64px)}
+.results .h2 .mute{color:rgba(255,255,255,.45)}
+.results .body{color:rgba(255,255,255,.62)}
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:clamp(32px,4vw,48px)}
+.kpi{background:var(--dark-2);border-radius:24px;padding:28px;display:flex;flex-direction:column;gap:12px}
+.kpi b{font-family:var(--font-display);font-weight:500;font-size:clamp(48px,6vw,80px);line-height:1;letter-spacing:-.04em}
+.kpi span{font-size:15px;color:rgba(255,255,255,.62);line-height:1.45}
+
+/* ---------- 11. выводы ---------- */
+.learn{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.learn .card{aspect-ratio:auto;min-height:220px;gap:24px}
+
+/* ---------- 12. следующий кейс и контакт ---------- */
+.next{display:grid;grid-template-columns:1.3fr 1fr;gap:12px;align-items:stretch}
+.ncase{position:relative;display:block;border-radius:var(--r);overflow:hidden;min-height:320px;background:var(--band)}
+.ncase .media{position:absolute;inset:0;border-radius:0}
+.ncase .media::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(245,245,247,.97) 0%,rgba(245,245,247,.8) 26%,rgba(245,245,247,0) 52%)}
+.ncase .lbl{position:absolute;left:24px;bottom:22px;right:24px;display:flex;justify-content:space-between;align-items:end;gap:16px}
+.ncase .lbl small{display:block;font-size:13px;color:var(--ink-2)}
+.ncase .lbl b{font-family:var(--font-display);font-weight:500;font-size:clamp(22px,1.8vw,26px);letter-spacing:-.02em}
+.ncase .arr{width:44px;height:44px;border-radius:50%;background:#fff;display:grid;place-items:center;flex:none;transition:transform .3s var(--ease)}
+.ncase:hover .arr{transform:translateX(4px)}
+.cta{background:var(--band);border-radius:var(--r);padding:32px;display:flex;flex-direction:column;justify-content:space-between;gap:28px}
+.cta .row{display:flex;gap:10px;flex-wrap:wrap}
+
+/* ---------- футер: как на главной ---------- */
+.kfoot{background:var(--dark);color:rgba(255,255,255,.62);margin-top:var(--sp);padding-block:40px calc(40px + env(safe-area-inset-bottom,0px))}
+.kfoot .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px 32px;flex-wrap:wrap;font-size:15px}
+.kfoot nav{display:flex;gap:10px 28px;flex-wrap:wrap}
+.kfoot a:hover{color:#fff}
+
+/* ---------- появление при прокрутке ---------- */
+.rv{opacity:0;transform:translateY(24px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+
+/* ---------- адаптив ---------- */
+@media (max-width:980px){
+  .shead,.cintro .grid{grid-template-columns:1fr}
+  .shead .body{justify-self:start}
+  .meta{grid-template-columns:repeat(2,1fr)}
+  .steps{grid-template-columns:repeat(2,1fr)}
+  .mix,.persona{grid-template-columns:repeat(2,1fr)}
+  .ds,.next{grid-template-columns:1fr}
+  .swatches{grid-template-columns:repeat(3,1fr)}
+  .kpis,.learn{grid-template-columns:1fr}
+  .screens{grid-template-columns:repeat(2,1fr)}
+  .screens .media.span{grid-column:span 2}
+}
+@media (max-width:600px){
+  .back span{display:none}
+  .chero .media{aspect-ratio:4/3.6;border-radius:28px}
+  .steps{grid-template-columns:1fr}
+  .step{min-height:0}
+  .mix>*{aspect-ratio:auto;min-height:200px}
+  .mix .media{aspect-ratio:auto}
+  .fig .media{aspect-ratio:4/3}
+}
+</style>
+</head>
+<body>
+
+<header class="gnav">
+  <div class="wrap">
+    <a class="logo" href="../index.html" aria-label="Alexei Grosul — home">AG</a>
+    <a class="back" href="../index.html#work"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3 5 8l5 5"/></svg><span>All case studies</span></a>
+    <a class="btn" href="mailto:alexeigro@gmail.com">Contact</a>
+  </div>
+</header>
+
+<main>
+
+<!-- 1. ОБЛОЖКА: теги слева (тип продукта, моя роль), год справа, обложка 16:9 на всю ширину -->
+<section class="chero wide">
+  <div class="top">
+    <div class="tags"><span class="tag">[Product type, e.g. SaaS · Web app]</span><span class="tag acc">[My role, e.g. Lead Product Designer]</span></div>
+    <span class="year">[Industry] &nbsp;·&nbsp; [Year]</span>
+  </div>
+  <div class="media rv"><div class="ph" data-label="Cover image · 16:9 · 2800×1575 · hero mockup of the product"></div></div>
+</section>
+
+<!-- 2. СУТЬ И РОЛЬ: название, одна сильная фраза-результат, короткое описание, метаданные -->
+<section class="sec cintro">
+  <div class="wrap">
+    <p class="klabel"><span class="kn">//</span> Case study</p>
+    <div class="grid">
+      <div>
+        <h1 class="h1 rv">[Project name]</h1>
+        <p class="lead rv">[One sentence: the outcome. E.g. “Redesigned onboarding and cut time-to-first-value from 3 days to 20 minutes.”]</p>
+      </div>
+      <p class="body rv">[2–4 sentences: what the product is, who it is for, the business context and why the work mattered.]</p>
+    </div>
+    <dl class="meta rv">
+      <div><dt>My role</dt><dd>[Lead Product Designer]<small>[Research, UX, UI, handoff]</small></dd></div>
+      <div><dt>Team</dt><dd>[2 designers, PM, 5 engineers]</dd></div>
+      <div><dt>Timeline</dt><dd>[3 months]<small>[2025]</small></dd></div>
+      <div><dt>Platform</dt><dd>[Web · iOS · Android]</dd></div>
+      <div><dt>Company</dt><dd>[Client / product name]</dd></div>
+    </dl>
+  </div>
+</section>
+
+<!-- 3. ПРОЦЕСС: 3–5 этапов, по одной строке что сделано на каждом -->
+<section class="sec">
+  <div class="wrap">
+    <div class="shead">
+      <h2 class="h2 rv">Design process</h2>
+      <p class="body rv">[One line on the approach: e.g. “From stakeholder interviews to a validated MVP in 8 weeks.”]</p>
+    </div>
+    <div class="steps">
+      <div class="step rv"><span class="n">01</span><b>Discovery</b><p>[Stakeholder calls, business goals, success metrics.]</p></div>
+      <div class="step rv"><span class="n">02</span><b>Research</b><p>[Interviews, competitor analysis, analytics review.]</p></div>
+      <div class="step rv"><span class="n">03</span><b>Wireframes</b><p>[User flows and low-fi prototypes, scope for MVP.]</p></div>
+      <div class="step rv"><span class="n">04</span><b>UI design</b><p>[Hi-fi screens, design system, clickable prototype.]</p></div>
+      <div class="step rv"><span class="n">05</span><b>Handoff &amp; QA</b><p>[Specs, dev handoff, design review of the build.]</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. ПРОБЛЕМЫ: заголовок + абзац, затем сетка — карточка, картинка, картинка, карточка (4 проблемы = 2 ряда) -->
+<section class="sec">
+  <div class="wrap">
+    <div class="shead">
+      <h2 class="h2 rv">Problems</h2>
+      <p class="body rv">[The core problem in 1–2 sentences, ideally with a number: drop-off, support tickets, churn.]</p>
+    </div>
+    <div class="mix">
+      <div class="card rv"><span class="n">01</span><p>[Problem 1 — what was broken and for whom.]</p></div>
+      <div class="media rv"><div class="ph" data-label="Image · 3:3.4 · 900×1020"></div></div>
+      <div class="media rv"><div class="ph" data-label="Image · 3:3.4 · 900×1020"></div></div>
+      <div class="card rv"><span class="n">02</span><p>[Problem 2.]</p></div>
+      <div class="media rv"><div class="ph" data-label="Image · 3:3.4 · 900×1020"></div></div>
+      <div class="card rv"><span class="n">03</span><p>[Problem 3.]</p></div>
+      <div class="card rv"><span class="n">04</span><p>[Problem 4.]</p></div>
+      <div class="media rv"><div class="ph" data-label="Image · 3:3.4 · 900×1020"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. ПЕРСОНА (по желанию): фото + цели, мотивация, сложности -->
+<section class="sec">
+  <div class="wrap">
+    <div class="shead">
+      <h2 class="h2 rv">User persona</h2>
+      <p class="body rv">[Who we designed for and what they need — 1–2 sentences.]</p>
+    </div>
+    <div class="persona">
+      <div class="media rv"><div class="ph" data-label="Persona photo · 3:4 · 900×1200"></div><span class="who">[Persona name]</span></div>
+      <div class="plist rv"><h3>Goals</h3><ul><li>[Goal 1]</li><li>[Goal 2]</li><li>[Goal 3]</li></ul></div>
+      <div class="plist rv"><h3>Motivation</h3><ul><li>[Motivation 1]</li><li>[Motivation 2]</li><li>[Motivation 3]</li></ul></div>
+      <div class="plist rv"><h3>Challenges</h3><ul><li>[Challenge 1]</li><li>[Challenge 2]</li><li>[Challenge 3]</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- 6. РЕШЕНИЯ: та же сетка, что у проблем — номер решения соответствует номеру проблемы -->
+<section class="sec">
+  <div class="wrap">
+    <div class="shead">
+      <h2 class="h2 rv">Solutions</h2>
+      <p class="body rv">[The key design idea in 1–2 sentences.]</p>
+    </div>
+    <div class="mix">
+      <div class="media rv"><div class="ph" data-label="Image · 3:3.4 · 900×1020"></div></div>
+      <div class="card rv"><span class="n">01</span><p>[Solution to problem 1 — what we changed and why.]</p></div>
+      <div class="media rv"><div class="ph" data-label="Image · 3:3.4 · 900×1020"></div></div>
+      <div class="card rv"><span class="n">02</span><p>[Solution 2.]</p></div>
+      <div class="card rv"><span class="n">03</span><p>[Solution 3.]</p></div>
+      <div class="media rv"><div class="ph" data-label="Image · 3:3.4 · 900×1020"></div></div>
+      <div class="card rv"><span class="n">04</span><p>[Solution 4.]</p></div>
+      <div class="media rv"><div class="ph" data-label="Image · 3:3.4 · 900×1020"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 7. ФЛОУ: широкая схема пользовательского пути или информационной архитектуры -->
+<section class="sec">
+  <div class="wrap">
+    <div class="shead">
+      <h2 class="h2 rv">User flow</h2>
+      <p class="body rv">[How users move through the product — key paths and decisions.]</p>
+    </div>
+    <figure class="fig rv">
+      <div class="media"><div class="ph" data-label="User flow / IA · 16:8 · 2400×1200"></div></div>
+      <figcaption>[Caption: what the diagram shows.]</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- 8. ДИЗАЙН-СИСТЕМА (по желанию): шрифт, шкала, цвета -->
+<section class="sec">
+  <div class="wrap">
+    <div class="shead">
+      <h2 class="h2 rv">Design system</h2>
+      <p class="body rv">[Why these type and color choices: readability, brand, accessibility.]</p>
+    </div>
+    <div class="ds">
+      <div class="type rv"><span class="fam">[Font family]</span><span class="aa">Aa</span><span class="fam">[Regular · Medium · Semibold]</span></div>
+      <div class="scale rv">
+        <div><span style="font-size:32px;letter-spacing:-.02em">Headline</span><small>[40 / 120%]</small></div>
+        <div><span style="font-size:24px;letter-spacing:-.015em">Title</span><small>[28 / 130%]</small></div>
+        <div><span style="font-size:17px">Button &amp; tag</span><small>[16 / 120%]</small></div>
+        <div><span style="font-size:15px;color:var(--ink-2)">Body text</span><small>[14 / 140%]</small></div>
+      </div>
+      <div class="swatches">
+        <div class="sw rv" style="--c:#1d1d1f"><i></i><span><b>Ink</b>[#1D1D1F]</span></div>
+        <div class="sw rv" style="--c:#256fff"><i></i><span><b>Primary</b>[#256FFF]</span></div>
+        <div class="sw rv" style="--c:#7aa7ff"><i></i><span><b>Primary 60</b>[#7AA7FF]</span></div>
+        <div class="sw rv" style="--c:#86868b"><i></i><span><b>Grey</b>[#86868B]</span></div>
+        <div class="sw rv" style="--c:#f5f5f7"><i></i><span><b>Surface</b>[#F5F5F7]</span></div>
+        <div class="sw rv" style="--c:#ffffff;box-shadow:inset 0 0 0 1px var(--hair)"><i></i><span><b>White</b>[#FFFFFF]</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 9. ЭКРАНЫ: три вертикальных экрана + широкий кадр. Для веба поменяй пропорции .screens .media на 16/10 -->
+<section class="sec">
+  <div class="wrap">
+    <div class="shead">
+      <h2 class="h2 rv">UI design</h2>
+      <p class="body rv">[The final interface: the most important screens and interactions.]</p>
+    </div>
+    <div class="screens">
+      <div class="media rv"><div class="ph" data-label="Screen · 9:16 · 900×1600"></div></div>
+      <div class="media rv"><div class="ph" data-label="Screen · 9:16 · 900×1600"></div></div>
+      <div class="media rv"><div class="ph" data-label="Screen · 9:16 · 900×1600"></div></div>
+      <div class="media span rv"><div class="ph" data-label="Wide shot · 16:8 · 2400×1200 · screens in context / mockup"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 10. РЕЗУЛЬТАТЫ: 3 метрики. Если цифр нет — качественный результат (запуск, рост команды, отзыв клиента) -->
+<section class="sec">
+  <div class="wrap">
+    <div class="results">
+      <div class="shead" style="margin-bottom:0">
+        <h2 class="h2 rv">Results <span class="mute">that matter.</span></h2>
+        <p class="body rv">[What changed for the business and users after launch.]</p>
+      </div>
+      <div class="kpis">
+        <div class="kpi rv"><b>[+32%]</b><span>[Conversion to paid, 3 months after launch]</span></div>
+        <div class="kpi rv"><b>[−40%]</b><span>[Support tickets about onboarding]</span></div>
+        <div class="kpi rv"><b>[4.8]</b><span>[App Store rating, up from 3.9]</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 11. ВЫВОДЫ: что сработало, что сделал бы иначе, что дальше -->
+<section class="sec">
+  <div class="wrap">
+    <div class="shead">
+      <h2 class="h2 rv">What I learned</h2>
+      <p class="body rv">[Optional one-liner.]</p>
+    </div>
+    <div class="learn">
+      <div class="card rv"><span class="n">01</span><p>[What worked and why.]</p></div>
+      <div class="card rv"><span class="n">02</span><p>[What I would do differently.]</p></div>
+      <div class="card rv"><span class="n">03</span><p>[What’s next for the product.]</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 12. СЛЕДУЮЩИЙ КЕЙС + КОНТАКТ -->
+<section class="sec">
+  <div class="wrap">
+    <div class="next">
+      <a class="ncase rv" href="[next-case].html">
+        <div class="media"><div class="ph" data-label="Next case cover · 16:10"></div></div>
+        <div class="lbl"><div><small>Next case study</small><b>[Next project name]</b></div><span class="arr circle"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></div>
+      </a>
+      <div class="cta rv">
+        <div><h2 class="h2" style="font-size:clamp(30px,3.2vw,40px)">Let’s talk.</h2><p class="body" style="margin-top:12px">Tell me about the role or project — I reply within a day.</p></div>
+        <div class="row"><a class="btn btn-lg" href="mailto:alexeigro@gmail.com">Email me</a><a class="btn btn-lg btn-line" href="../index.html#work">All case studies</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="kfoot">
+  <div class="wrap">
+    <span>&copy; 2026 Alexei Grosul</span>
+    <nav aria-label="Footer"><a href="../index.html#work">Case studies</a><a href="https://md.linkedin.com/in/alexei-grosul-63aa6a73" target="_blank" rel="noopener">LinkedIn</a><a href="https://dribbble.com/AlexeiG" target="_blank" rel="noopener">Dribbble</a><a href="mailto:alexeigro@gmail.com">Email</a></nav>
+  </div>
+</footer>
+
+<script>
+/* мягкое появление блоков при прокрутке */
+(function(){
+  var els=document.querySelectorAll('.rv');
+  if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return}
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -8% 0px',threshold:.08});
+  els.forEach(function(e){io.observe(e)});
+})();
+</script>
+</body>
+</html>

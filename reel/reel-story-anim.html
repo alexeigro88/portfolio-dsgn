@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Reel Story Animated — Алексей Гросул</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@500;600&display=swap" rel="stylesheet">
+<style>
+/* 28-секундный светлый шоурил 1920×1080 под озвучку: одна мысль на сцену, ~3,5 с на сцену.
+   Маскот — только в сценах «Привет», «Команда» и финале.
+   Всё движение считает render(t); render3.py вызывает window.seek(t) покадрово.
+   Маскот — отдельный слой #m: три позы (.mp), переключаются в setMascotFrame. */
+:root{--ink:#1d1d1f;--ink2:#3a3a3f;--ink3:#a1a1a6;--band:#f5f5f7;--line:rgba(0,0,0,.08);--g:linear-gradient(100deg,#2448d8,#3d7cf5)}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1920px;height:1080px;overflow:hidden;background:#fff;color:var(--ink);font-family:Inter,"Helvetica Neue",Arial,sans-serif;-webkit-font-smoothing:antialiased}
+/* Фон ролика = фон видео с маскотом (кадры маскота подогнаны под этот цвет и растворяются в нём без шва) */
+.stage{position:relative;width:1920px;height:1080px;overflow:hidden;background:rgb(236,235,244)}
+.spot,.tint,.floor,.sweep{display:none}
+.mono{font-family:Inter,sans-serif;font-weight:500;font-variant-numeric:tabular-nums}
+.grad{background:var(--g);-webkit-background-clip:text;background-clip:text;color:transparent}
+.fx{opacity:0;will-change:transform,opacity,filter}
+.sc{position:absolute;inset:0;z-index:5;pointer-events:none}
+h1,h2{font-family:"Inter Tight",Inter,sans-serif;font-weight:600;letter-spacing:-.028em;line-height:1.02;white-space:nowrap}
+
+/* Свет и маскот */
+.spot{position:absolute;left:0;top:0;width:1400px;height:1400px;border-radius:50%;z-index:1;
+  background:radial-gradient(closest-side,rgba(255,255,255,1),rgba(255,255,255,.6) 50%,rgba(255,255,255,0) 100%)}
+.tint{position:absolute;left:0;top:0;width:1200px;height:1200px;border-radius:50%;z-index:1;opacity:.55;
+  background:radial-gradient(closest-side,rgba(61,124,245,.22),rgba(36,72,216,.08) 55%,rgba(0,0,0,0))}
+.floor{position:absolute;left:0;top:0;width:520px;height:64px;border-radius:50%;z-index:2;
+  background:radial-gradient(closest-side,rgba(40,44,70,.28),rgba(40,44,70,0))}
+#m{position:absolute;left:-270px;top:0;width:540px;height:960px;z-index:3;transform-origin:50% 100%}
+#m .sh{position:absolute;inset:0}
+.mp{position:absolute;left:-9px;bottom:-24px;width:558px;height:992px;opacity:0}
+
+/* Мягкая световая полоса-переход */
+.sweep{position:absolute;top:-10%;bottom:-10%;width:520px;z-index:7;opacity:0;transform:skewX(-12deg);
+  background:linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,.95) 40%,rgba(176,200,255,.55) 50%,rgba(255,255,255,.95) 60%,rgba(255,255,255,0));filter:blur(8px)}
+
+/* Хром */
+.chrome{position:absolute;inset:0;z-index:10;pointer-events:none}
+.who{position:absolute;left:72px;top:56px;display:flex;align-items:center;gap:14px}
+.who b{display:grid;place-items:center;width:48px;height:48px;border-radius:15px;background:var(--g);color:#fff;font-size:19px;font-weight:700}
+.who span{font-size:22px;font-weight:600}
+.who em{font-style:normal;font-size:20px;color:var(--ink2);margin-left:6px;font-weight:400}
+.idx{position:absolute;right:72px;top:68px;font-size:19px;color:var(--ink3);letter-spacing:.12em}
+.dots{position:absolute;right:78px;top:470px;display:flex;flex-direction:column;gap:12px}
+.dots i{width:6px;height:6px;border-radius:6px;background:rgba(0,0,0,.14)}
+.dots i.on{height:28px;background:var(--g)}
+
+/* 00 · Загрузка */
+.cnt{position:absolute;left:72px;bottom:150px;font-family:"Inter Tight";font-size:230px;font-weight:500;letter-spacing:-.03em;line-height:1;font-variant-numeric:tabular-nums}
+.ldl{position:absolute;left:72px;bottom:120px;height:3px;width:0;border-radius:3px;background:var(--g)}
+.ldt{position:absolute;right:72px;bottom:126px;font-size:19px;color:var(--ink3);letter-spacing:.14em}
+
+/* 01 · Привет */
+.h-l{position:absolute;left:150px;top:330px}
+.h-l .s{font-size:42px;font-weight:500;color:var(--ink2);letter-spacing:-.01em}
+.h-l .n{font-size:220px;letter-spacing:-.035em;margin-top:4px;padding-bottom:20px}
+.h-r{position:absolute;right:170px;top:440px;text-align:right}
+.h-r .k{font-size:18px;letter-spacing:.16em;color:var(--ink3);display:block;margin-bottom:20px}
+.h-r .r{font-size:38px;font-weight:500;letter-spacing:-.01em;line-height:1.6}
+
+/* 02 · Дизайн и разработка */
+.b-l{position:absolute;left:150px;top:340px}
+.b-r{position:absolute;right:120px;top:340px;text-align:right}
+.b-l .s,.b-r .s{font-size:18px;letter-spacing:.16em;color:var(--ink3);margin-bottom:18px}
+.b-l h1,.b-r h1{font-size:100px;padding-bottom:12px}
+.b-l ul{list-style:none;margin-top:30px;font-size:30px;font-weight:400;line-height:1.8;color:#3a3a3e}
+.b-l li::before{content:"";display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--g);margin-right:18px;vertical-align:middle}
+.chips{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:14px;margin-top:34px;width:600px;margin-left:auto}
+.chip{font-size:26px;font-weight:500;padding:16px 28px;border-radius:20px;background:#fff;box-shadow:0 1px 2px rgba(20,22,50,.05),0 10px 28px -12px rgba(20,22,50,.16),inset 0 0 0 1px rgba(0,0,0,.04)}
+.chip.acc{background:var(--g);color:#fff;box-shadow:0 1px 2px rgba(30,60,180,.2),0 10px 24px -10px rgba(36,72,216,.45)}
+
+/* 03 · Подход */
+.p-l{position:absolute;left:150px;top:150px;width:1060px}
+.p-l h2{font-size:78px;line-height:1.1}
+.p-l .lead{font-size:27px;color:var(--ink2);margin-top:26px;line-height:1.55;width:880px;font-weight:400}
+.card{margin-top:40px;width:940px;border-radius:30px;background:#fff;box-shadow:0 1px 3px rgba(20,22,50,.05),0 24px 56px -28px rgba(20,22,50,.2),inset 0 0 0 1px rgba(0,0,0,.035);padding:10px 44px}
+.row{display:grid;grid-template-columns:200px 1fr;gap:28px;padding:24px 0;border-bottom:1px solid rgba(0,0,0,.06)}
+.row:last-child{border-bottom:0}
+.row .yr{font-size:20px;color:var(--ink3);padding-top:9px}
+.row .yr.now{color:#2448d8}
+.row b{font-size:30px;font-weight:600;letter-spacing:-.012em}
+.row p{font-size:21px;color:var(--ink2);margin-top:8px;line-height:1.4}
+
+/* 04 · Цифры */
+.nums{position:absolute;left:860px;top:210px;display:flex;flex-direction:column;gap:40px}
+.num{display:flex;align-items:center;gap:40px}
+.num .v{font-family:"Inter Tight";font-size:150px;font-weight:600;letter-spacing:-.035em;line-height:1;min-width:330px;font-variant-numeric:tabular-nums;padding-bottom:8px}
+.num .t{font-size:36px;font-weight:500;line-height:1.2;letter-spacing:-.01em}
+.num .t small{display:block;font-size:21px;color:var(--ink2);margin-top:8px;font-weight:400}
+.loc{position:absolute;left:860px;bottom:100px;font-size:20px;color:var(--ink3);letter-spacing:.02em}
+
+/* 05 · Финал */
+.f{position:absolute;left:150px;top:270px}
+.f .k{font-size:18px;letter-spacing:.16em;color:var(--ink3)}
+.f h1{font-size:140px;margin-top:0;padding-bottom:14px;line-height:1.06}
+.f .who2{font-size:34px;font-weight:600;margin-top:36px;letter-spacing:-.01em}
+.f .who2 span{color:var(--ink2);font-weight:400}
+.f .row2{display:flex;gap:16px;align-items:center;margin-top:44px}
+.pill{font-size:27px;font-weight:500;padding:20px 38px;border-radius:999px;background:var(--g);color:#fff;box-shadow:0 1px 2px rgba(30,60,180,.2),0 12px 28px -12px rgba(36,72,216,.5)}
+.mail{font-size:26px;font-weight:500;padding:20px 34px;border-radius:999px;background:#fff;box-shadow:0 1px 2px rgba(20,22,50,.05),0 10px 28px -12px rgba(20,22,50,.16),inset 0 0 0 1px rgba(0,0,0,.05)}
+.white{position:absolute;inset:0;z-index:12;background:#fff;opacity:0;pointer-events:none}
+
+/* Сцены-истории */
+.c{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.ttl{font-size:120px;padding-bottom:12px}
+.sub{font-size:40px;font-weight:400;color:var(--ink2);margin-top:26px;line-height:1.4}
+.big{font-family:"Inter Tight";font-size:360px;font-weight:600;letter-spacing:-.04em;line-height:.95;font-variant-numeric:tabular-nums;padding-bottom:10px}
+.big + .lab2{font-size:54px;font-weight:500;letter-spacing:-.015em;margin-top:6px}
+.t-l{position:absolute;left:150px;top:340px}
+.t-l .ttl{font-size:112px;line-height:1.08}
+.t-l .sub{margin-top:30px;font-size:36px;width:900px}
+.row3{display:flex;gap:16px;justify-content:center;margin-top:48px}
+.chip{font-size:30px;padding:20px 32px;border-radius:22px}
+.qm{font-family:"Inter Tight";font-size:260px;font-weight:600;line-height:1;height:150px;margin-bottom:10px}
+.h-l .role{font-size:42px;font-weight:500;color:var(--ink2);margin-top:22px;letter-spacing:-.01em}
+</style>
+</head>
+<body>
+<div class="stage" id="stage">
+  <div class="spot" id="spot"></div>
+  <div class="tint" id="tint"></div>
+  <div class="floor" id="floor"></div>
+  <div id="m"><div class="sh"><canvas class="mp" id="mHi"></canvas><canvas class="mp" id="mTeam"></canvas><canvas class="mp" id="mFinal"></canvas></div></div>
+
+  <!-- 00 · Загрузка -->
+  <section class="sc" data-in="0" data-out="1.4">
+    <div class="cnt" id="cnt">0</div>
+    <div class="ldl" id="ldl"></div>
+  </section>
+
+  <!-- 01 · Привет (маскот в центре) -->
+  <section class="sc" data-in="1.4" data-out="5">
+    <div class="h-l">
+      <div class="s fx" data-fx="rise" data-in="1.8">Привет, я</div>
+      <h1 class="n grad fx" data-fx="blur" data-in="2" data-dur=".8">Лёша</h1>
+      <div class="role fx" data-fx="type" data-in="2.9" data-cps="26">Head of Design</div>
+    </div>
+  </section>
+
+  <!-- 02 · Опыт (без маскота) -->
+  <section class="sc" data-in="5" data-out="9">
+    <div class="c">
+      <div class="big fx" data-fx="blur" data-in="5.2" data-dur=".8"><span data-count="16" data-cin="5.25">16</span></div>
+      <div class="lab2 fx" data-fx="rise" data-in="5.7">лет в IT</div>
+      <div class="sub fx" data-fx="rise" data-in="6.5">200+ запущенных проектов</div>
+    </div>
+  </section>
+
+  <!-- 03 · Команда (маскот справа) -->
+  <section class="sc" data-in="9" data-out="13">
+    <div class="t-l">
+      <h2 class="ttl fx" data-fx="blur" data-in="9.3" data-dur=".8">Веду команду<br><span class="grad">из 8 дизайнеров</span></h2>
+      <div class="sub fx" data-fx="rise" data-in="10.3">Работаю в связке с PM, разработкой, маркетингом и продажами.</div>
+    </div>
+  </section>
+
+  <!-- 04 · Подход — цитата (без маскота) -->
+  <section class="sc" data-in="13" data-out="16.8">
+    <div class="c">
+      <div class="qm grad fx" data-fx="pop" data-in="13.2">“</div>
+      <h2 class="ttl fx" data-fx="blur" data-in="13.4" data-dur=".8" style="line-height:1.08">Начинаю с бизнеса,<br><span class="grad">а не с макетов.</span></h2>
+      <div class="sub fx" data-fx="rise" data-in="14.5">Каждый продукт — со своим решением, без шаблонов.</div>
+    </div>
+  </section>
+
+  <!-- 05 · Дизайн и разработка (без маскота) -->
+  <section class="sc" data-in="16.8" data-out="20.8">
+    <div class="c">
+      <h2 class="ttl fx" data-fx="blur" data-in="17.05" data-dur=".8">Дизайн <span class="grad">и разработка</span></h2>
+      <div class="sub fx" data-fx="rise" data-in="17.7">Разбираюсь в технологиях, поэтому мои решения реально внедрить.</div>
+      <div class="row3">
+        <span class="chip fx" data-fx="pop" data-in="18.4">Bubble</span>
+        <span class="chip fx" data-fx="pop" data-in="18.55">FlutterFlow</span>
+        <span class="chip fx" data-fx="pop" data-in="18.7">Lovable</span>
+        <span class="chip fx" data-fx="pop" data-in="18.85">Google Stitch</span>
+        <span class="chip acc fx" data-fx="pop" data-in="19">API и базы данных</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 · Результат (без маскота) -->
+  <section class="sc" data-in="20.8" data-out="24.4">
+    <div class="c">
+      <h2 class="ttl fx" data-fx="blur" data-in="21.05" data-dur=".8" style="line-height:1.08">Отвечаю за результат —<br><span class="grad">не только за макеты.</span></h2>
+      <div class="sub fx" data-fx="rise" data-in="22.1">Мой ориентир — метрики продукта и рост бизнеса.</div>
+    </div>
+  </section>
+
+  <!-- 07 · Финал (маскот справа) -->
+  <section class="sc" data-in="24.4" data-out="99">
+    <div class="f">
+      <h1 class="fx" data-fx="blur" data-in="24.65" data-dur=".8">От идеи —<br><span class="grad">до запуска.</span></h1>
+      <div class="who2 fx" data-fx="rise" data-in="25.4">Алексей Гросул <span>· Head of Design &amp; Product Designer</span></div>
+      <div class="row2">
+        <span class="pill fx" data-fx="pop" data-in="25.9">Давай поговорим ↗</span>
+        <span class="mail fx" data-fx="rise" data-in="26.05">alexeigro@gmail.com</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="sweep" id="sw"></div>
+  <div class="white" id="white"></div>
+</div>
+
+<script>
+var DUR=28,CUTS=[5,9,13,16.8,20.8,24.4];
+var clamp=function(x){return x<0?0:x>1?1:x};
+var eo=function(p){return p>=1?1:1-Math.pow(2,-10*p)};
+var eio=function(p){return p<.5?4*p*p*p:1-Math.pow(-2*p+2,3)/2};
+var back=function(p){var c1=1.5,c3=c1+1;return 1+c3*Math.pow(p-1,3)+c1*Math.pow(p-1,2)};
+var $=function(id){return document.getElementById(id)};
+
+// Ключевые позиции маскота: [t, x центра, y низа, масштаб, blur, opacity]; вне своих сцен он уходит за кадр
+var MK=[[0,1250,1240,1,24,0],[1.3,1250,1240,1,24,0],[2.0,1250,1050,1,0,1],[4.6,1250,1050,1,0,1],
+        [5.05,1150,1090,1,14,0],[9.0,1600,1090,1,14,0],
+        [9.6,1480,1070,1,0,1],[12.6,1480,1070,1,0,1],
+        [13.1,1650,1090,1,14,0],[24.4,1620,1090,1,14,0],
+        [25.0,1480,1065,1,0,1],[28,1480,1065,1,0,1]];
+function mk(t){
+  for(var i=0;i<MK.length-1;i++){var a=MK[i],b=MK[i+1];
+    if(t<=b[0]){var p=eio(clamp((t-a[0])/(b[0]-a[0])));return a.map(function(v,k){return v+(b[k]-v)*p})}}
+  return MK[MK.length-1];
+}
+// Для анимированного маскота: смена кадра по времени t (например, video.currentTime=t)
+// Анимированный маскот: три видео из Gemini, фон вырезан покадрово (24 fps). t0 — момент ролика, с которого идёт кадр 0.
+var SEQ={mHi:{dir:'mascot-hi-plate',n:96,t0:1.3},mTeam:{dir:'mascot-team-plate',n:113,t0:9.0},mFinal:{dir:'mascot-final-plate',n:96,t0:24.4}};
+Object.keys(SEQ).forEach(function(id){var q=SEQ[id],c=$(id);q.w=c.width=558;c.height=992;q.ctx=c.getContext('2d');q.fr=[];
+  for(var i=0;i<q.n;i++){var im=new Image();im.src=q.dir+'/'+('000'+i).slice(-4)+'.jpg';q.fr.push(im)}});
+function drawSeq(id,t){var q=SEQ[id],f=q.fr[Math.max(0,Math.min(q.n-1,Math.floor((t-q.t0)*24)))];if(f.complete)q.ctx.drawImage(f,0,0)}
+// Поза меняется, пока маскот за кадром: привет → команда (жест к тексту) → финал (взмах и приглашение)
+function setMascotFrame(t){
+  var k=t<7?'mHi':t<20?'mTeam':'mFinal';drawSeq(k,t);['mHi','mTeam','mFinal'].forEach(function(id){$(id).style.opacity=id===k?1:0})}
+
+var scenes=[].slice.call(document.querySelectorAll('.sc'));
+var fxs=[].slice.call(document.querySelectorAll('.fx'));
+fxs.forEach(function(el){if(el.dataset.fx==='type'){el.dataset.html=el.innerHTML;el.dataset.text=el.textContent}});
+var counts=[].slice.call(document.querySelectorAll('[data-count]'));
+
+// Звуковые события для music4.py (синхронизация звука с картинкой)
+window.EVENTS=(function(){var ev=[];
+  fxs.forEach(function(el){if(el.dataset.fx==='type'){var cps=+el.dataset.cps||34;ev.push({k:'type',t:+el.dataset.in,d:el.dataset.text.length/cps})}
+    if(el.dataset.fx==='pop')ev.push({k:'pop',t:+el.dataset.in});
+    if(el.dataset.fx==='blur')ev.push({k:'blur',t:+el.dataset.in})});
+  counts.forEach(function(el){ev.push({k:'count',t:+el.dataset.cin,d:.9})});
+  CUTS.slice(0,-1).forEach(function(t){ev.push({k:'neon',t:t-.25})});
+  ev.push({k:'loader',t:0,d:1.25},{k:'reveal',t:1.4},{k:'final',t:24.4});
+  return ev})();
+
+function apply(el,t){
+  var fx=el.dataset.fx,t0=+el.dataset.in;
+  if(fx==='type'){
+    var cps=+el.dataset.cps||34,d=el.dataset.text.length/cps,p=(t-t0)/d;
+    if(p<0){el.style.opacity=0;return}
+    el.style.opacity=1;
+    if(p>=1){if(el.innerHTML!==el.dataset.html)el.innerHTML=el.dataset.html}
+    else el.textContent=el.dataset.text.slice(0,Math.round(el.dataset.text.length*p))+'▍';
+    return;
+  }
+  var dur=+el.dataset.dur||.6,p=(t-t0)/dur;
+  if(p<0){el.style.opacity=0;return}
+  p=clamp(p);var e=eo(p);
+  if(p>=1){el.style.transform='none';el.style.filter='none';el.style.opacity=1;return}  // после анимации — без фильтров и масштаба, текст чёткий
+  if(fx==='rise'){el.style.transform='translateY('+((1-e)*36)+'px)';el.style.filter='blur('+((1-e)*8).toFixed(1)+'px)';el.style.opacity=clamp(p*1.8)}
+  else if(fx==='blur'){el.style.transform='scale('+(1.05-.05*e)+')';el.style.filter='blur('+((1-e)*22).toFixed(1)+'px)';el.style.opacity=clamp(p*1.5)}
+  else if(fx==='pop'){el.style.transform='scale('+Math.max(0,back(p))+')';el.style.opacity=clamp(p*3)}
+}
+
+function render(t){
+  scenes.forEach(function(sc){
+    var a=+sc.dataset.in,b=+sc.dataset.out,on=t>=a&&t<b+.4;
+    sc.style.display=on?'block':'none';if(!on)return;
+    var o=clamp((t-b)/.4),e=eo(o);
+    sc.style.opacity=1-e;sc.style.filter=o>0?'blur('+(e*18).toFixed(1)+'px)':'none';
+    sc.style.transform=o>0?'scale('+(1+e*.04)+')':'none';
+  });
+  fxs.forEach(function(el){apply(el,t)});
+  var lp=clamp(t/1.2);$('cnt').textContent=Math.round(100*eio(lp));$('ldl').style.width=(1776*eio(lp))+'px';
+  counts.forEach(function(el){var p=clamp((t-el.dataset.cin)/.9);el.textContent=Math.round(+el.dataset.count*eo(p))});
+  var k=mk(t),x=k[1],yb=k[2],s=k[3],br=Math.sin(t*2.2),sw=Math.sin(t*1.2);
+  // маскот 1:1 к кадрам видео, в целых пикселях: без масштаба и поворота, движение — только своё, из видео
+  $('m').style.transform='translate('+Math.round(x)+'px,'+Math.round(yb-960)+'px)';
+  $('m').style.filter=k[4]>.2?'blur('+k[4].toFixed(1)+'px)':'none';$('m').style.opacity=k[5];
+  $('spot').style.transform='translate('+(x-700)+'px,'+(yb-1150*s)+'px)';
+  $('tint').style.transform='translate('+(x-600+Math.sin(t*.7)*40)+'px,'+(yb-1100*s)+'px)';
+  $('floor').style.transform='translate('+(x-260*s)+'px,'+(yb-34*s)+'px) scale('+s+')';$('floor').style.opacity=k[5];
+  setMascotFrame(t);
+  var sv=0,sx=0;
+  CUTS.forEach(function(c,i){var d=(t-(c-.3))/.7;if(d>=0&&d<=1){sv=Math.sin(d*Math.PI);var e=eio(d);sx=i%2?2100-e*2700:-600+e*2700}});
+  $('sw').style.opacity=sv;$('sw').style.left=sx+'px';
+  $('white').style.opacity=clamp((t-27.5)/.5);
+}
+
+var seeking=false,t0=performance.now();
+window.seek=function(t){seeking=true;render(t)};
+(function loop(now){if(!seeking){render(((now-t0)/1000)%DUR)}requestAnimationFrame(loop)})(t0);
+</script>
+</body>
+</html>

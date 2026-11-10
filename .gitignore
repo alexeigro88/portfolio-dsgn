@@ -1,0 +1,9 @@
+.DS_Store
+portfolio-handoff.zip
+# пересобираются скриптом из HANDOFF.md
+preview/
+# черновики и сырые кадры маскота (финальные плейты лежат в reel/mascot-*-plate)
+reel/drafts/
+reel/mascot-*-frames/
+cases/_src/truescan/probe.png
+.claude/
