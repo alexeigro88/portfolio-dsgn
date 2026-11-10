@@ -132,8 +132,8 @@ F.save(poses(), f'{OUT}/mascot-poses.jpg')
 F.save(directions(), f'{OUT}/mascot-evolution.jpg')
 
 # ---------- десктоп ----------
-F.save(F.view(p('d_voice3d'), 0, 0, 1440, size=(2400, 1500), s=2), f'{OUT}/desktop-voice.jpg')
-d = Image.open(p('d_dashboard')).convert('RGB').crop((0, 0, 2880, 1800))
+F.save(F.view(p('v2_d_voice'), 0, 0, 1440, size=(2400, 1500), s=2), f'{OUT}/desktop-voice.jpg')
+d = Image.open(p('v2_d_dashboard')).convert('RGB').crop((0, 0, 2880, 1800))
 F.device(f'{OUT}/desktop-dashboard.jpg', d, f'{SRC}/_tmp', 'laptop', size=(2400, 1300), width=0.74) if os.makedirs(f'{SRC}/_tmp', exist_ok=True) is None else None
 
 # ---------- слайды для презентации (16:9, 2880×1620) ----------
@@ -206,5 +206,5 @@ slide('04-screens', f"""<div style="position:absolute;left:96px;top:56px"><span 
 slide('05-desktop', f"""<div style="position:absolute;left:96px;top:0;bottom:0;width:420px;display:flex;flex-direction:column;justify-content:center">
 <span class="lbl">Desktop</span><h2 style="margin-top:16px">Same coach on a bigger screen</h2>
 <p style="margin-top:18px">Sidebar navigation, the voice session with a live transcript and insights captured on the side.</p></div>
-<img src="{png(F.fit(Image.open(p('d_voice3d')).convert('RGB'), w=1700), 'dv')}" style="position:absolute;left:560px;top:150px;width:850px;border-radius:16px;box-shadow:0 0 0 1px rgba(0,10,30,.08),0 30px 60px -30px rgba(0,40,50,.35)">""")
+<img src="{png(F.fit(Image.open(p('v2_d_voice')).convert('RGB'), w=1700), 'dv')}" style="position:absolute;left:560px;top:150px;width:850px;border-radius:16px;box-shadow:0 0 0 1px rgba(0,10,30,.08),0 30px 60px -30px rgba(0,40,50,.35)">""")
 print('ok', sorted(os.listdir(OUT)), sorted(os.listdir(PRES)))
