@@ -199,6 +199,9 @@ figure{margin:0}
 
 /* «следующий кейс»: тёмное затемнение снизу, светлый текст */
 .ncase .media::after{background:linear-gradient(to top,rgba(10,14,24,.82) 0%,rgba(10,14,24,.45) 30%,rgba(10,14,24,0) 60%)!important}.ncase .lbl small{color:rgba(255,255,255,.75)!important}.ncase .lbl b{color:#fff!important}
+
+/* User flow: лестница шагов */
+.fstairs{position:relative;display:grid;grid-template-columns:repeat(6,1fr);column-gap:0;row-gap:18px;padding:28px 0}.fstairs>i{position:absolute;top:0;bottom:0;width:0;border-left:1.5px dashed #D5D9E2}.fstairs>i:nth-child(1){left:calc(0% + 50px)}.fstairs>i:nth-child(2){left:calc(16.666% + 50px)}.fstairs>i:nth-child(3){left:calc(33.333% + 50px)}.fstairs>i:nth-child(4){left:calc(50% + 50px)}.fstairs>i:nth-child(5){left:calc(66.666% + 50px)}.fs{position:relative;z-index:1;grid-row:calc(var(--i) + 1);grid-column:calc(var(--i) + 1)/span 2;display:flex;gap:16px;align-items:center;background:#fff;border-radius:24px;padding:12px 22px 12px 12px;box-shadow:0 0 0 1px rgba(18,23,64,.07),0 16px 34px -20px rgba(18,23,64,.25)}.fs-ic{flex:none;width:76px;height:76px;border-radius:18px;display:grid;place-items:center}.fs-ic svg{width:30px;height:30px}.fs-tx{min-width:0}.fs-n{font-size:12px;color:var(--ink-3);font-variant-numeric:tabular-nums}.fs-tx b{display:block;font-family:var(--font-display);font-weight:500;font-size:20px;letter-spacing:-.015em;margin-top:2px}.fs-tx p{font-size:14px;color:var(--ink-2);margin-top:2px}.fs-ch{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}.fs-ch span{font-size:12px;padding:4px 10px;border-radius:999px;background:#F1F3F8;color:#121740}@media (max-width:980px){.fstairs{grid-template-columns:1fr;padding:0}.fstairs>i{display:none}.fs{grid-row:auto;grid-column:1}}
 </style>
 </head>
 <body>
@@ -223,7 +226,7 @@ figure{margin:0}
 <main>
 <section class="chero wide">
   <div class="top">
-    <div class="tags"><span class="tag">Web app · Fintech</span><span class="tag acc">[My role]</span></div>
+    <div class="tags"><span class="tag">Web app · Fintech</span><span class="tag acc">Design Lead</span></div>
     <span class="year">Student loans &nbsp;·&nbsp; [Year]</span>
   </div>
   <div class="media rv"><img src="../img/cases/stulo/cover.jpg?v=3" alt="StuLo: a pile of servicer letters turns into one clear dashboard and a plain-English letter decoder" loading="lazy"></div>
@@ -239,7 +242,7 @@ figure{margin:0}
       <p class="body rv">Borrowers juggle several loans across servicers, repayment plans that are changing under new federal rules, forgiveness programs with strict paperwork, and servicer letters written in legalese. Mistakes are expensive — missed recertification, the wrong plan or a default notice ignored for too long. StuLo turns that into a guided path: sync, compare, prepare, review.</p>
     </div>
     <dl class="meta rv">
-      <div><dt>My role</dt><dd>[Role]<small>[Research, UX, UI, prototype]</small></dd></div>
+      <div><dt>My role</dt><dd>Design Lead<small>Research, UX, UI, prototype</small></dd></div>
       <div><dt>Team</dt><dd>[Team]</dd></div>
       <div><dt>Timeline</dt><dd>[Duration]<small>[Year]</small></dd></div>
       <div><dt>Platform</dt><dd>Web app</dd></div>
@@ -302,12 +305,9 @@ figure{margin:0}
   <div class="wrap">
     <div class="shead">
       <h2 class="h2 rv">User flow</h2>
-      <p class="body rv">The core path from a free analysis to forms reviewed by a coach — with support tools along the way.</p>
+      <p class="body rv">The core path from a free analysis to forms reviewed by a coach. Under each step — the tools that help along the way.</p>
     </div>
-    <figure class="fig rv">
-      <div class="media"><img src="../img/cases/stulo/flow.jpg?v=3" alt="User flow: sign up, sync loans, compare plans, prepare forms, coach review" loading="lazy"></div>
-      <figcaption>Letter decoder and loan rescue help at any point; the PSLF tracker keeps forgiveness progress current after forms are filed.</figcaption>
-    </figure>
+    <div class="fstairs"><i></i><i></i><i></i><i></i><i></i><div class="fs rv" style="--i:0"><div class="fs-ic" style="background:#465AFF"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div class="fs-tx"><span class="fs-n">01</span><b>Sign up</b><p>Free loan analysis</p><div class="fs-ch"><span>Email or Google</span></div></div></div><div class="fs rv" style="--i:1"><div class="fs-ic" style="background:#1FA6A8"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 0 1-15.5 6.2L3 16"/><path d="M3 12a9 9 0 0 1 15.5-6.2L21 8"/><path d="M21 3v5h-5"/><path d="M3 21v-5h5"/></svg></div><div class="fs-tx"><span class="fs-n">02</span><b>Sync loans</b><p>StudentAid.gov file · no FSA ID</p><div class="fs-ch"><span>Letter decoder</span><span>Loan rescue</span></div></div></div><div class="fs rv" style="--i:2"><div class="fs-ic" style="background:#121740"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18"/><path d="M5 7h14"/><path d="M5 7l-3 7a3 3 0 0 0 6 0z"/><path d="M19 7l-3 7a3 3 0 0 0 6 0z"/></svg></div><div class="fs-tx"><span class="fs-n">03</span><b>Compare plans</b><p>RAP · IBR · PSLF estimates</p><div class="fs-ch"><span>AI coach</span><span>Calculators</span></div></div></div><div class="fs rv" style="--i:3"><div class="fs-ic" style="background:#C2410C"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6"/><path d="M8 13h8M8 17h5"/></svg></div><div class="fs-tx"><span class="fs-n">04</span><b>Prepare forms</b><p>Prefilled .gov forms</p><div class="fs-ch"><span>Proof of income</span></div></div></div><div class="fs rv" style="--i:4"><div class="fs-ic" style="background:#2F8F57"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div><div class="fs-tx"><span class="fs-n">05</span><b>Coach review</b><p>Sign, mail, recertify</p><div class="fs-ch"><span>PSLF tracker</span></div></div></div></div>
   </div>
 </section>
 <section class="sec">
