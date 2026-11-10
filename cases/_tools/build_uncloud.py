@@ -84,7 +84,7 @@ def cover(size=(2800, 1575)):
     return cv
 
 
-F.save(cover(), f'{OUT}/cover.jpg')
+F.save(cover(), f'{OUT}/cover-phones.jpg')  # обложка кейса — cover.jpg, сгенерирована (cases/_src/uncloud/ai/cover-cards.webp)
 
 # ---------- ряд экранов ----------
 def row(names, size=(2800, 1400), w=470, gap=56):
