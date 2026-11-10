@@ -19,7 +19,7 @@ def css(img, x0, y0, x1, y1): return img.crop((x0 * S, y0 * S, x1 * S, y1 * S))
 dash = im('d_dashboard')
 
 # обложка: дашборд + чат с AI-коучем
-save(cover(dash, im('d_coach_answer')), f'{OUT}/cover.jpg')
+save(cover(dash, im('d_coach_answer')), f'{OUT}/cover-browser.jpg')  # обложка — cover.jpg, сгенерирована (cases/_src/stulo/ai/cover-papers.webp)
 
 # проблемы
 save(tile(css(im('d_loans'), 290, 330, 1070, 760)), f'{OUT}/problem-1-loans.jpg')       # несколько займов у разных сервисеров
