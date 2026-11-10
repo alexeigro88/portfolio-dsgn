@@ -26,9 +26,6 @@ F.save(F.cover(p('drone_raw1'), p('lead_table')), f'{OUT}/cover.jpg')
 X3 = f'{SRC}/x3'
 V = {
     'problem-1-list':       ('lead_table', 284, 16, 660),      # заголовок, фильтры, вкладки статусов, строки
-    'problem-2-filters':    ('kanban_filters', 284, 16, 660),  # фильтры с счётчиками, чипы, список Owner
-    'problem-3-actions':    ('row_menu', 764, 345, 660),       # меню строки и подменю статуса
-    'problem-4-input':      ('wiz1', 334, 186, 771),           # мастер целиком: дубль email
     'solution-1-convert':   ('convert', 342, 190, 756),        # модалка конвертации целиком
     'solution-2-converted': ('opp_profile', 284, 16, 700),     # баннер «Converted from lead», шапка сделки
     'solution-3-assign':    ('assign', 784, 218, 640),         # колонка Owner и поповер назначения
@@ -37,13 +34,27 @@ V = {
 for k, (n, x, y, w) in V.items():
     F.save(F.view(f'{X3}/{n}.png', x, y, w), f'{OUT}/{k}.jpg')
 
-# ---------- флоу: фрагменты ключевых шагов ----------
+# ---------- задачи бизнеса на экранах других модулей (экспорт 2x) ----------
+F.save(F.view(p('proposal_builder'), 100, 70, 920, s=2), f'{OUT}/problem-2-proposal.jpg')
+F.save(F.view(p('project_overview'), 284, 16, 820, s=2), f'{OUT}/problem-3-project.jpg')
+F.save(F.view(p('timesheet'), 284, 0, 900, s=2), f'{OUT}/problem-4-time.jpg')
+
+# ---------- пять модулей: экран целиком 16:10 ----------
+def module(src, out, s=2):
+    im = Image.open(src).convert('RGB').crop((0, 0, 1440 * s, 900 * s)); F.save(F.fit(im, w=2400), out)
+module(f'{SRC}/x3/lead_table.png', f'{OUT}/module-leads.jpg', 3)
+module(p('opp_kanban'), f'{OUT}/module-opportunities.jpg')         # Opportunities · 02 Kanban (115:504)
+module(p('proposal_builder'), f'{OUT}/module-proposals.jpg')       # Proposals · PR3b Builder — fees (251:434)
+module(p('project_overview'), f'{OUT}/module-projects.jpg')        # Projects · P2 Overview (218:114)
+module(p('timesheet'), f'{OUT}/module-time.jpg')                   # Time tracking · E1v2 timesheet (354:1478)
+
+# ---------- карта платформы ----------
 F.flow_text(f'{OUT}/flow.jpg', [
-    ('New lead', 'Web form, or a 3-step wizard for manual entry', 'Duplicate email check'),
-    ('Triage', 'Table or Kanban, status tabs, filters and AI score', 'Export the current view'),
-    ('Assign & qualify', 'Owner in one click, status right from the row', 'Archive with 8 s Undo'),
-    ('Convert', 'Preview of the Account, Contact and Opportunity to be created', 'Qualified leads only'),
-    ('Opportunity', 'Lands on the new deal with a “Converted from lead” banner', ''),
+    ('Leads', 'Inbound requests from web forms, direct traffic and sales reps', 'Triage · assign · qualify'),
+    ('Opportunities', 'Deals move through stages from Prospecting to Won', 'Fee · close date · next step'),
+    ('Proposals', 'A reality-capture proposal built from the deal', '18 sections · line items · send'),
+    ('Projects', 'A won deal becomes a site project', 'Team · documents · board · billing'),
+    ('Time tracking', 'Field hours, per diem and mileage, approved weekly', 'Feeds project costs'),
 ])
 
 # ---------- от вайрфрейма к интерфейсу ----------

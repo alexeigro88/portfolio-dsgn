@@ -55,13 +55,13 @@
 ## Кейсы
 **Шаблон** (`cases/case-template.html`): раскладка по референсу anton-ux.framer.website/batmind, типографика и токены 1:1 с главной (Figtree / Inter Tight / Inter; `.h1`=h-xl, `.h2`=h-l, `.body`=lede-l). Секции: обложка → интро + meta (роль, команда, сроки, платформа, пользователи) → Design process (5 шагов) → Problems (сетка `.mix` 4 карточки + 4 картинки) → Solutions (так же) → User flow → Design system (шрифты + 6 цветов из реальных токенов прототипа) → UI design (`.screens`: широкий + 2) → Results → What I learned → Next case + CTA. Персона из шаблона в кейсах убрана.
 
-**Цепочка «следующий кейс»:** Tournament Guru → BookKeeper AI → StuLo → TrueScan CRM → Tournament Guru. У карточки `.ncase` есть светлый градиент `.ncase .media::after` под подписью.
+**Цепочка «следующий кейс»:** Tournament Guru → BookKeeper AI → StuLo → TrueScan → Tournament Guru. У карточки `.ncase` есть светлый градиент `.ncase .media::after` под подписью.
 
 | Кейс | Прототип | Суть | Шрифты / токены |
 |---|---|---|---|
 | Tournament Guru | https://tournament-guru.vercel.app/home.html | Выбор детских турниров с проверенными отзывами | Space Grotesk + Inter, navy/blue/red |
 | BookKeeper AI | https://bookkeeper-ai-tau.vercel.app/ | Внутренний AI-ассистент бухгалтерской фирмы: отвечает только по опубликованным SOP, с источниками; роли Bookkeeper / SME / QC Librarian | Manrope, `#1A73E8`, статусы Published/Needs Revalidation |
-| TrueScan CRM | Figma `rFFixRw1aznY4sWHRFKyJk` (Leads, Opportunities, Foundations) | Редизайн CRM: лиды → назначение → квалификация → конвертация в сделку; все флоу и состояния | Inter, brand `#EE6A1F`, sidebar `#0F1A2E` |
+| TrueScan | Figma `rFFixRw1aznY4sWHRFKyJk` (Leads, Opportunities, Proposals, Projects, Time tracking, Foundations) | **Не редизайн**: операционная платформа с нуля для компании 3D-сканирования зданий (reality capture). Цикл: Leads → Opportunities → Proposals (шаблон на 18 секций) → Projects → Time tracking (часы, суточные, пробег, недельное согласование). Роль — Lead Designer, срок 2 недели. Метрики только посчитанные по файлу: 100 экранов, 5 модулей, 3 клика лид→сделка, 3600+ инстансов | Inter, brand `#EE6A1F`, sidebar `#0F1A2E` |
 | StuLo | https://stulo-v2.vercel.app/#signin («Explore the demo») | Управление федеральными студенческими кредитами США: синк займов, следующий шаг, AI-коуч + живые коучи, декодер писем, PSLF | Bricolage Grotesque + Manrope, navy `#121740`, bright `#465AFF` |
 
 Во всех кейсах **плейсхолдеры** ждут ответа Алексея: роль, команда, сроки, год, результаты (3 метрики), «What I learned». Также `[Роль]`/`[Срок]` в карточках на главной.
@@ -107,3 +107,10 @@ for c in ('tournament-guru','bookkeeper-ai','stulo'):
 2. Ещё кейсы из прототипов: Listing Suite https://listing-suite.vercel.app/ · Care Around Me https://care-around-me.vercel.app/
 3. Заполнить плейсхолдеры кейсов, когда Алексей пришлёт роль, команду, сроки, год, результаты, выводы.
 4. Открытые мелочи: финальный заголовок hero, фотореальные картинки форматов, фото получше для Julia F., реальные цифры для карточки достижений, CV (PDF) — см. `AUDIT.md`.
+
+## TrueScan — как устроены визуалы
+- Стиль по фидбеку Алексея: плоско, крупно, без перспективы/3D и сильных свечений, без наложенных теней-карточек.
+- `cases/_tools/flat.py`: `view()` — кадр-окно в реальный экран 16:11 (элемент целиком, родные тени макета), `flow_text`, `device`, `cover` (дрон из фрейма «E0 · Sign in» + экран). JPEG q92 без субдискретизации.
+- Экспорт фреймов из Figma: MCP `download_assets` (scale 2/3) → `cases/_src/truescan/` и `x3/`. Нужен хост www.figma.com в сети окружения.
+- `CHROME_PATH=/opt/pw-browsers/chromium python3 cases/_tools/build_truescan.py`.
+- Кейсы при открытии прокручиваются наверх (скрипт в начале body); прогресс-бар шоурила — тонкая линия по низу ролика.
