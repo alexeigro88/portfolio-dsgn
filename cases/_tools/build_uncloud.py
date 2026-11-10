@@ -132,7 +132,7 @@ F.save(poses(), f'{OUT}/mascot-poses.jpg')
 F.save(directions(), f'{OUT}/mascot-evolution.jpg')
 
 # ---------- десктоп ----------
-F.save(F.view(p('v2_d_voice'), 0, 0, 1440, size=(2400, 1500), s=2), f'{OUT}/desktop-voice.jpg')
+F.save(F.tile(Image.open(p('v2_d_voice')).convert('RGB'), size=(2400, 1640), pad=110, r=22, bg=MIST), f'{OUT}/desktop-voice.jpg')  # экран целиком карточкой на Mist
 d = Image.open(p('v2_d_dashboard')).convert('RGB').crop((0, 0, 2880, 1800))
 F.device(f'{OUT}/desktop-dashboard.jpg', d, f'{SRC}/_tmp', 'laptop', size=(2400, 1300), width=0.74) if os.makedirs(f'{SRC}/_tmp', exist_ok=True) is None else None
 
