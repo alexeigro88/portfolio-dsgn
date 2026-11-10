@@ -189,3 +189,12 @@ def flow_text(out, steps, size=(2400, 760)):
   <div style="font-size:13px;color:#4B5563;display:flex;gap:8px;align-items:center;padding-left:4px"><span style="width:6px;height:6px;border-radius:50%;background:{'#EE6A1F' if cue else 'transparent'}"></span>{html.escape(cue)}</div></div>'''
         if not last: cells += f'<div style="width:{ar}px;display:grid;place-items:center;height:222px">{arrow}</div>'
     _render(out, f'<div style="position:absolute;inset:0;display:flex;align-items:center;padding:0 {pad}px"><div style="display:flex;align-items:flex-start;width:100%">{cells}</div></div>', size)
+
+
+def view(path, x, y, w, size=(1600, 1100), s=3):
+    """Окно в реальный экран: кадр 16:11 с ключевым элементом целиком, родные тени макета, без наложенных карточек.
+    x, y, w — левый верхний угол и ширина кадра в CSS-пикселях фрейма 1440×900; высота по пропорции."""
+    h = w * size[1] / size[0]
+    im = Image.open(path).convert('RGB')
+    x = max(0, min(x, 1440 - w)); y = max(0, min(y, 900 - h))
+    return im.crop((round(x * s), round(y * s), round((x + w) * s), round((y + h) * s))).resize(size, Image.LANCZOS)

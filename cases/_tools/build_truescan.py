@@ -22,18 +22,20 @@ def full(name): return Image.open(p(name)).convert('RGB')
 F.save(F.cover(p('drone_raw1'), p('lead_table')), f'{OUT}/cover.jpg')
 
 # ---------- задачи и решения: крупные фрагменты, 16:11 ----------
-T = {
-    'problem-1-list':      c('lead_table', 284, 150, 920, 560),      # вкладки статусов и строки лидов
-    'problem-2-filters':   c('kanban_filters', 284, 110, 880, 520),  # фильтры, чипы и выпадающий список Owner
-    'problem-3-actions':   c('row_menu', 860, 330, 1440, 760),       # меню строки и подменю статуса
-    'problem-4-input':     c('wiz1', 400, 204, 1040, 600),           # мастер: дубль email
-    'solution-1-convert':  c('convert', 460, 213, 980, 687),         # конвертация с превью записей
-    'solution-2-converted': c('opp_profile', 284, 16, 1000, 420),    # баннер «Converted from lead»
-    'solution-3-assign':   c('assign', 900, 250, 1424, 640),         # назначение владельца в один клик
-    'solution-4-wizard':   c('wiz2', 400, 300, 1040, 743),           # мастер: автокомплит адреса
+# кадр = окно в экран (экспорт 3x в cases/_src/truescan/x3): элемент целиком + контекст, без наложенных теней
+X3 = f'{SRC}/x3'
+V = {
+    'problem-1-list':       ('lead_table', 284, 16, 660),      # заголовок, фильтры, вкладки статусов, строки
+    'problem-2-filters':    ('kanban_filters', 284, 16, 660),  # фильтры с счётчиками, чипы, список Owner
+    'problem-3-actions':    ('row_menu', 764, 345, 660),       # меню строки и подменю статуса
+    'problem-4-input':      ('wiz1', 334, 186, 771),           # мастер целиком: дубль email
+    'solution-1-convert':   ('convert', 342, 190, 756),        # модалка конвертации целиком
+    'solution-2-converted': ('opp_profile', 284, 16, 700),     # баннер «Converted from lead», шапка сделки
+    'solution-3-assign':    ('assign', 784, 218, 640),         # колонка Owner и поповер назначения
+    'solution-4-wizard':    ('wiz2', 269, 140, 902),           # мастер целиком: автокомплит адреса
 }
-for k, im in T.items():
-    F.save(F.tile_k(im), f'{OUT}/{k}.jpg')
+for k, (n, x, y, w) in V.items():
+    F.save(F.view(f'{X3}/{n}.png', x, y, w), f'{OUT}/{k}.jpg')
 
 # ---------- флоу: фрагменты ключевых шагов ----------
 F.flow_text(f'{OUT}/flow.jpg', [
