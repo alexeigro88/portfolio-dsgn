@@ -205,6 +205,11 @@ figure{margin:0}
 
 /* Five modules: больше воздуха, белая обводка, лёгкий тег */
 .mod{padding:28px clamp(28px,3.4vw,52px) 28px 28px!important;gap:clamp(32px,4vw,64px)!important}.mod:nth-child(even){padding:28px 28px 28px clamp(28px,3.4vw,52px)!important}.mod .media{box-shadow:0 0 0 4px #fff!important;border-radius:22px!important}.mtxt .ey{font-weight:500!important;font-size:14px!important;padding:6px 12px!important;border-radius:999px!important}.mtxt h3{font-weight:500!important}@media (max-width:900px){.mod,.mod:nth-child(even){padding:16px 16px 28px!important}}
+
+.isorow{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(24px,4vw,64px);align-items:center}.isolist{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:clamp(20px,2.2vw,30px)}.isolist li{padding-left:20px;border-left:2px solid #EE6A1F}.isolist h3{font-family:var(--font-display);font-weight:500;font-size:clamp(19px,1.6vw,22px);letter-spacing:-.015em;line-height:1.25}.isolist p{margin-top:6px;font-size:clamp(15px,1.1vw,16px);line-height:1.5;color:var(--ink-2)}.isovis{border-radius:28px;overflow:hidden;background:#F1F3F6}.isovis img{display:block;width:100%;height:auto}@media (max-width:900px){.isorow{grid-template-columns:1fr}.isovis{order:-1}}
+
+/* «следующий кейс»: тёмное затемнение снизу, светлый текст */
+.ncase .media::after{background:linear-gradient(to top,rgba(10,14,24,.82) 0%,rgba(10,14,24,.45) 30%,rgba(10,14,24,0) 60%)!important}.ncase .lbl small{color:rgba(255,255,255,.75)!important}.ncase .lbl b{color:#fff!important}
 </style>
 </head>
 <body>
@@ -292,12 +297,7 @@ figure{margin:0}
       <h2 class="h2 rv">Problems</h2>
       <p class="body rv">A scanning company sells, plans and bills complex field work. Every step had its own tool, or none.</p>
     </div>
-    <div class="pairs">
-      <div class="pair rv"><div class="media"><img src="../img/cases/truescan/problem-1-list.jpg?v=3" alt="Leads list with status tabs" loading="lazy"></div><div class="ptxt"><div><h3>Requests come from everywhere</h3><p>Web forms, direct traffic and each sales rep’s personal form. A lead needs an owner and a status fast, or it goes cold.</p></div></div></div>
-      <div class="pair rv"><div class="media"><img src="../img/cases/truescan/problem-2-proposal.jpg?v=3" alt="Proposal builder with 18 sections and service fees" loading="lazy"></div><div class="ptxt"><div><h3>Every deal needs a heavy proposal</h3><p>A reality-capture proposal has 18 sections: scope, services, team, equipment, terms and fees that depend on what is being scanned.</p></div></div></div>
-      <div class="pair rv"><div class="media"><img src="../img/cases/truescan/problem-3-project.jpg?v=3" alt="Project overview with site data, tasks and cost to date" loading="lazy"></div><div class="ptxt"><div><h3>Site work is scattered</h3><p>After a deal is won, the building data, the crew, the files and multi-gigabyte point clouds need one home.</p></div></div></div>
-      <div class="pair rv"><div class="media"><img src="../img/cases/truescan/problem-4-time.jpg?v=3" alt="Weekly timesheet with field scan entries" loading="lazy"></div><div class="ptxt"><div><h3>Costs live in a spreadsheet</h3><p>Field hours, per diem and mileage were logged in Google Sheets, so the real cost of a project was hard to see.</p></div></div></div>
-    </div>
+    <div class="isorow rv"><ul class="isolist"><li><h3>Requests come from everywhere</h3><p>Web forms, direct traffic and each sales rep’s personal form. A lead needs an owner and a status fast, or it goes cold.</p></li><li><h3>Every deal needs a heavy proposal</h3><p>A reality-capture proposal has 18 sections: scope, services, team, equipment, terms and fees that depend on what is being scanned.</p></li><li><h3>Site work is scattered</h3><p>After a deal is won, the building data, the crew, the files and multi-gigabyte point clouds need one home.</p></li><li><h3>Costs live in a spreadsheet</h3><p>Field hours, per diem and mileage were logged in Google Sheets, so the real cost of a project was hard to see.</p></li></ul><div class="isovis"><img src="../img/cases/truescan/problems-iso.jpg?v=3" alt="Isometric stack of TrueScan screens: leads list, proposal builder and weekly timesheet" loading="lazy"></div></div>
   </div>
 </section>
 
@@ -322,12 +322,7 @@ figure{margin:0}
       <h2 class="h2 rv">Details that matter</h2>
       <p class="body rv">Small decisions that save clicks every day: show consequences before they happen, apply small changes instantly, always leave a way back.</p>
     </div>
-    <div class="pairs">
-      <div class="pair rv"><div class="media"><img src="../img/cases/truescan/solution-1-convert.jpg?v=3" alt="Convert to opportunity confirmation with record preview" loading="lazy"></div><div class="ptxt"><div><h3>Preview before converting</h3><p>Conversion shows exactly what will be created — a new or existing account, a contact and an opportunity in Prospecting — with no fields to fill in.</p></div></div></div>
-      <div class="pair rv"><div class="media"><img src="../img/cases/truescan/solution-2-converted.jpg?v=3" alt="Opportunity profile with Converted from lead banner" loading="lazy"></div><div class="ptxt"><div><h3>Land on the result</h3><p>After conversion the user lands on the new opportunity, with a one-time “Converted from lead” banner and a link back to the lead.</p></div></div></div>
-      <div class="pair rv"><div class="media"><img src="../img/cases/truescan/solution-3-assign.jpg?v=3" alt="Assign owner popover with Assign to me" loading="lazy"></div><div class="ptxt"><div><h3>Small changes apply instantly</h3><p>Small changes apply instantly: assigning an owner or changing a status needs no Apply button, and archiving comes with an 8-second Undo.</p></div></div></div>
-      <div class="pair rv"><div class="media"><img src="../img/cases/truescan/solution-4-wizard.jpg?v=3" alt="New lead wizard with address autocomplete" loading="lazy"></div><div class="ptxt"><div><h3>Guided entry</h3><p>A 3-step wizard validates one step at a time, checks duplicate emails when leaving the field and fills the address from a suggestion.</p></div></div></div>
-    </div>
+    <div class="isorow rv"><ul class="isolist"><li><h3>Preview before converting</h3><p>Conversion shows exactly what will be created — a new or existing account, a contact and an opportunity in Prospecting — with no fields to fill in.</p></li><li><h3>Land on the result</h3><p>After conversion the user lands on the new opportunity, with a one-time “Converted from lead” banner and a link back to the lead.</p></li><li><h3>Small changes apply instantly</h3><p>Small changes apply instantly: assigning an owner or changing a status needs no Apply button, and archiving comes with an 8-second Undo.</p></li><li><h3>Guided entry</h3><p>A 3-step wizard validates one step at a time, checks duplicate emails when leaving the field and fills the address from a suggestion.</p></li></ul><div class="isovis"><img src="../img/cases/truescan/details-iso.jpg?v=3" alt="Isometric stack: convert to opportunity, the new opportunity and the new lead wizard" loading="lazy"></div></div>
   </div>
 </section>
 
