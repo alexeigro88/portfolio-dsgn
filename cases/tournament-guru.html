@@ -199,6 +199,16 @@ figure{margin:0}
 
 /* «следующий кейс»: тёмное затемнение снизу, светлый текст */
 .ncase .media::after{background:linear-gradient(to top,rgba(10,14,24,.82) 0%,rgba(10,14,24,.45) 30%,rgba(10,14,24,0) 60%)!important}.ncase .lbl small{color:rgba(255,255,255,.75)!important}.ncase .lbl b{color:#fff!important}
+
+/* User flow: лестница шагов */
+.fstairs{position:relative;display:grid;grid-template-columns:repeat(6,1fr);column-gap:0;row-gap:18px;padding:28px 0}.fstairs>i{position:absolute;top:0;bottom:0;width:0;border-left:1.5px dashed #D5D9E2}.fstairs>i:nth-child(1){left:calc(0% + 50px)}.fstairs>i:nth-child(2){left:calc(16.666% + 50px)}.fstairs>i:nth-child(3){left:calc(33.333% + 50px)}.fstairs>i:nth-child(4){left:calc(50% + 50px)}.fstairs>i:nth-child(5){left:calc(66.666% + 50px)}.fs{position:relative;z-index:1;grid-row:calc(var(--i) + 1);grid-column:calc(var(--i) + 1)/span 2;display:flex;gap:16px;align-items:center;background:#fff;border-radius:24px;padding:12px 22px 12px 12px;box-shadow:0 0 0 1px rgba(18,23,64,.07),0 16px 34px -20px rgba(18,23,64,.25)}.fs-ic{flex:none;width:76px;height:76px;border-radius:18px;display:grid;place-items:center}.fs-ic svg{width:30px;height:30px}.fs-tx{min-width:0}.fs-n{font-size:12px;color:var(--ink-3);font-variant-numeric:tabular-nums}.fs-tx b{display:block;font-family:var(--font-display);font-weight:500;font-size:20px;letter-spacing:-.015em;margin-top:2px}.fs-tx p{font-size:14px;color:var(--ink-2);margin-top:2px}.fs-ch{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}.fs-ch span{font-size:12px;padding:4px 10px;border-radius:999px;background:#F1F3F8;color:#121740}@media (max-width:980px){.fstairs{grid-template-columns:1fr;padding:0}.fstairs>i{display:none}.fs{grid-row:auto;grid-column:1}}
+
+/* карточки флоу: ровные отступы, концентрические скругления */
+.fs{padding:16px!important;gap:20px!important;align-items:center!important;border-radius:28px!important}.fs-ic{width:88px!important;height:88px!important;align-self:center;border-radius:14px!important}.fs-ic svg{width:32px!important;height:32px!important}.fs-tx{display:flex;flex-direction:column;justify-content:center;padding:6px 14px 6px 0}.fs-n{line-height:1}.fs-tx b{margin-top:8px!important;line-height:1.2}.fs-tx p{margin-top:4px!important;line-height:1.4}.fs-ch{margin-top:12px!important}.fs-ch span{line-height:1.2;padding:5px 10px!important}
+
+/* фото в проблемах/решениях */
+.mix .media img{width:100%;height:100%;object-fit:cover;display:block}
+@media (max-width:980px){.mix .media{position:relative;aspect-ratio:auto!important;min-height:240px}.mix .media img{position:absolute;inset:0}}
 </style>
 </head>
 <body>
@@ -227,7 +237,7 @@ figure{margin:0}
     <div class="tags"><span class="tag">Web app · Marketplace</span><span class="tag acc">[My role]</span></div>
     <span class="year">Youth sports &nbsp;·&nbsp; [Year]</span>
   </div>
-  <div class="media rv"><img src="../img/cases/tournament-guru/cover.jpg" alt="Tournament Guru: tournament page and catalog" loading="lazy"></div>
+  <div class="media rv"><img src="../img/cases/tournament-guru/cover.jpg?v=2" alt="Tournament Guru: tournament page and catalog" loading="lazy"></div>
 </section>
 
 <section class="sec cintro">
@@ -291,14 +301,14 @@ figure{margin:0}
       <p class="body rv">Make the decision before signing up: compare events on facts and on the experience of teams who were there.</p>
     </div>
     <div class="mix">
-      <div class="media rv"><img src="../img/cases/tournament-guru/solution-1-reviews.jpg" alt="Ratings by category and verified reviews" loading="lazy"></div>
+      <div class="media rv"><img src="../img/cases/tournament-guru/photo-s1.jpg?v=1" alt="Coach reading verified reviews on his phone by the field" loading="lazy"></div>
       <div class="card rv"><span class="n">01</span><p>Verified reviews from coaches, directors and parents who attended — with ratings for field quality, organization, competition, communication and value.</p></div>
-      <div class="media rv"><img src="../img/cases/tournament-guru/solution-2-search.jpg" alt="Search, filters and recommendations" loading="lazy"></div>
+      <div class="media rv"><img src="../img/cases/tournament-guru/photo-s2.jpg?v=1" alt="Parent and coach comparing tournaments on a laptop" loading="lazy"></div>
       <div class="card rv"><span class="n">02</span><p>Search with filters by dates, age, gender, level, format and region, a map view and recommendations based on past registrations.</p></div>
       <div class="card rv"><span class="n">03</span><p>One event page with the essentials: schedule by day, what’s included, venue logistics — airport, hotels, parking — and the host’s track record.</p></div>
-      <div class="media rv"><img src="../img/cases/tournament-guru/solution-3-venue.jpg" alt="Venue and logistics" loading="lazy"></div>
+      <div class="media rv"><img src="../img/cases/tournament-guru/photo-s3.jpg?v=1" alt="Youth team arriving at the tournament venue" loading="lazy"></div>
       <div class="card rv"><span class="n">04</span><p>Transparent registration: team fee, platform fee and total upfront, “spots left” signals, and host confirmation before any charge.</p></div>
-      <div class="media rv"><img src="../img/cases/tournament-guru/solution-4-booking.jpg" alt="Registration card with transparent pricing" loading="lazy"></div>
+      <div class="media rv"><img src="../img/cases/tournament-guru/photo-s4.jpg?v=1" alt="Team celebrating with a trophy" loading="lazy"></div>
     </div>
   </div>
 </section>
@@ -309,10 +319,7 @@ figure{margin:0}
       <h2 class="h2 rv">User flow</h2>
       <p class="body rv">The core path a coach takes from first visit to a registered team.</p>
     </div>
-    <figure class="fig rv">
-      <div class="media"><img src="../img/cases/tournament-guru/flow.jpg" alt="User flow: sign in, find events, compare, check details, register team" loading="lazy"></div>
-      <figcaption>Host profile and similar tournaments support the decision at the details step.</figcaption>
-    </figure>
+    <div class="fstairs"><i></i><i></i><i></i><i></i><i></i><div class="fs rv" style="--i:0"><div class="fs-ic" style="background:#1D4ED8"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div class="fs-tx"><span class="fs-n">01</span><b>Sign in</b><p>Coach, parent or organizer</p><div class="fs-ch"><span>Email or Google</span></div></div></div><div class="fs rv" style="--i:1"><div class="fs-ic" style="background:#0F172A"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></div><div class="fs-tx"><span class="fs-n">02</span><b>Find events</b><p>Filters · map · recommended</p><div class="fs-ch"><span>6 filters</span><span>Map view</span></div></div></div><div class="fs rv" style="--i:2"><div class="fs-ic" style="background:#F59E0B"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"/></svg></div><div class="fs-tx"><span class="fs-n">03</span><b>Compare</b><p>Verified reviews · ratings</p><div class="fs-ch"><span>5 rating criteria</span></div></div></div><div class="fs rv" style="--i:3"><div class="fs-ic" style="background:#64748B"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></div><div class="fs-tx"><span class="fs-n">04</span><b>Check details</b><p>Schedule · venue · what’s included</p><div class="fs-ch"><span>Host profile</span><span>Similar events</span></div></div></div><div class="fs rv" style="--i:4"><div class="fs-ic" style="background:#DC2626"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div><div class="fs-tx"><span class="fs-n">05</span><b>Register team</b><p>Transparent fees</p><div class="fs-ch"><span>Host confirms first</span></div></div></div></div>
   </div>
 </section>
 
@@ -346,12 +353,14 @@ figure{margin:0}
   <div class="wrap">
     <div class="shead">
       <h2 class="h2 rv">UI design</h2>
-      <p class="body rv">Catalog for discovery, a sign-in that sells the value, and an event page built for the final decision.</p>
+      <p class="body rv">Catalog for discovery, an event page built for the final decision — schedule, fees, host and verified reviews — and a sign-in that sells the value.</p>
     </div>
     <div class="screens">
-      <div class="media span rv"><img src="../img/cases/tournament-guru/screen-catalog.jpg" alt="Catalog with filters and recommended tournaments" loading="lazy"></div>
-      <div class="media rv"><img src="../img/cases/tournament-guru/screen-login.jpg" alt="Sign-in with value proposition" loading="lazy"></div>
-      <div class="media rv"><img src="../img/cases/tournament-guru/screen-event.jpg" alt="Tournament page" loading="lazy"></div>
+      <div class="media span rv"><img src="../img/cases/tournament-guru/screen-catalog.jpg?v=2" alt="Catalog with filters and recommended tournaments" loading="lazy"></div>
+      <div class="media rv"><img src="../img/cases/tournament-guru/screen-event.jpg?v=2" alt="Tournament page with key facts" loading="lazy"></div>
+      <div class="media rv"><img src="../img/cases/tournament-guru/screen-details.jpg?v=1" alt="Schedule, what’s included and the registration card with fees" loading="lazy"></div>
+      <div class="media rv"><img src="../img/cases/tournament-guru/screen-reviews.jpg?v=1" alt="Host profile, ratings by category and verified reviews" loading="lazy"></div>
+      <div class="media rv"><img src="../img/cases/tournament-guru/screen-login.jpg?v=2" alt="Sign-in with value proposition" loading="lazy"></div>
     </div>
     <p class="body rv" style="margin-top:20px"><a href="https://tournament-guru.vercel.app/index.html" target="_blank" rel="noopener" style="color:var(--brand)">Open the live prototype ↗</a></p>
   </div>
