@@ -192,6 +192,7 @@ figure{margin:0}
   .fig .media{aspect-ratio:4/3}
 }
 /* веб-продукт: экраны в две колонки */
+.pairs{display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,2.4vw,32px) 16px}.pair .media{aspect-ratio:16/11;border-radius:24px}.pair .media img{width:100%;height:100%;object-fit:cover;display:block}.ptxt{display:flex;gap:16px;align-items:baseline;padding:18px 4px 0}.ptxt .n{font-family:var(--font-display);font-size:15px;color:var(--ink-3);font-variant-numeric:tabular-nums;flex:none}.ptxt p{font-size:clamp(16px,1.25vw,18px);line-height:1.5;color:var(--ink-2);max-width:46ch}@media (max-width:760px){.pairs{grid-template-columns:1fr}}
 .fig .media.nat{aspect-ratio:auto!important}.fig .media.nat img{height:auto;object-fit:contain}
 .wfs{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:16px}.wfs .media{aspect-ratio:16/10;border-radius:var(--r);overflow:hidden}.wfs img{width:100%;height:100%;object-fit:cover;display:block}@media (max-width:980px){.wfs{grid-template-columns:1fr}}
 .screens{grid-template-columns:1fr 1fr}.screens .media{aspect-ratio:16/10}.screens .media.span{grid-column:span 2;aspect-ratio:2/1}
@@ -229,14 +230,10 @@ figure{margin:0}
     <dl class="meta rv">
       <div><dt>My role</dt><dd>Lead Designer<small>UX, UI, design system, handoff</small></dd></div>
       <div><dt>Team</dt><dd>[Team]</dd></div>
-      <div><dt>Timeline</dt><dd>[Duration]<small>2026</small></dd></div>
+      <div><dt>Timeline</dt><dd>2 weeks<small>2026</small></dd></div>
       <div><dt>Platform</dt><dd>Web app · desktop 1440</dd></div>
       <div><dt>Users</dt><dd>Sales team and administrators</dd></div>
     </dl>
-    <figure class="fig rv" style="margin-top:clamp(40px,5vw,64px)">
-      <div class="media nat"><img src="../img/cases/truescan/overview.jpg" alt="Isometric stack of TrueScan screens: leads list, Kanban, lead profile and opportunity" loading="lazy"></div>
-      <figcaption>One system for the whole sales path: leads list, Kanban, lead profile and the opportunity it turns into.</figcaption>
-    </figure>
   </div>
 </section>
 <section class="sec">
@@ -277,15 +274,11 @@ figure{margin:0}
       <h2 class="h2 rv">Problems</h2>
       <p class="body rv">A CRM is used all day. Every extra click and every unclear state is paid for hundreds of times a week.</p>
     </div>
-    <div class="mix">
-      <div class="card rv"><span class="n">01</span><p>Thousands of inbound leads in different statuses. The team needs to see what’s new, what’s stuck and who owns what at a glance.</p></div>
-      <div class="media rv"><img src="../img/cases/truescan/problem-1-list.jpg" alt="Leads table with status tabs and counts" loading="lazy"></div>
-      <div class="media rv"><img src="../img/cases/truescan/problem-2-filters.jpg" alt="Kanban with owner filter dropdown" loading="lazy"></div>
-      <div class="card rv"><span class="n">02</span><p>Different people slice the list differently: by owner, source, date or AI score, in a table or on a board.</p></div>
-      <div class="media rv"><img src="../img/cases/truescan/problem-3-actions.jpg" alt="Row menu with status submenu" loading="lazy"></div>
-      <div class="card rv"><span class="n">03</span><p>Many actions on one lead — open, edit, reassign, change status, convert, archive — have to stay discoverable without cluttering every row.</p></div>
-      <div class="card rv"><span class="n">04</span><p>Manual entry creates duplicates and incomplete records, and a mistake in one field shouldn’t cost the whole form.</p></div>
-      <div class="media rv"><img src="../img/cases/truescan/problem-4-input.jpg" alt="New lead form with duplicate email warning" loading="lazy"></div>
+    <div class="pairs">
+      <div class="pair rv"><div class="media"><img src="../img/cases/truescan/problem-1-list.jpg" alt="Leads table with status tabs and counts" loading="lazy"></div><div class="ptxt"><span class="n">01</span><p>Thousands of inbound leads in different statuses. The team needs to see what’s new, what’s stuck and who owns what at a glance.</p></div></div>
+      <div class="pair rv"><div class="media"><img src="../img/cases/truescan/problem-2-filters.jpg" alt="Kanban with owner filter dropdown" loading="lazy"></div><div class="ptxt"><span class="n">02</span><p>Different people slice the list differently: by owner, source, date or AI score, in a table or on a board.</p></div></div>
+      <div class="pair rv"><div class="media"><img src="../img/cases/truescan/problem-3-actions.jpg" alt="Row menu with status submenu" loading="lazy"></div><div class="ptxt"><span class="n">03</span><p>Many actions on one lead — open, edit, reassign, change status, convert, archive — have to stay discoverable without cluttering every row.</p></div></div>
+      <div class="pair rv"><div class="media"><img src="../img/cases/truescan/problem-4-input.jpg" alt="New lead form with duplicate email warning" loading="lazy"></div><div class="ptxt"><span class="n">04</span><p>Manual entry creates duplicates and incomplete records, and a mistake in one field shouldn’t cost the whole form.</p></div></div>
     </div>
   </div>
 </section>
@@ -295,15 +288,11 @@ figure{margin:0}
       <h2 class="h2 rv">Solutions</h2>
       <p class="body rv">Make the common path fast, make consequences visible before they happen, and always leave a way back.</p>
     </div>
-    <div class="mix">
-      <div class="media rv"><img src="../img/cases/truescan/solution-1-convert.jpg" alt="Convert to opportunity confirmation with record preview" loading="lazy"></div>
-      <div class="card rv"><span class="n">01</span><p>Conversion shows exactly what will be created — a new or existing account, a contact and an opportunity in Prospecting — with no fields to fill in.</p></div>
-      <div class="media rv"><img src="../img/cases/truescan/solution-2-converted.jpg" alt="Opportunity profile with Converted from lead banner" loading="lazy"></div>
-      <div class="card rv"><span class="n">02</span><p>After conversion the user lands on the new opportunity, with a one-time “Converted from lead” banner and a link back to the lead.</p></div>
-      <div class="card rv"><span class="n">03</span><p>Small changes apply instantly: assigning an owner or changing a status needs no Apply button, and archiving comes with an 8-second Undo.</p></div>
-      <div class="media rv"><img src="../img/cases/truescan/solution-3-assign.jpg" alt="Assign owner popover with Assign to me" loading="lazy"></div>
-      <div class="card rv"><span class="n">04</span><p>A 3-step wizard validates one step at a time, checks duplicate emails when leaving the field and fills the address from a suggestion.</p></div>
-      <div class="media rv"><img src="../img/cases/truescan/solution-4-wizard.jpg" alt="New lead wizard with address autocomplete" loading="lazy"></div>
+    <div class="pairs">
+      <div class="pair rv"><div class="media"><img src="../img/cases/truescan/solution-1-convert.jpg" alt="Convert to opportunity confirmation with record preview" loading="lazy"></div><div class="ptxt"><span class="n">01</span><p>Conversion shows exactly what will be created — a new or existing account, a contact and an opportunity in Prospecting — with no fields to fill in.</p></div></div>
+      <div class="pair rv"><div class="media"><img src="../img/cases/truescan/solution-2-converted.jpg" alt="Opportunity profile with Converted from lead banner" loading="lazy"></div><div class="ptxt"><span class="n">02</span><p>After conversion the user lands on the new opportunity, with a one-time “Converted from lead” banner and a link back to the lead.</p></div></div>
+      <div class="pair rv"><div class="media"><img src="../img/cases/truescan/solution-3-assign.jpg" alt="Assign owner popover with Assign to me" loading="lazy"></div><div class="ptxt"><span class="n">03</span><p>Small changes apply instantly: assigning an owner or changing a status needs no Apply button, and archiving comes with an 8-second Undo.</p></div></div>
+      <div class="pair rv"><div class="media"><img src="../img/cases/truescan/solution-4-wizard.jpg" alt="New lead wizard with address autocomplete" loading="lazy"></div><div class="ptxt"><span class="n">04</span><p>A 3-step wizard validates one step at a time, checks duplicate emails when leaving the field and fills the address from a suggestion.</p></div></div>
     </div>
   </div>
 </section>
@@ -342,10 +331,6 @@ figure{margin:0}
         <div class="sw rv" style="--c:#f6f7f9;box-shadow:inset 0 0 0 1px var(--hair)"><i></i><span><b>Canvas</b>#F6F7F9</span></div>
       </div>
     </div>
-    <figure class="fig rv" style="margin-top:24px">
-      <div class="media nat"><img src="../img/cases/truescan/anatomy.jpg" alt="Exploded view: page, scrim and modal on separate elevation levels" loading="lazy"></div>
-      <figcaption>Elevation is part of the system: the page sits on Shadow/md, the scrim dims everything below, dialogs, dropdowns and toasts use Shadow/lg. One shadow per element.</figcaption>
-    </figure>
     <figure class="fig rv" style="margin-top:24px">
       <div class="media nat"><img src="../img/cases/truescan/states.jpg" alt="Interaction states for buttons, filter pills and status tabs" loading="lazy"></div>
       <figcaption>Every interactive element on the Leads screens has hover, pressed, focus and disabled states, with a 120 ms ease-out transition.</figcaption>

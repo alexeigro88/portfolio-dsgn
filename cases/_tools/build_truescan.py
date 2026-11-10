@@ -1,13 +1,12 @@
 # Визуалы кейса TrueScan из экспортов Figma (cases/_src/truescan, PNG 2x, фреймы 1440×900).
-# Файл Figma: TrueScan — Entity Profiles Redesign (страницы Leads, Opportunities, Foundations).
-# Экспорт фреймов: Figma MCP download_assets(nodeId, scale 2).
-# Сцены (изометрия, крупный план, девайсы) — cases/_tools/scene.py.
+# Файл Figma: TrueScan — Entity Profiles Redesign (страницы Leads, Opportunities, Foundations, Time tracking).
+# Экспорт фреймов: Figma MCP download_assets(nodeId, scale 2). Иллюстрация с дроном — фрейм «E0 · Sign in».
+# Стиль: плоско, крупно, без перспективы и свечений (cases/_tools/flat.py). Вайрфреймы — cases/_tools/scene.py.
 # Запуск из корня: CHROME_PATH=/opt/pw-browsers/chromium python3 cases/_tools/build_truescan.py
 import os, sys
 sys.path.insert(0, os.path.dirname(__file__))
-from compose import tile, save
 from PIL import Image
-import scene as sc
+import flat as F
 
 SRC, OUT = 'cases/_src/truescan', 'img/cases/truescan'
 TMP = f'{SRC}/_crops'
@@ -15,70 +14,59 @@ os.makedirs(OUT, exist_ok=True); os.makedirs(TMP, exist_ok=True)
 
 
 def p(name): return f'{SRC}/{name}.png'
-def crop(name, box, tag): return sc.crop_file(p(name), box, f'{TMP}/{tag}.png')
+def c(name, *box): return F.crop(p(name), box)        # координаты в CSS-пикселях фрейма 1440×900
+def full(name): return Image.open(p(name)).convert('RGB')
 
 
-# фрагменты (координаты в CSS-пикселях фрейма 1440×900; модалки и поповеры — по координатам из Figma)
-c = {
-    'list': crop('lead_table', (284, 150, 900, 640), 'list'),
-    'filters': crop('kanban_filters', (284, 120, 860, 560), 'filters'),
-    'menu': crop('row_menu', (880, 300, 1440, 860), 'menu'),
-    'wiz1': crop('wiz1', (400, 204, 1040, 697), 'wiz1'),
-    'convert': crop('convert', (460, 213, 980, 687), 'convert'),
-    'converted': crop('opp_profile', (284, 16, 960, 520), 'converted'),
-    'assign': crop('assign', (980, 250, 1400, 600), 'assign'),
-    'wiz2': crop('wiz2', (400, 157, 1040, 743), 'wiz2'),
-    'export': crop('export', (480, 215, 960, 685), 'export'),
-    'toast': crop('toast_undo', (696, 824, 1008, 876), 'toast'),
-    'empty': crop('noresults', (560, 360, 1160, 620), 'empty'),
+# ---------- обложка ----------
+F.save(F.cover(p('drone_raw1'), p('lead_table')), f'{OUT}/cover.jpg')
+
+# ---------- задачи и решения: крупные фрагменты, 16:11 ----------
+T = {
+    'problem-1-list':      c('lead_table', 284, 150, 920, 560),      # вкладки статусов и строки лидов
+    'problem-2-filters':   c('kanban_filters', 284, 110, 880, 520),  # фильтры, чипы и выпадающий список Owner
+    'problem-3-actions':   c('row_menu', 860, 330, 1440, 760),       # меню строки и подменю статуса
+    'problem-4-input':     c('wiz1', 400, 204, 1040, 600),           # мастер: дубль email
+    'solution-1-convert':  c('convert', 460, 213, 980, 687),         # конвертация с превью записей
+    'solution-2-converted': c('opp_profile', 284, 16, 1000, 420),    # баннер «Converted from lead»
+    'solution-3-assign':   c('assign', 900, 250, 1424, 640),         # назначение владельца в один клик
+    'solution-4-wizard':   c('wiz2', 400, 300, 1040, 743),           # мастер: автокомплит адреса
 }
+for k, im in T.items():
+    F.save(F.tile_k(im), f'{OUT}/{k}.jpg')
 
-# обложка: изометрический стек — список, Kanban, профиль лида, сделка после конвертации
-sc.hero_drone(f'{OUT}/cover.jpg', p('drone_raw1'), [p('lead_table'), p('profile')])
-sc.iso_stack(f'{OUT}/overview.jpg', [p('lead_table'), p('lead_kanban'), p('profile'), p('opp_profile')])
-
-# задачи: экран в перспективе + крупный план
-sc.focus(f'{OUT}/problem-1-list.jpg', p('lead_table'), c['list'], tilt=-24)
-sc.focus(f'{OUT}/problem-2-filters.jpg', p('kanban_filters'), c['filters'], tilt=22)
-sc.focus(f'{OUT}/problem-3-actions.jpg', p('row_menu'), c['menu'], tilt=-20)
-sc.focus(f'{OUT}/problem-4-input.jpg', p('wiz1'), c['wiz1'], tilt=24)
-
-# решения
-sc.focus(f'{OUT}/solution-1-convert.jpg', p('convert'), c['convert'], tilt=-22)
-sc.focus(f'{OUT}/solution-2-converted.jpg', p('opp_profile'), c['converted'], tilt=22)
-sc.focus(f'{OUT}/solution-3-assign.jpg', p('assign'), c['assign'], tilt=-24, cw=0.78)
-sc.focus(f'{OUT}/solution-4-wizard.jpg', p('wiz2'), c['wiz2'], tilt=22)
-
-# флоу из реальных экранов
-sc.journey(f'{OUT}/flow.jpg', [
-    (p('wiz1'), 'New lead', 'Web form or a 3-step wizard with a duplicate check'),
-    (p('lead_kanban'), 'Triage', 'Table or Kanban, tabs, filters, AI score'),
-    (p('assign'), 'Assign & qualify', 'Owner in one click, status from the row'),
-    (p('convert'), 'Convert', 'Preview of Account, Contact and Opportunity'),
-    (p('opp_profile'), 'Opportunity', 'Lands on the deal with “Converted from lead”'),
+# ---------- флоу: фрагменты ключевых шагов ----------
+F.flow_text(f'{OUT}/flow.jpg', [
+    ('New lead', 'Web form, or a 3-step wizard for manual entry', 'Duplicate email check'),
+    ('Triage', 'Table or Kanban, status tabs, filters and AI score', 'Export the current view'),
+    ('Assign & qualify', 'Owner in one click, status right from the row', 'Archive with 8 s Undo'),
+    ('Convert', 'Preview of the Account, Contact and Opportunity to be created', 'Qualified leads only'),
+    ('Opportunity', 'Lands on the new deal with a “Converted from lead” banner', ''),
 ])
 
-# дизайн-система: анатомия уровней и состояния контролов
-sc.exploded(f'{OUT}/anatomy.jpg', p('lead_table'), True, c['convert'],
-            labels=[('Page · Shadow/md', .12, .8), ('Scrim · navy 20%', .1, .22), ('Modal · Shadow/lg', .66, .12)])
-save(tile(Image.open(p('states')).crop((0, 280, 2880, 1940)), size=(2400, 1200), pad=80, r=28), f'{OUT}/states.jpg')
-
-# экраны: девайсы, крупный план, пара «загрузка → данные»
-sc.laptop(f'{OUT}/screen-profile.jpg', p('profile'))
-sc.monitor(f'{OUT}/screen-kanban.jpg', p('lead_kanban'))
-sc.focus(f'{OUT}/screen-export.jpg', p('export'), c['export'], size=(1600, 1000), cw=0.4, tilt=-20)
-sc.pair(f'{OUT}/screen-skeleton.jpg', p('skeleton'), p('lead_table'), labels=('Skeleton after 300 ms', 'Data in place'))
-sc.focus(f'{OUT}/screen-noresults.jpg', p('noresults'), c['empty'], size=(1600, 1000), cw=0.5, tilt=20)
-# процесс: лоу-фай вайрфреймы (реконструкция ранней стадии) → UI-kit → финальный интерфейс
-for n, f in (('wf_list', sc.wf_list), ('wf_profile', sc.wf_profile), ('wf_convert', sc.wf_convert)): f(f'{SRC}/{n}.png')
-uikit = f'{TMP}/uikit.png'
-
+# ---------- от вайрфрейма к интерфейсу ----------
+import scene as S
+for n, f in (('wf_list', S.wf_list), ('wf_profile', S.wf_profile), ('wf_convert', S.wf_convert)):
+    f(p(n))
 kit = Image.new('RGB', (2880, 1800), (246, 247, 249))
-fil = Image.open(p('filters')).convert('RGB'); k = 2880 / fil.width; fil = fil.resize((2880, round(fil.height * k)))
-st = Image.open(p('states')).convert('RGB').crop((0, 280, 2880, 1940)); kit.paste(fil, (0, 0)); kit.paste(st.crop((0, 0, 2880, 1800 - fil.height)), (0, fil.height))
-kit.save(uikit)
-sc.evolution(f'{OUT}/evolution.jpg', [(p('wf_list'), 'Wireframe', 'structure & rules'), (uikit, 'UI kit', 'tokens, components, states'), (p('lead_table'), 'Interface', 'final screen')])
-sc.focus(f'{OUT}/wireframe-list.jpg', p('lead_table'), p('wf_list'), size=(1600, 1000), cw=0.74, tilt=-18)
-sc.focus(f'{OUT}/wireframe-profile.jpg', p('profile'), p('wf_profile'), size=(1600, 1000), cw=0.74, tilt=18)
-sc.focus(f'{OUT}/wireframe-convert.jpg', p('convert'), p('wf_convert'), size=(1600, 1000), cw=0.74, tilt=-18)
+fil = full('filters'); fil = fil.resize((2880, round(fil.height * 2880 / fil.width)), Image.LANCZOS)
+kit.paste(fil, (0, 0)); kit.paste(full('states').crop((0, 280, 2880, 280 + 1800 - fil.height)), (0, fil.height))
+kit.save(f'{TMP}/uikit.png')
+F.stages(f'{OUT}/evolution.jpg', [
+    (full('wf_list'), 'Wireframe', 'Structure, rules and open questions'),
+    (kit, 'UI kit', 'Tokens, components and their states'),
+    (full('lead_table'), 'Interface', 'The final Leads screen'),
+], TMP, size=(2400, 900))
+for n in ('wf_list', 'wf_profile', 'wf_convert'):
+    F.save(F.tile(full(n), size=(1600, 1000), pad=56, r=14), f'{OUT}/wireframe-{n[3:]}.jpg')
+
+# ---------- дизайн-система: состояния контролов ----------
+F.save(F.tile(full('states').crop((0, 280, 2880, 1940)), size=(2400, 1200), pad=80, r=20), f'{OUT}/states.jpg')
+
+# ---------- экраны ----------
+F.device(f'{OUT}/screen-profile.jpg', full('profile'), TMP, 'laptop', size=(2400, 1200), width=0.7)
+F.device(f'{OUT}/screen-kanban.jpg', full('lead_kanban'), TMP, 'monitor', size=(1600, 1000), width=0.8)
+F.save(F.tile(c('export', 480, 215, 960, 685), size=(1600, 1000), pad=72), f'{OUT}/screen-export.jpg')
+F.save(F.tile(full('skeleton'), size=(1600, 1000), pad=72, r=14), f'{OUT}/screen-skeleton.jpg')
+F.save(F.tile(full('noresults'), size=(1600, 1000), pad=72, r=14), f'{OUT}/screen-noresults.jpg')
 print('ok', sorted(os.listdir(OUT)))
