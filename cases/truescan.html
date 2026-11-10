@@ -192,6 +192,8 @@ figure{margin:0}
   .fig .media{aspect-ratio:4/3}
 }
 /* веб-продукт: экраны в две колонки */
+.fig .media.nat{aspect-ratio:auto!important}.fig .media.nat img{height:auto;object-fit:contain}
+.wfs{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:16px}.wfs .media{aspect-ratio:16/10;border-radius:var(--r);overflow:hidden}.wfs img{width:100%;height:100%;object-fit:cover;display:block}@media (max-width:980px){.wfs{grid-template-columns:1fr}}
 .screens{grid-template-columns:1fr 1fr}.screens .media{aspect-ratio:16/10}.screens .media.span{grid-column:span 2;aspect-ratio:2/1}
 @media (max-width:980px){.screens{grid-template-columns:1fr}.screens .media.span{grid-column:auto}}
 </style>
@@ -209,10 +211,10 @@ figure{margin:0}
 <main>
 <section class="chero wide">
   <div class="top">
-    <div class="tags"><span class="tag">Web app · B2B CRM</span><span class="tag acc">[My role]</span></div>
+    <div class="tags"><span class="tag">Web app · B2B CRM</span><span class="tag acc">Lead Designer</span></div>
     <span class="year">Sales CRM &nbsp;·&nbsp; 2026</span>
   </div>
-  <div class="media rv"><img src="../img/cases/truescan/cover.jpg" alt="TrueScan CRM: leads list and lead profile" loading="lazy"></div>
+  <div class="media rv"><img src="../img/cases/truescan/cover.jpg" alt="TrueScan: a drone scans a building, next to the CRM leads list and lead profile" loading="lazy"></div>
 </section>
 <section class="sec cintro">
   <div class="wrap">
@@ -225,12 +227,16 @@ figure{margin:0}
       <p class="body rv">Leads arrive from web forms, direct traffic and salespeople’s personal forms. The team needs to sort them quickly, give each one an owner, move it through statuses and convert the qualified ones into an account, a contact and an opportunity without losing history. I designed the full Leads section for development: list and Kanban, filters, the lead profile, every flow and every state, on top of a new design foundation in line with the TrueScan website.</p>
     </div>
     <dl class="meta rv">
-      <div><dt>My role</dt><dd>[Role]<small>[UX, UI, design system, handoff]</small></dd></div>
+      <div><dt>My role</dt><dd>Lead Designer<small>UX, UI, design system, handoff</small></dd></div>
       <div><dt>Team</dt><dd>[Team]</dd></div>
       <div><dt>Timeline</dt><dd>[Duration]<small>2026</small></dd></div>
       <div><dt>Platform</dt><dd>Web app · desktop 1440</dd></div>
       <div><dt>Users</dt><dd>Sales team and administrators</dd></div>
     </dl>
+    <figure class="fig rv" style="margin-top:clamp(40px,5vw,64px)">
+      <div class="media nat"><img src="../img/cases/truescan/overview.jpg" alt="Isometric stack of TrueScan screens: leads list, Kanban, lead profile and opportunity" loading="lazy"></div>
+      <figcaption>One system for the whole sales path: leads list, Kanban, lead profile and the opportunity it turns into.</figcaption>
+    </figure>
   </div>
 </section>
 <section class="sec">
@@ -245,6 +251,23 @@ figure{margin:0}
       <div class="step rv"><span class="n">03</span><b>Flows</b><p>Assign, change status, convert, archive, create, edit and export — each with its rules.</p></div>
       <div class="step rv"><span class="n">04</span><b>States</b><p>Hover, focus, disabled, empty, no results, loading, errors and undo.</p></div>
       <div class="step rv"><span class="n">05</span><b>Handoff</b><p>Behavior notes and open assumptions next to every frame, ready for development.</p></div>
+    </div>
+  </div>
+</section>
+<section class="sec">
+  <div class="wrap">
+    <div class="shead">
+      <h2 class="h2 rv">From wireframes to interface</h2>
+      <p class="body rv">I started in grey boxes to agree on structure and rules with the team: what lives in the row, what moves to the ⋯ menu, when Convert becomes available. Only then came the UI kit, and the final screens were assembled from it.</p>
+    </div>
+    <figure class="fig rv">
+      <div class="media nat"><img src="../img/cases/truescan/evolution.jpg" alt="Three stages: low-fidelity wireframe, UI kit, final interface" loading="lazy"></div>
+      <figcaption>Same Leads screen at three stages: wireframe with open questions in the margins, a UI kit with filters and interaction states, and the final interface.</figcaption>
+    </figure>
+    <div class="wfs">
+      <div class="media rv"><img src="../img/cases/truescan/wireframe-list.jpg" alt="Wireframe of the leads list" loading="lazy"></div>
+      <div class="media rv"><img src="../img/cases/truescan/wireframe-profile.jpg" alt="Wireframe of the lead profile" loading="lazy"></div>
+      <div class="media rv"><img src="../img/cases/truescan/wireframe-convert.jpg" alt="Wireframe of the convert dialog" loading="lazy"></div>
     </div>
   </div>
 </section>
@@ -291,7 +314,7 @@ figure{margin:0}
       <p class="body rv">The path of a lead from the first request to an opportunity, with the safety nets along the way.</p>
     </div>
     <figure class="fig rv">
-      <div class="media"><img src="../img/cases/truescan/flow.jpg" alt="User flow: new lead, triage, assign and qualify, convert, opportunity" loading="lazy"></div>
+      <div class="media nat"><img src="../img/cases/truescan/flow.jpg" alt="User flow: new lead, triage, assign and qualify, convert, opportunity" loading="lazy"></div>
       <figcaption>Conversion is available only for Qualified leads — from the row menu or as the main button in the profile. The URL keeps the tab, search, filters and view, so any list state can be shared.</figcaption>
     </figure>
   </div>
@@ -320,7 +343,11 @@ figure{margin:0}
       </div>
     </div>
     <figure class="fig rv" style="margin-top:24px">
-      <div class="media"><img src="../img/cases/truescan/states.jpg" alt="Interaction states for buttons, filter pills and status tabs" loading="lazy"></div>
+      <div class="media nat"><img src="../img/cases/truescan/anatomy.jpg" alt="Exploded view: page, scrim and modal on separate elevation levels" loading="lazy"></div>
+      <figcaption>Elevation is part of the system: the page sits on Shadow/md, the scrim dims everything below, dialogs, dropdowns and toasts use Shadow/lg. One shadow per element.</figcaption>
+    </figure>
+    <figure class="fig rv" style="margin-top:24px">
+      <div class="media nat"><img src="../img/cases/truescan/states.jpg" alt="Interaction states for buttons, filter pills and status tabs" loading="lazy"></div>
       <figcaption>Every interactive element on the Leads screens has hover, pressed, focus and disabled states, with a 120 ms ease-out transition.</figcaption>
     </figure>
   </div>
@@ -345,12 +372,12 @@ figure{margin:0}
     <div class="results">
       <div class="shead" style="margin-bottom:0">
         <h2 class="h2 rv">Results <span class="mute">that matter.</span></h2>
-        <p class="body rv">[What changed after launch or testing — for users and the business.]</p>
+        <p class="body rv">A complete, buildable redesign handed off to engineering: Leads ready for development, four more CRM sections drafted for review on the same foundation.</p>
       </div>
       <div class="kpis">
-        <div class="kpi rv"><b>[Metric]</b><span>[What it measures]</span></div>
-        <div class="kpi rv"><b>[Metric]</b><span>[What it measures]</span></div>
-        <div class="kpi rv"><b>[Metric]</b><span>[What it measures]</span></div>
+        <div class="kpi rv"><b>100</b><span>Desktop screens across 5 CRM sections</span></div>
+        <div class="kpi rv"><b>3 clicks</b><span>From a qualified lead to an opportunity</span></div>
+        <div class="kpi rv"><b>3,600+</b><span>Component instances built on one UI kit</span></div>
       </div>
     </div>
   </div>
@@ -363,9 +390,9 @@ figure{margin:0}
       <p class="body rv"></p>
     </div>
     <div class="learn">
-      <div class="card rv"><span class="n">01</span><p>[What worked and why.]</p></div>
-      <div class="card rv"><span class="n">02</span><p>[What I would do differently.]</p></div>
-      <div class="card rv"><span class="n">03</span><p>[What’s next for the product.]</p></div>
+      <div class="card rv"><span class="n">01</span><p>Notes next to every frame paid off. Behavior, edge cases and open assumptions lived beside the screens, so engineering asked about decisions, not about pixels.</p></div>
+      <div class="card rv"><span class="n">02</span><p>States are half of a CRM. Empty, loading, no results, errors and undo took as much thought as the happy path, and that is where the product feels finished.</p></div>
+      <div class="card rv"><span class="n">03</span><p>Next: a clickable prototype of Leads → Convert → Opportunity, and Account and Contact profiles on the same template.</p></div>
     </div>
   </div>
 </section>
