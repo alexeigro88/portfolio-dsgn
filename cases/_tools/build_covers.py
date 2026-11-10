@@ -53,7 +53,7 @@ render(f'''
 <div style="{chip};z-index:5;left:430px;top:600px;background:#000A1E;color:#fff;font-weight:700;font-size:18px;padding:14px 22px">Start session <span style="font-size:19px">→</span></div>
 <div style="{chip};z-index:5;left:772px;top:530px;background:#fff;color:#00838A;font-weight:700;font-size:18px;padding:12px 20px"><i style="width:10px;height:10px;border-radius:50%;background:#00B4BE"></i>Listening</div>
 <div style="position:absolute;z-index:5;left:1050px;top:560px;width:250px;background:#fff;border-radius:22px;padding:18px 20px;font-family:Manrope,sans-serif;font-weight:700;font-size:17px;line-height:1.35;color:#000A1E;box-shadow:0 18px 36px -16px rgba(0,50,60,.35),0 0 0 1px rgba(0,40,50,.06)"><span style="display:block;font-size:11px;letter-spacing:.12em;color:#00838A;margin-bottom:8px">WHAT WE UNCOVERED</span>You say yes to feel reliable — and Thursday pays for it.</div>
-''', 'img/cases/uncloud/cover.jpg')
+''', 'img/cases/uncloud/cover-sharp.jpg')
 
 # ---------------- TrueScan ----------------
 T = 'cases/_src/truescan'
@@ -70,5 +70,5 @@ render(f'''
 <img src="{prop}" style="{scr};width:560px;left:790px;top:60px;opacity:.96">
 <img src="{opp}" style="{scr};width:600px;left:660px;top:180px">
 <img src="{proj}" style="{scr};width:640px;left:520px;top:310px;z-index:3">
-''', 'img/cases/truescan/cover.jpg')
+''', 'img/cases/truescan/cover-sharp.jpg')
 print('ok')
