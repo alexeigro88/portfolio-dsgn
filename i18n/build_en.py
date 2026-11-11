@@ -128,8 +128,8 @@ T = {
  'Часть кейсов с конкретными цифрами, и именно они лежат в основе портфолио. В остальных опираюсь на аналитику, обратную связь пользователей и команды.':
    'Some of my case studies have hard numbers, and they form the core of this portfolio. For the rest, I rely on analytics and feedback from users and the team.',
  'С какими стеками и инструментами работаете?': 'Which stacks and tools do you work with?',
- 'Figma (включая MCP), Bubble и другие no-code платформы, FlutterFlow, а также стеки React, Vue, Flutter и WordPress на уровне, достаточном для общего языка с разработкой.':
-   'Figma (including MCP), Bubble and other no-code platforms, FlutterFlow, plus React, Vue, Flutter and WordPress — enough to speak the same language as engineering.',
+ 'Дизайн — Figma (включая MCP), Adobe Illustrator и другие продукты Adobe. Сайты и прототипы — Lovable, WordPress, Tilda, Bubble и другие no-code платформы, FlutterFlow. Код — HTML и CSS, базовый JavaScript; со стеками React, Vue и Flutter знаком на уровне, достаточном для общего языка с разработкой.':
+   'Design — Figma (including MCP), Adobe Illustrator and other Adobe tools. Sites and prototypes — Lovable, WordPress, Tilda, Bubble and other no-code platforms, FlutterFlow. Code — HTML and CSS, basic JavaScript; familiar with React, Vue and Flutter enough to speak the same language as engineering.',
  # контакты и футер
  'Давайте': 'Let’s', 'поговорим.': 'talk.',
  'Расскажите о позиции или задаче — отвечу в течение дня.': 'Tell me about the role or project — I reply within a day.',

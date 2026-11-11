@@ -837,6 +837,12 @@ dialog.sheet[open]{animation:pop .45s var(--ease)}
 
 /* подсказка «листайте вниз» у горизонтальных лент */
 .rail-hint{display:none;align-items:center;gap:8px;font-size:13px;color:var(--ink-3);transition:opacity .4s}.pin-track.pinned .rail-hint{display:inline-flex}.pin-track.done .rail-hint{opacity:0}.rail-hint svg{width:13px;height:18px;flex:none}.rail-hint .wheel{stroke-linecap:round;animation:rhw 1.6s ease-in-out infinite}@keyframes rhw{0%{transform:translateY(0);opacity:1}70%{transform:translateY(4px);opacity:0}100%{transform:translateY(0);opacity:0}}@media (prefers-reduced-motion:reduce){.rail-hint .wheel{animation:none}}
+
+/* ссылка на LinkedIn остаётся видимой, пока лента отзывов закреплена */
+.rail-end{display:flex;align-items:center;gap:28px}.rail-end .rail-li{font-size:15px}@media (max-width:600px){.rail-end{gap:14px}.rail-end .rail-hint{display:none!important}}
+
+/* форматы работы: иконки в стиле Apple вместо фото */
+.picon{width:60px;height:60px;border-radius:16px;display:grid;place-items:center;background:#F2F2F7;color:var(--brand);margin-bottom:28px;corner-shape:squircle}.picon svg{width:30px;height:30px}.pcard.feat .picon{background:rgba(255,255,255,.1);color:#fff}
 </style>
 
 
@@ -1055,7 +1061,7 @@ dialog.sheet[open]{animation:pop .45s var(--ease)}
       <div class="sauthor"><img class="av" src="img/av-julia-verbitchi.jpg" alt="" loading="lazy"><div><strong>Julia Verbitchi</strong><span>Customer Success Manager, LevelUp Leads</span></div></div>
     </article>
   </div>
-  <div class="wrap rail-ctrl"><div class="dots sq" data-r="99" data-dots="srail"></div><span class="rail-hint" aria-hidden="true"><svg viewBox="0 0 16 22" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="1" width="14" height="20" rx="7"/><path class="wheel" d="M8 5v3.5"/></svg>Scroll down to browse</span></div>
+  <div class="wrap rail-ctrl"><div class="dots sq" data-r="99" data-dots="srail"></div><div class="rail-end"><span class="rail-hint" aria-hidden="true"><svg viewBox="0 0 16 22" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="1" width="14" height="20" rx="7"/><path class="wheel" d="M8 5v3.5"/></svg>Scroll down to browse</span><a class="more rail-li" href="https://md.linkedin.com/in/alexei-grosul-63aa6a73/details/recommendations/" target="_blank" rel="noopener">All recommendations on LinkedIn</a></div></div>
   </div></div>
 </section>
 
@@ -1080,21 +1086,21 @@ dialog.sheet[open]{animation:pop .45s var(--ease)}
   </div>
   <div class="wrap pgrid">
     <article class="pcard sq " data-r="28" data-cursor="dot">
-      <div class="pphoto"><img src="img/format-1.jpg" alt="Designer’s desk with mockups" loading="lazy" onerror="this.onerror=null;this.src=this.src.replace('.jpg','.svg')"></div>
+      <div class="picon"><svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5.5" width="17" height="13" rx="2.5"/><path d="M3.5 9.5h17"/><path d="M8 22.5h8"/><path d="M12 18.5v4"/><path d="m18.6 15.9 5.7-5.7a1.6 1.6 0 0 1 2.3 2.3l-5.7 5.7-3 .7z"/></svg></div>
       <h3>Product Designer <span>full-time</span></h3>
       <p class="pline">Product design from research to launch.</p>
       <ul><li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m3.5 8.4 2.9 2.9 6.1-6.6"/></svg>UX/UI for web and mobile products</li><li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m3.5 8.4 2.9 2.9 6.1-6.6"/></svg>Design systems</li><li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m3.5 8.4 2.9 2.9 6.1-6.6"/></svg>Working with metrics and analytics</li></ul>
       <a class="pbtn" href="mailto:alexeigro@gmail.com">Get in touch<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h12m-5-5 5 5-5 5"/></svg></a>
     </article>
     <article class="pcard sq feat" data-r="28" data-cursor="dot" data-dark>
-      <div class="pphoto"><img src="img/format-2.jpg" alt="Team meeting / review" loading="lazy" onerror="this.onerror=null;this.src=this.src.replace('.jpg','.svg')"></div>
+      <div class="picon"><svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="14" cy="9" r="3.6"/><path d="M7.5 22.5v-1a5 5 0 0 1 5-5h3a5 5 0 0 1 5 5v1"/><circle cx="6" cy="11" r="2.6"/><path d="M1.8 20.5v-.6a3.6 3.6 0 0 1 3.6-3.6h1.2"/><circle cx="22" cy="11" r="2.6"/><path d="M26.2 20.5v-.6a3.6 3.6 0 0 0-3.6-3.6h-1.2"/></svg></div>
       <h3>Design Lead <span>or Head of Design</span></h3>
       <p class="pline">Design strategy, standards and team management.</p>
       <ul><li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m3.5 8.4 2.9 2.9 6.1-6.6"/></svg>Design function roadmap</li><li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m3.5 8.4 2.9 2.9 6.1-6.6"/></svg>Hiring, mentoring, career levels</li><li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m3.5 8.4 2.9 2.9 6.1-6.6"/></svg>Bringing AI into workflows</li></ul>
       <a class="pbtn" href="mailto:alexeigro@gmail.com">Get in touch<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h12m-5-5 5 5-5 5"/></svg></a>
     </article>
     <article class="pcard sq " data-r="28" data-cursor="dot">
-      <div class="pphoto"><img src="img/format-3.jpg" alt="Call and workshop sticky notes" loading="lazy" onerror="this.onerror=null;this.src=this.src.replace('.jpg','.svg')"></div>
+      <div class="picon"><svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4.5c.7 4.4 2.6 6.3 7 7-4.4.7-6.3 2.6-7 7-.7-4.4-2.6-6.3-7-7 4.4-.7 6.3-2.6 7-7z"/><path d="M21.5 16.5c.35 2 1.2 2.85 3.2 3.2-2 .35-2.85 1.2-3.2 3.2-.35-2-1.2-2.85-3.2-3.2 2-.35 2.85-1.2 3.2-3.2z"/><path d="M21 3.5v4M19 5.5h4"/></svg></div>
       <h3>Consulting <span>AI in design</span></h3>
       <p class="pline">One-off consulting on workflows and tools.</p>
       <ul><li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m3.5 8.4 2.9 2.9 6.1-6.6"/></svg>Audit of current workflows</li><li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m3.5 8.4 2.9 2.9 6.1-6.6"/></svg>Tool selection</li><li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m3.5 8.4 2.9 2.9 6.1-6.6"/></svg>Team guidelines</li></ul>
@@ -1113,7 +1119,7 @@ dialog.sheet[open]{animation:pop .45s var(--ease)}
       <details><summary>How do you work with PMs and engineers?</summary><p>Design joins from the very first stakeholder call. Before development we build a draft prototype and agree on the MVP scope, so engineers get a validated solution, not a wish list.</p></details>
       <details><summary>What is your take on AI in design?</summary><p>I use it every day and have built AI workflows for my team. But first generations almost always need work: only a designer catches UX and detail issues. So AI speeds things up, and a human owns the quality.</p></details>
       <details><summary>Do you have case studies with metrics?</summary><p>Some of my case studies have hard numbers, and they form the core of this portfolio. For the rest, I rely on analytics and feedback from users and the team.</p></details>
-      <details><summary>Which stacks and tools do you work with?</summary><p>Figma (including MCP), Bubble and other no-code platforms, FlutterFlow, plus React, Vue, Flutter and WordPress — enough to speak the same language as engineering.</p></details>
+      <details><summary>Which stacks and tools do you work with?</summary><p>Design — Figma (including MCP), Adobe Illustrator and other Adobe tools. Sites and prototypes — Lovable, WordPress, Tilda, Bubble and other no-code platforms, FlutterFlow. Code — HTML and CSS, basic JavaScript; familiar with React, Vue and Flutter enough to speak the same language as engineering.</p></details>
     </div>
   </div>
 </section>

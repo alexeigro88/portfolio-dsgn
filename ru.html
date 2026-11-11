@@ -837,6 +837,12 @@ dialog.sheet[open]{animation:pop .45s var(--ease)}
 
 /* подсказка «листайте вниз» у горизонтальных лент */
 .rail-hint{display:none;align-items:center;gap:8px;font-size:13px;color:var(--ink-3);transition:opacity .4s}.pin-track.pinned .rail-hint{display:inline-flex}.pin-track.done .rail-hint{opacity:0}.rail-hint svg{width:13px;height:18px;flex:none}.rail-hint .wheel{stroke-linecap:round;animation:rhw 1.6s ease-in-out infinite}@keyframes rhw{0%{transform:translateY(0);opacity:1}70%{transform:translateY(4px);opacity:0}100%{transform:translateY(0);opacity:0}}@media (prefers-reduced-motion:reduce){.rail-hint .wheel{animation:none}}
+
+/* ссылка на LinkedIn остаётся видимой, пока лента отзывов закреплена */
+.rail-end{display:flex;align-items:center;gap:28px}.rail-end .rail-li{font-size:15px}@media (max-width:600px){.rail-end{gap:14px}.rail-end .rail-hint{display:none!important}}
+
+/* форматы работы: иконки в стиле Apple вместо фото */
+.picon{width:60px;height:60px;border-radius:16px;display:grid;place-items:center;background:#F2F2F7;color:var(--brand);margin-bottom:28px;corner-shape:squircle}.picon svg{width:30px;height:30px}.pcard.feat .picon{background:rgba(255,255,255,.1);color:#fff}
 </style>
 
 
@@ -1055,7 +1061,7 @@ dialog.sheet[open]{animation:pop .45s var(--ease)}
       <div class="sauthor"><img class="av" src="img/av-julia-verbitchi.jpg" alt="" loading="lazy"><div><strong>Julia Verbitchi</strong><span>Customer Success Manager, LevelUp Leads</span></div></div>
     </article>
   </div>
-  <div class="wrap rail-ctrl"><div class="dots sq" data-r="99" data-dots="srail"></div><span class="rail-hint" aria-hidden="true"><svg viewBox="0 0 16 22" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="1" width="14" height="20" rx="7"/><path class="wheel" d="M8 5v3.5"/></svg>Листайте вниз, чтобы прокрутить</span></div>
+  <div class="wrap rail-ctrl"><div class="dots sq" data-r="99" data-dots="srail"></div><div class="rail-end"><span class="rail-hint" aria-hidden="true"><svg viewBox="0 0 16 22" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="1" width="14" height="20" rx="7"/><path class="wheel" d="M8 5v3.5"/></svg>Листайте вниз, чтобы прокрутить</span><a class="more rail-li" href="https://md.linkedin.com/in/alexei-grosul-63aa6a73/details/recommendations/" target="_blank" rel="noopener">Все рекомендации на LinkedIn</a></div></div>
   </div></div>
 </section>
 
@@ -1080,21 +1086,21 @@ dialog.sheet[open]{animation:pop .45s var(--ease)}
   </div>
   <div class="wrap pgrid">
     <article class="pcard sq " data-r="28" data-cursor="dot">
-      <div class="pphoto"><img src="img/format-1.jpg" alt="Рабочий стол дизайнера с макетами" loading="lazy" onerror="this.onerror=null;this.src=this.src.replace('.jpg','.svg')"></div>
+      <div class="picon"><svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5.5" width="17" height="13" rx="2.5"/><path d="M3.5 9.5h17"/><path d="M8 22.5h8"/><path d="M12 18.5v4"/><path d="m18.6 15.9 5.7-5.7a1.6 1.6 0 0 1 2.3 2.3l-5.7 5.7-3 .7z"/></svg></div>
       <h3>Продуктовый дизайнер <span>полная занятость</span></h3>
       <p class="pline">Проектирование продукта от исследования до запуска.</p>
       <ul><li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m3.5 8.4 2.9 2.9 6.1-6.6"/></svg>UX/UI для веб- и мобильных продуктов</li><li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m3.5 8.4 2.9 2.9 6.1-6.6"/></svg>Дизайн-системы</li><li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m3.5 8.4 2.9 2.9 6.1-6.6"/></svg>Работа с метриками и аналитикой</li></ul>
       <a class="pbtn" href="mailto:alexeigro@gmail.com">Написать мне<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h12m-5-5 5 5-5 5"/></svg></a>
     </article>
     <article class="pcard sq feat" data-r="28" data-cursor="dot" data-dark>
-      <div class="pphoto"><img src="img/format-2.jpg" alt="Командная встреча / ревью" loading="lazy" onerror="this.onerror=null;this.src=this.src.replace('.jpg','.svg')"></div>
+      <div class="picon"><svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="14" cy="9" r="3.6"/><path d="M7.5 22.5v-1a5 5 0 0 1 5-5h3a5 5 0 0 1 5 5v1"/><circle cx="6" cy="11" r="2.6"/><path d="M1.8 20.5v-.6a3.6 3.6 0 0 1 3.6-3.6h1.2"/><circle cx="22" cy="11" r="2.6"/><path d="M26.2 20.5v-.6a3.6 3.6 0 0 0-3.6-3.6h-1.2"/></svg></div>
       <h3>Лид дизайна <span>или руководитель дизайна</span></h3>
       <p class="pline">Дизайн-стратегия, стандарты и управление командой.</p>
       <ul><li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m3.5 8.4 2.9 2.9 6.1-6.6"/></svg>Дорожная карта дизайн-функции</li><li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m3.5 8.4 2.9 2.9 6.1-6.6"/></svg>Найм, наставничество, грейды</li><li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m3.5 8.4 2.9 2.9 6.1-6.6"/></svg>Внедрение AI в процессы</li></ul>
       <a class="pbtn" href="mailto:alexeigro@gmail.com">Написать мне<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h12m-5-5 5 5-5 5"/></svg></a>
     </article>
     <article class="pcard sq " data-r="28" data-cursor="dot">
-      <div class="pphoto"><img src="img/format-3.jpg" alt="Созвон и стикеры с воркшопа" loading="lazy" onerror="this.onerror=null;this.src=this.src.replace('.jpg','.svg')"></div>
+      <div class="picon"><svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4.5c.7 4.4 2.6 6.3 7 7-4.4.7-6.3 2.6-7 7-.7-4.4-2.6-6.3-7-7 4.4-.7 6.3-2.6 7-7z"/><path d="M21.5 16.5c.35 2 1.2 2.85 3.2 3.2-2 .35-2.85 1.2-3.2 3.2-.35-2-1.2-2.85-3.2-3.2 2-.35 2.85-1.2 3.2-3.2z"/><path d="M21 3.5v4M19 5.5h4"/></svg></div>
       <h3>Консультации <span>AI в дизайне</span></h3>
       <p class="pline">Разовые консультации по процессам и инструментам.</p>
       <ul><li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m3.5 8.4 2.9 2.9 6.1-6.6"/></svg>Аудит текущих процессов</li><li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m3.5 8.4 2.9 2.9 6.1-6.6"/></svg>Подбор инструментов</li><li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m3.5 8.4 2.9 2.9 6.1-6.6"/></svg>Регламенты для команды</li></ul>
@@ -1113,7 +1119,7 @@ dialog.sheet[open]{animation:pop .45s var(--ease)}
       <details><summary>Как вы работаете с PM и разработчиками?</summary><p>Дизайнер подключается с первого созвона с клиентом. До разработки делаем черновой прототип и согласуем скоуп MVP, чтобы разработчики получали проверенное решение, а не набор пожеланий.</p></details>
       <details><summary>Как вы относитесь к AI в дизайне?</summary><p>Использую каждый день и выстраивал AI-процессы в команде. Но первые генерации почти всегда требуют доработки: ошибки в UX и деталях видит только дизайнер. Поэтому AI ускоряет работу, а за качество отвечает человек.</p></details>
       <details><summary>Есть ли у вас кейсы с метриками?</summary><p>Часть кейсов с конкретными цифрами, и именно они лежат в основе портфолио. В остальных опираюсь на аналитику, обратную связь пользователей и команды.</p></details>
-      <details><summary>С какими стеками и инструментами работаете?</summary><p>Figma (включая MCP), Bubble и другие no-code платформы, FlutterFlow, а также стеки React, Vue, Flutter и WordPress на уровне, достаточном для общего языка с разработкой.</p></details>
+      <details><summary>С какими стеками и инструментами работаете?</summary><p>Дизайн — Figma (включая MCP), Adobe Illustrator и другие продукты Adobe. Сайты и прототипы — Lovable, WordPress, Tilda, Bubble и другие no-code платформы, FlutterFlow. Код — HTML и CSS, базовый JavaScript; со стеками React, Vue и Flutter знаком на уровне, достаточном для общего языка с разработкой.</p></details>
     </div>
   </div>
 </section>
