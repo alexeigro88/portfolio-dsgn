@@ -10,3 +10,6 @@ cases/_src/truescan/probe.png
 cases/_src/truescan/_crops/
 cases/_src/uncloud/_tmp/
 cases/_src/_covers/
+
+# исходные скриншоты для сборки картинок кейсов — хранятся локально, не в репозитории
+cases/_src/
