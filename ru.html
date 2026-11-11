@@ -923,25 +923,25 @@ dialog.sheet[open]{animation:pop .45s var(--ease)}
   <div class="pin-track" id="pinTrack"><div class="pin-sticky" id="pinSticky">
   <div class="rail" id="rail" data-cursor="Листайте ↓">
     <article class="capi">
-      <div class="hl cap sq" data-r="28" data-cursor="Подробнее +"><div class="pv-ph ill"><img src="img/skill-strategy.jpg" alt="Иллюстрация: Продуктовая стратегия" loading="lazy"></div>
+      <div class="hl cap sq" data-r="28" data-cursor="Раскрыть +"><div class="pv-ph ill"><img src="img/skill-strategy.jpg" alt="Иллюстрация: Продуктовая стратегия" loading="lazy"></div>
         <div class="more-panel"><h4>Продуктовая стратегия</h4><p>Определяю, что строить и зачем — с учётом бизнес-целей клиента.</p><ul class="ctags"><li>Исследование</li><li>Дорожная карта</li><li>Позиционирование</li></ul></div>
         <button class="plus" data-cursor="dot" aria-label="Подробнее о продуктовой стратегии" aria-expanded="false"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M8 2v12M2 8h12"/></svg></button></div>
       <div class="capt"><div><b>Продуктовая стратегия</b><span>Что строить, зачем и для кого.</span></div></div>
     </article>
     <article class="capi">
-      <div class="hl cap sq" data-r="28" data-cursor="Подробнее +"><div class="pv-ph ill"><img src="img/skill-product-design.jpg" alt="Иллюстрация: Продуктовый дизайн" loading="lazy"></div>
+      <div class="hl cap sq" data-r="28" data-cursor="Раскрыть +"><div class="pv-ph ill"><img src="img/skill-product-design.jpg" alt="Иллюстрация: Продуктовый дизайн" loading="lazy"></div>
         <div class="more-panel"><h4>Продуктовый дизайн</h4><p>Превращаю сложные продукты в понятные и последовательные интерфейсы.</p><ul class="ctags"><li>UX &amp; UI</li><li>Дизайн-системы</li><li>Прототипы</li></ul></div>
         <button class="plus" data-cursor="dot" aria-label="Подробнее о продуктовом дизайне" aria-expanded="false"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M8 2v12M2 8h12"/></svg></button></div>
       <div class="capt"><div><b>Продуктовый дизайн</b><span>Сложное, сделанное понятным.</span></div></div>
     </article>
     <article class="capi">
-      <div class="hl cap sq" data-r="28" data-cursor="Подробнее +"><div class="pv-ph ill"><img src="img/skill-ai.jpg" alt="Иллюстрация: AI в процессах" loading="lazy"></div>
+      <div class="hl cap sq" data-r="28" data-cursor="Раскрыть +"><div class="pv-ph ill"><img src="img/skill-ai.jpg" alt="Иллюстрация: AI в процессах" loading="lazy"></div>
         <div class="more-panel"><h4>AI в дизайн-процессах</h4><p>Встраиваю AI-инструменты в процесс разработки так, чтобы ускорять, а не заменять экспертизу.</p><ul class="ctags"><li>AI-студия</li><li>Автоматизация</li><li>Стандарты</li></ul></div>
         <button class="plus" data-cursor="dot" aria-label="Подробнее об AI в процессах" aria-expanded="false"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M8 2v12M2 8h12"/></svg></button></div>
       <div class="capt"><div><b>AI в процессах</b><span>Скорость без потери качества.</span></div></div>
     </article>
     <article class="capi">
-      <div class="hl cap sq" data-r="28" data-cursor="Подробнее +"><div class="pv-ph ill"><img src="img/skill-nocode.jpg" alt="Иллюстрация: Прототипы и передача в разработку" loading="lazy"></div>
+      <div class="hl cap sq" data-r="28" data-cursor="Раскрыть +"><div class="pv-ph ill"><img src="img/skill-nocode.jpg" alt="Иллюстрация: Прототипы и передача в разработку" loading="lazy"></div>
         <div class="more-panel"><h4>Прототипы и передача в разработку</h4><p>Кликабельные прототипы, спецификации и передача в разработку. Дальше — ревью реализации вместе с командой.</p><ul class="ctags"><li>Прототипы</li><li>Передача в разработку</li><li>Дизайн-ревью</li></ul></div>
         <button class="plus" data-cursor="dot" aria-label="Подробнее о прототипах и передаче в разработку" aria-expanded="false"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M8 2v12M2 8h12"/></svg></button></div>
       <div class="capt"><div><b>Прототипы и передача в разработку</b><span>В связке с командой разработки.</span></div></div>
@@ -1296,15 +1296,15 @@ dialog.sheet[open]{animation:pop .45s var(--ease)}
   }
   setupRail('rail'); setupRail('srail');
 
-  document.querySelectorAll('.hl .plus').forEach(function(b){var c=b.closest('.hl');
-    function setOpen(o){c.classList.toggle('open',o);b.setAttribute('aria-expanded',o)}
+  document.querySelectorAll('.hl .plus').forEach(function(b){var c=b.closest('.hl'), L=c.getAttribute('data-cursor');
+    function setOpen(o){c.classList.toggle('open',o);b.setAttribute('aria-expanded',o);if(c.classList.contains('cap')&&!c.classList.contains('fastc'))c.setAttribute('data-cursor',o?'dot':L)}
     b.addEventListener('click',function(e){e.stopPropagation();setOpen(!c.classList.contains('open'))});
     c.addEventListener('click',function(){setOpen(!c.classList.contains('open'))});
     b.addEventListener('pointerenter',function(e){if(e.pointerType==='mouse')setOpen(true)});
     c.addEventListener('pointerleave',function(e){if(e.pointerType==='mouse')setOpen(false)});});
 
   document.querySelectorAll('.hl.cap:not(.fastc)').forEach(function(c){var b=c.querySelector('.plus');
-    c.addEventListener('pointerenter',function(e){if(e.pointerType==='mouse'){c.classList.add('open');b.setAttribute('aria-expanded',true)}});});
+    c.addEventListener('pointerenter',function(e){if(e.pointerType==='mouse'){c.classList.add('open');b.setAttribute('aria-expanded',true);c.setAttribute('data-cursor','dot')}});});
 
   function pinRail(trackId,stickyId,railId){var track=document.getElementById(trackId), sticky=document.getElementById(stickyId), rail=document.getElementById(railId), cur=null, target=0, raf=0, max=0, pinTop=60, K=0.85;
     if(reduce||!track||!rail)return;

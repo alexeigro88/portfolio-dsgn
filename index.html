@@ -923,25 +923,25 @@ dialog.sheet[open]{animation:pop .45s var(--ease)}
   <div class="pin-track" id="pinTrack"><div class="pin-sticky" id="pinSticky">
   <div class="rail" id="rail" data-cursor="Scroll ↓">
     <article class="capi">
-      <div class="hl cap sq" data-r="28" data-cursor="More +"><div class="pv-ph ill"><img src="img/skill-strategy.jpg" alt="Illustration: Product strategy" loading="lazy"></div>
+      <div class="hl cap sq" data-r="28" data-cursor="Expand +"><div class="pv-ph ill"><img src="img/skill-strategy.jpg" alt="Illustration: Product strategy" loading="lazy"></div>
         <div class="more-panel"><h4>Product strategy</h4><p>I define what to build and why, grounded in business goals.</p><ul class="ctags"><li>Research</li><li>Roadmap</li><li>Positioning</li></ul></div>
         <button class="plus" data-cursor="dot" aria-label="More about product strategy" aria-expanded="false"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M8 2v12M2 8h12"/></svg></button></div>
       <div class="capt"><div><b>Product strategy</b><span>What to build, why, and for whom.</span></div></div>
     </article>
     <article class="capi">
-      <div class="hl cap sq" data-r="28" data-cursor="More +"><div class="pv-ph ill"><img src="img/skill-product-design.jpg" alt="Illustration: Product design" loading="lazy"></div>
+      <div class="hl cap sq" data-r="28" data-cursor="Expand +"><div class="pv-ph ill"><img src="img/skill-product-design.jpg" alt="Illustration: Product design" loading="lazy"></div>
         <div class="more-panel"><h4>Product design</h4><p>I turn complex products into clear, consistent interfaces.</p><ul class="ctags"><li>UX &amp; UI</li><li>Design systems</li><li>Prototypes</li></ul></div>
         <button class="plus" data-cursor="dot" aria-label="More about product design" aria-expanded="false"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M8 2v12M2 8h12"/></svg></button></div>
       <div class="capt"><div><b>Product design</b><span>Complexity, made clear.</span></div></div>
     </article>
     <article class="capi">
-      <div class="hl cap sq" data-r="28" data-cursor="More +"><div class="pv-ph ill"><img src="img/skill-ai.jpg" alt="Illustration: AI workflows" loading="lazy"></div>
+      <div class="hl cap sq" data-r="28" data-cursor="Expand +"><div class="pv-ph ill"><img src="img/skill-ai.jpg" alt="Illustration: AI workflows" loading="lazy"></div>
         <div class="more-panel"><h4>AI in design workflows</h4><p>I build AI tools into the workflow to speed up expertise, not replace it.</p><ul class="ctags"><li>AI studio</li><li>Automation</li><li>Standards</li></ul></div>
         <button class="plus" data-cursor="dot" aria-label="More about AI workflows" aria-expanded="false"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M8 2v12M2 8h12"/></svg></button></div>
       <div class="capt"><div><b>AI workflows</b><span>Speed without losing quality.</span></div></div>
     </article>
     <article class="capi">
-      <div class="hl cap sq" data-r="28" data-cursor="More +"><div class="pv-ph ill"><img src="img/skill-nocode.jpg" alt="Illustration: Prototyping and dev handoff" loading="lazy"></div>
+      <div class="hl cap sq" data-r="28" data-cursor="Expand +"><div class="pv-ph ill"><img src="img/skill-nocode.jpg" alt="Illustration: Prototyping and dev handoff" loading="lazy"></div>
         <div class="more-panel"><h4>Prototyping &amp; dev handoff</h4><p>Clickable prototypes, specs and dev handoff. Then build reviews together with the engineering team.</p><ul class="ctags"><li>Prototypes</li><li>Dev handoff</li><li>Design QA</li></ul></div>
         <button class="plus" data-cursor="dot" aria-label="More about prototyping and dev handoff" aria-expanded="false"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M8 2v12M2 8h12"/></svg></button></div>
       <div class="capt"><div><b>Prototyping &amp; dev handoff</b><span>Hand in hand with engineering.</span></div></div>
@@ -1296,15 +1296,15 @@ dialog.sheet[open]{animation:pop .45s var(--ease)}
   }
   setupRail('rail'); setupRail('srail');
 
-  document.querySelectorAll('.hl .plus').forEach(function(b){var c=b.closest('.hl');
-    function setOpen(o){c.classList.toggle('open',o);b.setAttribute('aria-expanded',o)}
+  document.querySelectorAll('.hl .plus').forEach(function(b){var c=b.closest('.hl'), L=c.getAttribute('data-cursor');
+    function setOpen(o){c.classList.toggle('open',o);b.setAttribute('aria-expanded',o);if(c.classList.contains('cap')&&!c.classList.contains('fastc'))c.setAttribute('data-cursor',o?'dot':L)}
     b.addEventListener('click',function(e){e.stopPropagation();setOpen(!c.classList.contains('open'))});
     c.addEventListener('click',function(){setOpen(!c.classList.contains('open'))});
     b.addEventListener('pointerenter',function(e){if(e.pointerType==='mouse')setOpen(true)});
     c.addEventListener('pointerleave',function(e){if(e.pointerType==='mouse')setOpen(false)});});
 
   document.querySelectorAll('.hl.cap:not(.fastc)').forEach(function(c){var b=c.querySelector('.plus');
-    c.addEventListener('pointerenter',function(e){if(e.pointerType==='mouse'){c.classList.add('open');b.setAttribute('aria-expanded',true)}});});
+    c.addEventListener('pointerenter',function(e){if(e.pointerType==='mouse'){c.classList.add('open');b.setAttribute('aria-expanded',true);c.setAttribute('data-cursor','dot')}});});
 
   function pinRail(trackId,stickyId,railId){var track=document.getElementById(trackId), sticky=document.getElementById(stickyId), rail=document.getElementById(railId), cur=null, target=0, raf=0, max=0, pinTop=60, K=0.85;
     if(reduce||!track||!rail)return;
