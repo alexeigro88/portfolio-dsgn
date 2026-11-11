@@ -59,7 +59,7 @@
 
 | Кейс | Прототип | Суть | Шрифты / токены |
 |---|---|---|---|
-| Tournament Guru | https://tournament-guru.vercel.app/home.html | Выбор детских турниров с проверенными отзывами | Space Grotesk + Inter, navy/blue/red |
+| Tournament Guru | https://app.tournamentgurus.com/ | Выбор детских турниров с проверенными отзывами | Space Grotesk + Inter, navy/blue/red |
 | BookKeeper AI | https://bookkeeper-ai-tau.vercel.app/ | Внутренний AI-ассистент бухгалтерской фирмы: отвечает только по опубликованным SOP, с источниками; роли Bookkeeper / SME / QC Librarian | Manrope, `#1A73E8`, статусы Published/Needs Revalidation |
 | TrueScan | Figma `rFFixRw1aznY4sWHRFKyJk` (Leads, Opportunities, Proposals, Projects, Time tracking, Foundations) | **Не редизайн**: операционная платформа с нуля для компании 3D-сканирования зданий (reality capture). Цикл: Leads → Opportunities → Proposals (шаблон на 18 секций) → Projects → Time tracking (часы, суточные, пробег, недельное согласование). Роль — Lead Designer, срок 2 недели. Метрики только посчитанные по файлу: 100 экранов, 5 модулей, 3 клика лид→сделка, 3600+ инстансов | Inter, brand `#EE6A1F`, sidebar `#0F1A2E` |
 | StuLo | https://stulo-v2.vercel.app/#signin («Explore the demo») | Управление федеральными студенческими кредитами США: синк займов, следующий шаг, AI-коуч + живые коучи, декодер писем, PSLF | Bricolage Grotesque + Manrope, navy `#121740`, bright `#465AFF` |
