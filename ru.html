@@ -847,6 +847,9 @@ dialog.sheet[open]{animation:pop .45s var(--ease)}
 /* подсказка прокрутки — слева, рядом с линиями */
 .rail-ctrl{justify-content:flex-start!important;gap:24px}.rail-end{margin-left:auto}@media (max-width:600px){.rail-ctrl{gap:14px}.rail-end .rail-li{font-size:14px}}
 @media (max-width:600px){.rail-ctrl{flex-wrap:wrap;row-gap:10px}.rail-hint{white-space:nowrap}.rail-end{margin-left:0;flex-basis:100%}}
+
+/* форма: скрытые блоки действительно скрыты */
+.sheet [hidden]{display:none!important}
 </style>
 
 
@@ -1094,21 +1097,21 @@ dialog.sheet[open]{animation:pop .45s var(--ease)}
       <h3>Продуктовый дизайнер <span>полная занятость</span></h3>
       <p class="pline">Проектирование продукта от исследования до запуска.</p>
       <ul><li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m3.5 8.4 2.9 2.9 6.1-6.6"/></svg>UX/UI для веб- и мобильных продуктов</li><li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m3.5 8.4 2.9 2.9 6.1-6.6"/></svg>Дизайн-системы</li><li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m3.5 8.4 2.9 2.9 6.1-6.6"/></svg>Работа с метриками и аналитикой</li></ul>
-      <a class="pbtn" href="mailto:alexeigro@gmail.com">Написать мне<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h12m-5-5 5 5-5 5"/></svg></a>
+      <a class="pbtn" href="mailto:alexeigro@gmail.com" data-open-sheet data-type="t-pd">Написать мне<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h12m-5-5 5 5-5 5"/></svg></a>
     </article>
     <article class="pcard sq feat" data-r="28" data-cursor="dot" data-dark>
       <div class="picon"><svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="14" cy="9" r="3.6"/><path d="M7.5 22.5v-1a5 5 0 0 1 5-5h3a5 5 0 0 1 5 5v1"/><circle cx="6" cy="11" r="2.6"/><path d="M1.8 20.5v-.6a3.6 3.6 0 0 1 3.6-3.6h1.2"/><circle cx="22" cy="11" r="2.6"/><path d="M26.2 20.5v-.6a3.6 3.6 0 0 0-3.6-3.6h-1.2"/></svg></div>
       <h3>Лид дизайна <span>или руководитель дизайна</span></h3>
       <p class="pline">Дизайн-стратегия, стандарты и управление командой.</p>
       <ul><li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m3.5 8.4 2.9 2.9 6.1-6.6"/></svg>Дорожная карта дизайн-функции</li><li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m3.5 8.4 2.9 2.9 6.1-6.6"/></svg>Найм, наставничество, грейды</li><li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m3.5 8.4 2.9 2.9 6.1-6.6"/></svg>Внедрение AI в процессы</li></ul>
-      <a class="pbtn" href="mailto:alexeigro@gmail.com">Написать мне<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h12m-5-5 5 5-5 5"/></svg></a>
+      <a class="pbtn" href="mailto:alexeigro@gmail.com" data-open-sheet data-type="t-lead">Написать мне<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h12m-5-5 5 5-5 5"/></svg></a>
     </article>
     <article class="pcard sq " data-r="28" data-cursor="dot">
       <div class="picon"><svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4.5c.7 4.4 2.6 6.3 7 7-4.4.7-6.3 2.6-7 7-.7-4.4-2.6-6.3-7-7 4.4-.7 6.3-2.6 7-7z"/><path d="M21.5 16.5c.35 2 1.2 2.85 3.2 3.2-2 .35-2.85 1.2-3.2 3.2-.35-2-1.2-2.85-3.2-3.2 2-.35 2.85-1.2 3.2-3.2z"/><path d="M21 3.5v4M19 5.5h4"/></svg></div>
       <h3>Консультации <span>AI в дизайне</span></h3>
       <p class="pline">Разовые консультации по процессам и инструментам.</p>
       <ul><li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m3.5 8.4 2.9 2.9 6.1-6.6"/></svg>Аудит текущих процессов</li><li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m3.5 8.4 2.9 2.9 6.1-6.6"/></svg>Подбор инструментов</li><li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m3.5 8.4 2.9 2.9 6.1-6.6"/></svg>Регламенты для команды</li></ul>
-      <a class="pbtn" href="mailto:alexeigro@gmail.com">Написать мне<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h12m-5-5 5 5-5 5"/></svg></a>
+      <a class="pbtn" href="mailto:alexeigro@gmail.com" data-open-sheet data-type="t-cons">Написать мне<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h12m-5-5 5 5-5 5"/></svg></a>
     </article>
   </div>
 </section>
@@ -1178,12 +1181,14 @@ dialog.sheet[open]{animation:pop .45s var(--ease)}
       <div class="field"><label for="f-email">Почта</label><input id="f-email" name="email" type="email" autocomplete="email" required></div>
     </div>
     <div class="field"><label for="f-idea">Сообщение</label><textarea id="f-idea" name="idea" rows="3" placeholder="О какой позиции или задаче речь?"></textarea></div>
+    <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
     <div class="sheet-act"><button class="btn btn-dark" type="submit">Отправить</button><p class="err" id="err" role="alert"></p><span class="alt">или на почту <a href="mailto:alexeigro@gmail.com">alexeigro@gmail.com</a></span></div>
   </form>
   <div class="done" id="done" hidden>
     <span class="ok"><svg viewBox="0 0 24 24" fill="none" stroke="#1d8a3a" stroke-width="2"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>
     <h2 id="doneTitle">Спасибо!</h2>
-    <p style="color:var(--ink-2);max-width:40ch">Письмо открылось в почтовой программе — проверьте и отправьте. Не открылось? Напишите на <a href="mailto:alexeigro@gmail.com">alexeigro@gmail.com</a>.</p>
+    <p id="doneSent" style="color:var(--ink-2);max-width:40ch">Сообщение отправлено — отвечу в течение дня.</p>
+    <p id="doneMail" hidden style="color:var(--ink-2);max-width:40ch">Письмо открылось в почтовой программе — проверьте и отправьте. Не открылось? Напишите на <a href="mailto:alexeigro@gmail.com">alexeigro@gmail.com</a>.</p>
     <button class="btn btn-dark" data-close>Закрыть</button>
   </div>
 </dialog>
@@ -1382,14 +1387,23 @@ dialog.sheet[open]{animation:pop .45s var(--ease)}
   }
 
   var sheet=document.getElementById('sheet'), form=document.getElementById('brief'), done=document.getElementById('done'), err=document.getElementById('err');
-  document.querySelectorAll('[data-open-sheet]').forEach(function(b){b.addEventListener('click',function(){form.hidden=false;done.hidden=true;err.textContent='';if(sheet.showModal)sheet.showModal();else sheet.setAttribute('open','')})});
+  function openSheet(type){form.hidden=false;done.hidden=true;err.textContent='';var r=type&&document.getElementById(type);if(r)r.checked=true;if(sheet.open)return;if(sheet.showModal)sheet.showModal();else sheet.setAttribute('open','')}
+  document.querySelectorAll('[data-open-sheet]').forEach(function(b){b.addEventListener('click',function(e){e.preventDefault();openSheet(b.dataset.type)})});
+  if(location.hash==='#contact'){history.replaceState(null,'',location.pathname+location.search);setTimeout(function(){openSheet()},400)}
   sheet.addEventListener('click',function(e){if(e.target===sheet||e.target.closest('[data-close]'))sheet.close()});
   form.addEventListener('submit',function(e){e.preventDefault();var n=form.name.value.trim(),m=form.email.value.trim();
     if(!n){err.textContent='Укажите имя, чтобы я знал, кому отвечать.';form.name.focus();return}
     if(!/^\S+@\S+\.\S+$/.test(m)){err.textContent='Введите корректный email, например name@company.com.';form.email.focus();return}
     var t=form.querySelector('input[name=type]:checked').value,i=form.idea.value.trim();
-    location.href='mailto:alexeigro@gmail.com?subject='+encodeURIComponent(t+' — '+n)+'&body='+encodeURIComponent((i?i+'\n\n':'')+'—\n'+n+'\n'+m);
-    document.getElementById('doneTitle').textContent='Спасибо, '+n.split(' ')[0]+'!';form.hidden=true;done.hidden=false;});
+    if(form._honey.value)return;
+    var btn=form.querySelector('[type=submit]'),lbl=btn.textContent;btn.disabled=true;btn.textContent='Отправляю…';err.textContent='';
+    function finish(sent){document.getElementById('doneTitle').textContent='Спасибо, '+n.split(' ')[0]+'!';
+      document.getElementById('doneSent').hidden=!sent;document.getElementById('doneMail').hidden=sent;
+      form.hidden=true;done.hidden=false;btn.disabled=false;btn.textContent=lbl;if(sent)form.reset();}
+    function viaMail(){location.href='mailto:alexeigro@gmail.com?subject='+encodeURIComponent(t+' — '+n)+'&body='+encodeURIComponent((i?i+'\n\n':'')+'—\n'+n+'\n'+m);finish(false);}
+    fetch('https://formsubmit.co/ajax/alexeigro@gmail.com',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},
+      body:JSON.stringify({_subject:'Портфолио: '+t+' — '+n,_template:'table',_captcha:'false',_replyto:m,name:n,email:m,interest:t,message:i||'—'})})
+      .then(function(r){return r.json()}).then(function(d){if(String(d.success)==='true')finish(true);else viaMail()}).catch(viaMail);});
 })();
 </script>
 <script>
