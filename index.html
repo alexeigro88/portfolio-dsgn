@@ -843,6 +843,10 @@ dialog.sheet[open]{animation:pop .45s var(--ease)}
 
 /* форматы работы: иконки в стиле Apple вместо фото */
 .picon{width:60px;height:60px;border-radius:16px;display:grid;place-items:center;background:#F2F2F7;color:var(--brand);margin-bottom:28px;corner-shape:squircle}.picon svg{width:30px;height:30px}.pcard.feat .picon{background:rgba(255,255,255,.1);color:#fff}
+
+/* подсказка прокрутки — слева, рядом с линиями */
+.rail-ctrl{justify-content:flex-start!important;gap:24px}.rail-end{margin-left:auto}@media (max-width:600px){.rail-ctrl{gap:14px}.rail-end .rail-li{font-size:14px}}
+@media (max-width:600px){.rail-ctrl{flex-wrap:wrap;row-gap:10px}.rail-hint{white-space:nowrap}.rail-end{margin-left:0;flex-basis:100%}}
 </style>
 
 
@@ -1061,7 +1065,7 @@ dialog.sheet[open]{animation:pop .45s var(--ease)}
       <div class="sauthor"><img class="av" src="img/av-julia-verbitchi.jpg" alt="" loading="lazy"><div><strong>Julia Verbitchi</strong><span>Customer Success Manager, LevelUp Leads</span></div></div>
     </article>
   </div>
-  <div class="wrap rail-ctrl"><div class="dots sq" data-r="99" data-dots="srail"></div><div class="rail-end"><span class="rail-hint" aria-hidden="true"><svg viewBox="0 0 16 22" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="1" width="14" height="20" rx="7"/><path class="wheel" d="M8 5v3.5"/></svg>Scroll down to browse</span><a class="more rail-li" href="https://md.linkedin.com/in/alexei-grosul-63aa6a73/details/recommendations/" target="_blank" rel="noopener">All recommendations on LinkedIn</a></div></div>
+  <div class="wrap rail-ctrl"><div class="dots sq" data-r="99" data-dots="srail"></div><span class="rail-hint" aria-hidden="true"><svg viewBox="0 0 16 22" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="1" width="14" height="20" rx="7"/><path class="wheel" d="M8 5v3.5"/></svg>Scroll down to browse</span><div class="rail-end"><a class="more rail-li" href="https://md.linkedin.com/in/alexei-grosul-63aa6a73/details/recommendations/" target="_blank" rel="noopener">All recommendations on LinkedIn</a></div></div>
   </div></div>
 </section>
 
