@@ -153,6 +153,7 @@ JS = {"'Воспроизвести видео'": "'Play video'", "'Пауза'":
       "'Скопировано'": "'Copied'", "'Копировать'": "'Copy'",
       "'Укажите имя, чтобы я знал, кому отвечать.'": "'Please add your name so I know who to reply to.'",
       "'Отправляю…'": "'Sending…'",
+      "'Адрес скопирован'": "'Email copied'",
       "'Портфолио: '": "'Portfolio: '",
       "'Введите корректный email, например name@company.com.'": "'Please enter a valid email, e.g. name@company.com.'",
       "'Спасибо, '": "'Thank you, '"}
