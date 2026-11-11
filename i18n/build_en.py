@@ -53,7 +53,7 @@ T = {
    'I manage design and engineering teams: interviews and hiring, task setting, quality control, mentoring and career levels. Completed a series of leadership trainings.',
  'Найм': 'Hiring', 'Наставничество': 'Mentoring', 'Стандарты качества': 'Quality standards',
  'Руководство командой': 'Team leadership', 'Найм, наставничество, качество.': 'Hiring, mentoring, quality.',
- 'Подробнее +': 'More +',
+ 'Подробнее +': 'More +', 'Листайте вниз, чтобы прокрутить': 'Scroll down to browse', 'Листайте ↓': 'Scroll ↓', 'Дизайн-консультант': 'Design Consultant',
  'Иллюстрация: Продуктовая стратегия': 'Illustration: Product strategy', 'Иллюстрация: Продуктовый дизайн': 'Illustration: Product design',
  'Иллюстрация: AI в процессах': 'Illustration: AI workflows', 'Иллюстрация: Прототипы и передача в разработку': 'Illustration: Prototyping and dev handoff',
  'Подробнее о продуктовой стратегии': 'More about product strategy', 'Подробнее о продуктовом дизайне': 'More about product design',
