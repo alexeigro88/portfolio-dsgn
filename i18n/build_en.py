@@ -18,8 +18,7 @@ T = {
  'Продуктовый дизайнер': 'Product Designer', 'и лид дизайна.': '&amp; Head of Design.',
  'Включаюсь в продукт на всех этапах: от первой встречи до запуска и метрик.':
    'I get involved at every stage — from the first meeting to launch and metrics.',
- '16 лет в IT. Веду команду из 8 дизайнеров, есть опыт управления разработкой. Разбираюсь в no-code, API и базах данных, поэтому проектирую то, что команда соберёт в срок.':
-   '16 years in tech. I lead a team of 8 designers and have managed engineering teams. I know no-code, APIs and databases, so I design what the team can ship on time.',
+ '16 лет в IT. Веду команду из 8 дизайнеров, руководил разработкой. Разбираюсь в API и базах данных — проектирую то, что команда соберёт в срок.': '16 years in tech. I lead a team of 8 designers and have managed engineering teams. I understand APIs and databases, so I design what the team can ship on time.',
  'Смотреть кейсы': 'View work',
  'Шоурил: Алексей Гросул — продуктовый дизайнер и лид дизайна': 'Showreel: Alexei Grosul — Product Designer and Head of Design',
  'Воспроизвести видео': 'Play video', 'Включить звук': 'Turn sound on', 'Проекты и компании': 'Projects and companies',
