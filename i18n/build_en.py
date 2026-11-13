@@ -9,7 +9,8 @@ SRC, OUT = 'ru.html', 'index.html'
 T = {
  # meta, навигация
  'Алексей Гросул — продуктовый дизайнер и руководитель дизайна': 'Alexei Grosul — Product Designer & Head of Design',
- 'Алексей Гросул — продуктовый дизайнер и руководитель дизайна: 16 лет в IT, руководство командами дизайна и разработки, AI-процессы.': 'Alexei Grosul — Product Designer and Head of Design: 16 years in tech, leading design and engineering teams, AI workflows.',
+ 'Алексей Гросул — продуктовый дизайнер с опытом лида: 16 лет в IT, команда из 8 дизайнеров, no-code и AI-процессы.':
+   'Alexei Grosul — Product Designer and Head of Design: 16 years in tech, a team of 8 designers, no-code and AI workflows.',
  'Алексей Гросул — на главную': 'Alexei Grosul — home',
  'Основная навигация': 'Main navigation', 'Язык': 'Language', 'Меню': 'Menu',
  'Кейсы': 'Case studies', 'Обо мне': 'About', 'Что умею': 'Skills', 'Связаться': 'Contact',
@@ -17,7 +18,7 @@ T = {
  'Продуктовый дизайнер': 'Product Designer', 'и лид дизайна.': '&amp; Head of Design.',
  'Включаюсь в продукт на всех этапах: от первой встречи до запуска и метрик.':
    'I get involved at every stage — from the first meeting to launch and metrics.',
- '16 лет в IT. Руковожу командой дизайна, руководил разработкой. Разбираюсь в API и базах данных — проектирую то, что команда соберёт в срок.': '16 years in tech. I lead a design team and have managed engineering teams. I understand APIs and databases, so I design what the team can ship on time.',
+ '16 лет в IT. Веду команду из 8 дизайнеров, руководил разработкой. Разбираюсь в API и базах данных — проектирую то, что команда соберёт в срок.': '16 years in tech. I lead a team of 8 designers and have managed engineering teams. I understand APIs and databases, so I design what the team can ship on time.',
  'Смотреть кейсы': 'View work',
  'Шоурил: Алексей Гросул — продуктовый дизайнер и лид дизайна': 'Showreel: Alexei Grosul — Product Designer and Head of Design',
  'Воспроизвести видео': 'Play video', 'Включить звук': 'Turn sound on', 'Проекты и компании': 'Projects and companies',
@@ -26,7 +27,7 @@ T = {
  '16 лет в IT, последние 8 — в Zeroqode, где прошёл путь шаг за шагом: дизайнер-разработчик → тимлид команды разработки → руководитель дизайна. Работаю в связке с PM, разработкой, маркетингом и продажами и слежу за качеством и сроками, а не только за макетами.':
    '16 years in tech, the last 8 at Zeroqode, where I grew step by step: designer-developer → engineering team lead → Head of Design. I work closely with PMs, engineering, marketing and sales, and I care about quality and deadlines — not just the mockups.',
  'К скорости доставки дизайна — благодаря AI в процессах команды и настроенным AI-скиллам.': 'Faster design delivery — thanks to AI in the team’s workflow and custom AI skills.',
- 'Руковожу командами: найм, ревью, рост людей и стандарты качества.': 'Leading teams: hiring, reviews, people growth and quality standards.',
+ 'Дизайнеров в моей команде: найм, ревью, рост и стандарты качества.': 'Designers on my team: hiring, reviews, growth and quality standards.',
  # что умею
  'От стратегии': 'From strategy', 'до запущенного продукта.': 'to a shipped product.',
  'Дизайн-стратегия, продуктовый дизайн и AI-процессы — в одних руках, с опытом управления командой.':
@@ -75,7 +76,7 @@ T = {
    'In design and tech: packaging, 1.5 years in game design, 6 years leading engineering, 1.5 years as Head of Design.',
  'Запущенных продуктов — от MVP до сложных платформ.': 'Products launched — from MVPs to complex platforms.',
  '2 команды': '2 teams',
- 'Под моим руководством: команда разработки и&nbsp;команда дизайна.': 'Under my lead: an engineering team and&nbsp;a design team.',
+ 'Под моим руководством: разработка (6&nbsp;человек) и&nbsp;дизайн (8&nbsp;дизайнеров).': 'Under my lead: engineering (6&nbsp;developers) and&nbsp;design (8&nbsp;designers).',
  # отзывы
  'Отзывы': 'Testimonials', 'Что говорят': 'What people say', 'о совместной работе.': 'about working together.',
  'Рекомендации коллег.': 'Recommendations from colleagues.',
@@ -122,7 +123,7 @@ T = {
  'Как вы относитесь к AI в дизайне?': 'What is your take on AI in design?',
  'Использую каждый день и выстраивал AI-процессы в команде. Но первые генерации почти всегда требуют доработки: ошибки в UX и деталях видит только дизайнер. Поэтому AI ускоряет работу, а за качество отвечает человек.':
    'I use it every day and have built AI workflows for my team. But first generations almost always need work: only a designer catches UX and detail issues. So AI speeds things up, and a human owns the quality.',
- 'Есть ли у вас кейсы с метриками?': 'Do you have case studies with metrics?', 'Сообщение отправлено — отвечу в течение дня.': 'Message sent — I’ll reply within a day.', 'Как к вам обращаться': 'Your name', '7+ лет': '7+ years', 'Резюме': 'CV', 'Скачать резюме': 'Download CV', 'Какой вы руководитель?': 'What kind of team lead are you?', 'Доброжелательный и отзывчивый, но с фокусом на результате команды. Регулярно провожу one-on-one, слежу за ростом каждого, помогаю с задачами и поддерживаю мотивацию. Управление для меня — такое же ремесло, как дизайн, и я продолжаю в нём прокачиваться.': 'Kind and responsive, but focused on the team’s results. I run regular one-on-ones, keep an eye on each person’s growth, help with tasks and keep the team motivated. To me, management is a craft just like design, and I keep getting better at it.',
+ 'Есть ли у вас кейсы с метриками?': 'Do you have case studies with metrics?', 'Сообщение отправлено — отвечу в течение дня.': 'Message sent — I’ll reply within a day.', 'Как к вам обращаться': 'Your name', 'Резюме': 'CV', 'Скачать резюме': 'Download CV', 'Какой вы руководитель?': 'What kind of team lead are you?', 'Доброжелательный и отзывчивый, но с фокусом на результате команды. Регулярно провожу one-on-one, слежу за ростом каждого, помогаю с задачами и поддерживаю мотивацию. Управление для меня — такое же ремесло, как дизайн, и я продолжаю в нём прокачиваться.': 'Kind and responsive, but focused on the team’s results. I run regular one-on-ones, keep an eye on each person’s growth, help with tasks and keep the team motivated. To me, management is a craft just like design, and I keep getting better at it.',
  'Часть кейсов с конкретными цифрами, и именно они лежат в основе портфолио. В остальных опираюсь на аналитику, обратную связь пользователей и команды.':
    'Some of my case studies have hard numbers, and they form the core of this portfolio. For the rest, I rely on analytics and feedback from users and the team.',
  'С какими стеками и инструментами работаете?': 'Which stacks and tools do you work with?',
@@ -174,7 +175,7 @@ for ru, en in sorted(T.items(), key=lambda kv: -len(kv[0])):
 for ru, en in JS.items():
     if ru not in s: miss.append(ru)
     s = s.replace(ru, en)
-s = s.replace('data-suffix="+ лет"', 'data-suffix="+ years"').replace('data-suffix=" лет"', 'data-suffix=" years"').replace('data-suffix=" команды"', 'data-suffix=" teams"')
+s = s.replace('data-suffix=" лет"', 'data-suffix=" years"').replace('data-suffix=" команды"', 'data-suffix=" teams"')
 open(OUT, 'w').write(s)
 # контроль: кириллица вне комментариев и стилей
 body = re.sub(r'<!--.*?-->|<style.*?</style>|/\*.*?\*/', '', s, flags=re.S)
