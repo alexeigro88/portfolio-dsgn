@@ -886,7 +886,7 @@ dialog.sheet[open]{animation:pop .45s var(--ease)}
       <div class="vbar" id="vbar" role="slider" aria-label="Video progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" tabindex="0"><div class="vtrack"><i id="vfill"></i></div><span class="vtime" id="vtime">0:00 / 0:00</span></div>
       <div class="vctl">
         <button class="vbtn" id="vplay" aria-label="Play video"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M5 3.2v9.6a.6.6 0 0 0 .9.5l7.6-4.8a.6.6 0 0 0 0-1L5.9 2.7a.6.6 0 0 0-.9.5z"/></svg></button>
-        <button class="vbtn" id="vsound" aria-label="Turn sound on"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 6h2.5L8.5 3v10L5 10H2.5z" fill="currentColor"/><path d="m11 6 3 4m0-4-3 4"/></svg></button>
+        <button class="vbtn" id="vsound" aria-label="Turn sound on"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 6h2.5L8.5 3v10L5 10H2.5z" fill="currentColor"/><path d="m11 6 3 4m0-4-3 4"/></svg></button><button class="vbtn" id="vfull" aria-label="Full screen"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 6V2.5H6M10 2.5h3.5V6M13.5 10v3.5H10M6 13.5H2.5V10"/></svg></button>
       </div>
     </div>
   </div>
@@ -1263,13 +1263,16 @@ dialog.sheet[open]{animation:pop .45s var(--ease)}
   /* браузеры не дают включить звук без действия пользователя: пробуем со звуком, при отказе — без звука */
   function tryPlay(){if(!armed||!onScreen||userPaused)return;if(!userMuted)v.muted=false;v.play().catch(function(){v.muted=true;v.play().catch(function(){})})}
   /* первый клик, тап или клавиша на странице включают звук (кнопки видео обрабатывают это сами) */
-  function unlock(e){if(e&&e.target&&e.target.closest&&e.target.closest('#vsound,#vplay'))return;['pointerdown','keydown','touchend'].forEach(function(t){removeEventListener(t,unlock,true)});if(!userMuted&&v.muted){v.muted=false;if(!v.paused)v.play().catch(function(){v.muted=true})}}
+  function unlock(e){if(e&&e.target&&e.target.closest&&e.target.closest('#vsound,#vplay,#vfull'))return;['pointerdown','keydown','touchend'].forEach(function(t){removeEventListener(t,unlock,true)});if(!userMuted&&v.muted){v.muted=false;if(!v.paused)v.play().catch(function(){v.muted=true})}}
   ['pointerdown','keydown','touchend'].forEach(function(t){addEventListener(t,unlock,true)});
   function arm(){if(armed||scrollY<8)return;armed=true;removeEventListener('scroll',arm);tryPlay()}
   addEventListener('scroll',arm,{passive:true});
   vp.addEventListener('click',function(){armed=true},true); vs.addEventListener('click',function(){armed=true},true);
   if('IntersectionObserver' in window){new IntersectionObserver(function(es){es.forEach(function(e){onScreen=e.isIntersecting;if(onScreen)tryPlay();else v.pause()})},{threshold:.25}).observe(v)}
   syncV();
+  /* на весь экран: на iPhone — системный плеер, в остальных браузерах — Fullscreen API */
+  var vf=document.getElementById('vfull');
+  if(vf)vf.addEventListener('click',function(){armed=true;userPaused=false;if(!userMuted)v.muted=false;v.play().catch(function(){});if(v.requestFullscreen)v.requestFullscreen().catch(function(){if(v.webkitEnterFullscreen)v.webkitEnterFullscreen()});else if(v.webkitEnterFullscreen)v.webkitEnterFullscreen();else if(v.webkitRequestFullscreen)v.webkitRequestFullscreen()});
   /* полоса прогресса: показывает длительность, клик и перетаскивание перематывают */
   var bar=document.getElementById('vbar'), fill=document.getElementById('vfill'), vt=document.getElementById('vtime'), drag=false;
   function fmt(t){t=Math.max(0,Math.floor(t||0));return Math.floor(t/60)+':'+('0'+t%60).slice(-2)}
@@ -1433,6 +1436,11 @@ dialog.sheet[open]{animation:pop .45s var(--ease)}
 
 /* пункт Play: тише основных */
 .gnav nav .nplay,.mnav .nplay{display:inline-block;background:linear-gradient(90deg,#256fff 0%,#9b5cf6 25%,#ff4fa3 50%,#9b5cf6 75%,#256fff 100%);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent!important;-webkit-text-fill-color:transparent;transition:background-position .6s var(--ease)}.gnav nav .nplay:hover,.mnav .nplay:hover{background-position:100% 0}
+
+/* мобильные правки: превью кейсов по центру, карточка «Руководство командой» без обрезки, кнопка на весь экран */
+#reel::-webkit-media-controls{display:none}#reel:fullscreen{object-fit:contain;background:#000}
+@media (max-width:900px){.wk-photo .wk-vis.wk-img{margin:0 12px 12px!important}}
+@media (max-width:700px){.hl.cap.fastc{padding:18px 20px}.fastc .fglyph{width:40px;height:40px;flex:none;border-radius:12px}.fastc .fglyph svg{width:20px;height:20px}.fastc .fbody h4{font-size:21px}.fastc .fbody p{font-size:13px;line-height:1.42;margin-top:6px}.fastc .ctags{display:none!important}}
 </style>
 <script>(function(){var T;function copy(t){if(navigator.clipboard&&window.isSecureContext)return navigator.clipboard.writeText(t).catch(fb);fb();function fb(){var x=document.createElement('textarea');x.value=t;x.style.cssText='position:fixed;opacity:0';document.body.appendChild(x);x.select();try{document.execCommand('copy')}catch(_){}x.remove()}}document.addEventListener('click',function(e){var a=e.target.closest('a[href^="mailto:"]');if(!a||a.hasAttribute('data-open-sheet'))return;e.preventDefault();var em=a.getAttribute('href').slice(7).split('?')[0];copy(em);if(!T){T=document.createElement('div');T.className='mtoast';T.setAttribute('role','status');T.setAttribute('aria-live','polite');if(T.showPopover)T.setAttribute('popover','manual');T.innerHTML='<span class="mt-ic"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3.5 8.4 2.9 2.9 6.1-6.6"/></svg></span><span class="mt-tx"><b></b><small></small></span>';document.body.appendChild(T)}T.querySelector('b').textContent='Email copied';T.querySelector('small').textContent=em;if(T.showPopover){try{T.hidePopover()}catch(_){}T.showPopover()}T.classList.remove('on');void T.offsetWidth;T.classList.add('on');clearTimeout(T._t);clearTimeout(T._h);T._t=setTimeout(function(){T.classList.remove('on');T._h=setTimeout(function(){if(T.hidePopover)try{T.hidePopover()}catch(_){}},450)},3000)})})();</script>
 <script>document.addEventListener('click',function(e){var a=e.target.closest('[data-cv]');if(!a)return;e.preventDefault();var n='Alexei_Grosul_CV'+(document.documentElement.lang==='ru'?'_RU':''),f='cv/'+n+'.'+'pdf',d=document.createElement('a');d.href=f;d.download=n+'.'+'pdf';document.body.appendChild(d);d.click();d.remove();});</script>

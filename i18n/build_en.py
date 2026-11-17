@@ -21,7 +21,7 @@ T = {
  '16 лет в IT. Веду команду из 8 дизайнеров, руководил разработкой. Разбираюсь в API и базах данных — проектирую то, что команда соберёт в срок.': '16 years in tech. I lead a team of 8 designers and have managed engineering teams. I understand APIs and databases, so I design what the team can ship on time.',
  'Смотреть кейсы': 'View work',
  'Шоурил: Алексей Гросул — продуктовый дизайнер и лид дизайна': 'Showreel: Alexei Grosul — Product Designer and Head of Design',
- 'Воспроизвести видео': 'Play video', 'Включить звук': 'Turn sound on', 'Проекты и компании': 'Projects and companies',
+ 'Воспроизвести видео': 'Play video', 'На весь экран': 'Full screen', 'Включить звук': 'Turn sound on', 'Проекты и компании': 'Projects and companies',
  # обо мне
  'Продуктовый подход.': 'Product mindset.', 'В дизайне и в делах.': 'In design and in delivery.',
  '16 лет в IT, последние 8 — в Zeroqode, где прошёл путь шаг за шагом: дизайнер-разработчик → тимлид команды разработки → руководитель дизайна. Работаю в связке с PM, разработкой, маркетингом и продажами и слежу за качеством и сроками, а не только за макетами.':
