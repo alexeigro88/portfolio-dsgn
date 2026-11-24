@@ -469,7 +469,7 @@ figure{margin:0}
   var v=document.getElementById('sfilm'),b=document.getElementById('sfilm-snd'),p=document.getElementById('sfilm-play');if(!v)return;
   var off='<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 6h2.5L8.5 3v10L5 10H2.5z" fill="currentColor"/><path d="m11 6 3.5 4M14.5 6 11 10"/></svg>',
       on='<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 6h2.5L8.5 3v10L5 10H2.5z" fill="currentColor"/><path d="M11 5.5a3.5 3.5 0 0 1 0 5M12.8 3.8a6 6 0 0 1 0 8.4"/></svg>',
-      play='<svg viewBox="0 0 16 16" fill="currentColor"><path d="M5 3.2v9.6a.6.6 0 0 0 .9.5l7.6-4.8a.6.6 0 0 0 0-1L5.9 2.7a.6.6 0 0 0-.9.5z"/></svg>',
+      play='<svg viewBox="0 0 16 16" fill="currentColor"><path d="M5.4 3.9v8.2c0 1.1 1.2 1.8 2.1 1.2l5.9-4.1c.8-.6.8-1.8 0-2.4L7.5 2.7c-.9-.6-2.1.1-2.1 1.2z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>',
       pause='<svg viewBox="0 0 16 16" fill="currentColor"><rect x="4" y="3" width="2.6" height="10" rx=".8"/><rect x="9.4" y="3" width="2.6" height="10" rx=".8"/></svg>';
   function sync(){b.innerHTML=v.muted?off:on;b.setAttribute('aria-label',v.muted?'Turn sound on':'Turn sound off');
     var pl=!v.paused;p.classList.toggle('on',pl);p.innerHTML=pl?pause:play;p.setAttribute('aria-label',pl?'Pause':'Play video')}
