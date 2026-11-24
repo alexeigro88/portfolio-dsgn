@@ -772,11 +772,10 @@ dialog.sheet[open]{animation:pop .45s var(--ease)}
 .pv-ph{position:relative;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:#fff;text-align:center;padding:24px;overflow:hidden}
 .pv-ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
 .pv-ph video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;display:block;transition:transform 1.2s var(--ease)}.wk-photo:hover .wk-img video{transform:scale(1.03)}
-.cplay{position:absolute;left:16px;bottom:16px;z-index:2;display:inline-flex;align-items:center;gap:10px;height:44px;padding:0 16px 0 6px;border:0;border-radius:999px;background:rgba(255,255,255,.88);-webkit-backdrop-filter:saturate(180%) blur(14px);backdrop-filter:saturate(180%) blur(14px);color:#1d1d1f;font:500 14px/1 var(--font-body,Inter),system-ui,sans-serif;letter-spacing:-.005em;cursor:pointer;box-shadow:0 8px 24px -10px rgba(0,0,0,.4);transition:transform .35s var(--ease),opacity .3s,background .3s}
-.pv-ph .cplay span{font-size:inherit;max-width:none;background:none;padding:0;border-radius:0}
-.pv-ph .cplay .ic{width:32px;height:32px;border-radius:50%;background:#1d1d1f;color:#fff;display:grid;place-items:center}.cplay .ic svg{width:13px;height:13px}.cplay:not(.on) .ic svg{margin-left:2px}
-.cplay .tm{color:#86868b;font-variant-numeric:tabular-nums}.cplay:hover{transform:scale(1.04);background:#fff}
-.cplay.on{opacity:0}.pv-ph:hover .cplay.on{opacity:1}.cplay.on .tx,.cplay.on .tm{display:none}.cplay.on{padding-right:6px}
+.cplay{position:absolute;left:70%;top:50%;z-index:2;width:64px;height:64px;margin:-32px 0 0 -32px;border:0;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.62);-webkit-backdrop-filter:saturate(180%) blur(14px);backdrop-filter:saturate(180%) blur(14px);color:#1d1d1f;cursor:pointer;box-shadow:0 8px 24px -10px rgba(0,0,0,.35),inset 0 0 0 1px rgba(255,255,255,.35);transition:transform .35s var(--ease),opacity .3s,background .3s}
+.cplay svg{width:20px;height:20px}.cplay:not(.on) svg{margin-left:3px}.cplay:hover{transform:scale(1.08);background:rgba(255,255,255,.9)}
+@media (max-width:900px){.pv-ph video.cvid:not(.started){object-position:0 50%}}
+.cplay.on{opacity:0}.pv-ph:hover .cplay.on{opacity:.9}
 .pv-ph::before{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.55),rgba(0,0,0,.15));z-index:1}
 .pv-ph b,.pv-ph span{position:relative;z-index:2}
 .pv-ph span{font-size:12px;max-width:28ch;background:rgba(0,0,0,.4);padding:4px 10px;border-radius:999px}
@@ -1024,7 +1023,7 @@ dialog.sheet[open]{animation:pop .45s var(--ease)}
         <dl class="wk-kpi"><div><dt>Web</dt><dd>Product type</dd></div><div><dt>Design Lead</dt><dd>My role</dd></div><div><dt>4 weeks</dt><dd>Duration</dd></div></dl>
         <span class="wk-cta">View case</span>
       </div>
-      <div class="wk-vis wk-img pvw sq" data-r="20"><div class="pv-ph sq" data-r="18"><video class="cvid" src="reel/stulo/stulo-reel-card.mp4?v=2" poster="reel/stulo/stulo-reel-card.jpg?v=3" muted loop playsinline preload="none" aria-label="StuLo"></video><button class="cplay" type="button" aria-label="Play video"><span class="ic"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M5 3.2v9.6a.6.6 0 0 0 .9.5l7.6-4.8a.6.6 0 0 0 0-1L5.9 2.7a.6.6 0 0 0-.9.5z"/></svg></span><span class="tx">Play film</span><span class="tm">0:14</span></button></div></div>
+      <div class="wk-vis wk-img pvw sq" data-r="20"><div class="pv-ph sq" data-r="18"><video class="cvid" src="reel/stulo/stulo-reel-card.mp4?v=2" poster="reel/stulo/stulo-reel-card.jpg?v=3" muted loop playsinline preload="none" aria-label="StuLo"></video><button class="cplay" type="button" aria-label="Play video"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M5 3.2v9.6a.6.6 0 0 0 .9.5l7.6-4.8a.6.6 0 0 0 0-1L5.9 2.7a.6.6 0 0 0-.9.5z"/></svg></button></div></div>
     </a>
     <a class="wk wk-photo sq" data-r="28" data-cursor="Open case +" href="cases/bookkeeper-ai.html" style="--bg:var(--band);--ih:80%;--fg:#1d1d1f;--fg2:#3a3a3c;--ln:rgba(0,0,0,.12)">
       <div class="wk-info">
@@ -1474,8 +1473,8 @@ dialog.sheet[open]{animation:pop .45s var(--ease)}
       pause='<svg viewBox="0 0 16 16" fill="currentColor"><rect x="4" y="3" width="2.6" height="10" rx=".8"/><rect x="9.4" y="3" width="2.6" height="10" rx=".8"/></svg>';
   vs.forEach(function(v){
     var b=v.parentNode.querySelector('.cplay');if(!b)return;
-    function sync(){var on=!v.paused;b.classList.toggle('on',on);b.querySelector('.ic').innerHTML=on?pause:play;b.setAttribute('aria-label',on?'Pause':'Play video')}
-    b.addEventListener('click',function(e){e.preventDefault();e.stopPropagation();if(v.paused){v.play().catch(function(){})}else{v.pause()}});
+    function sync(){var on=!v.paused;b.classList.toggle('on',on);b.innerHTML=on?pause:play;b.setAttribute('aria-label',on?'Pause':'Play video')}
+    b.addEventListener('click',function(e){e.preventDefault();e.stopPropagation();if(v.paused){v.classList.add('started');v.play().catch(function(){})}else{v.pause()}});
     ['play','pause','emptied','ended'].forEach(function(n){v.addEventListener(n,sync)});
     if('IntersectionObserver' in window)new IntersectionObserver(function(es){es.forEach(function(e){if(!e.isIntersecting&&!v.paused)v.pause()})}).observe(v);
   });
