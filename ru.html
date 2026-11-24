@@ -771,6 +771,7 @@ dialog.sheet[open]{animation:pop .45s var(--ease)}
 .wk-img.pvw{background:var(--band)!important;display:flex;align-items:center;justify-content:center}
 .pv-ph{position:relative;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:#fff;text-align:center;padding:24px;overflow:hidden}
 .pv-ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.pv-ph video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;display:block;transition:transform 1.2s var(--ease)}.wk-photo:hover .wk-img video{transform:scale(1.03)}
 .pv-ph::before{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.55),rgba(0,0,0,.15));z-index:1}
 .pv-ph b,.pv-ph span{position:relative;z-index:2}
 .pv-ph span{font-size:12px;max-width:28ch;background:rgba(0,0,0,.4);padding:4px 10px;border-radius:999px}
@@ -1018,7 +1019,7 @@ dialog.sheet[open]{animation:pop .45s var(--ease)}
         <dl class="wk-kpi"><div><dt>Веб</dt><dd>Тип продукта</dd></div><div><dt>Дизайн-лид</dt><dd>Моя роль</dd></div><div><dt>4 недели</dt><dd>Длительность</dd></div></dl>
         <span class="wk-cta">Смотреть кейс</span>
       </div>
-      <div class="wk-vis wk-img pvw sq" data-r="20"><div class="pv-ph sq" data-r="18"><img src="img/cases/stulo/cover.jpg?v=3" alt="StuLo" loading="lazy"></div></div>
+      <div class="wk-vis wk-img pvw sq" data-r="20"><div class="pv-ph sq" data-r="18"><video class="cvid" src="reel/stulo/stulo-reel-card.mp4?v=1" poster="reel/stulo/stulo-reel-card.jpg?v=1" muted loop playsinline preload="none" aria-label="StuLo"></video></div></div>
     </a>
     <a class="wk wk-photo sq" data-r="28" data-cursor="Открыть кейс +" href="cases/bookkeeper-ai.html" style="--bg:var(--band);--ih:80%;--fg:#1d1d1f;--fg2:#3a3a3c;--ln:rgba(0,0,0,.12)">
       <div class="wk-info">
@@ -1461,3 +1462,11 @@ dialog.sheet[open]{animation:pop .45s var(--ease)}
 </style>
 <script>(function(){var T;function copy(t){if(navigator.clipboard&&window.isSecureContext)return navigator.clipboard.writeText(t).catch(fb);fb();function fb(){var x=document.createElement('textarea');x.value=t;x.style.cssText='position:fixed;opacity:0';document.body.appendChild(x);x.select();try{document.execCommand('copy')}catch(_){}x.remove()}}document.addEventListener('click',function(e){var a=e.target.closest('a[href^="mailto:"]');if(!a||a.hasAttribute('data-open-sheet'))return;e.preventDefault();var em=a.getAttribute('href').slice(7).split('?')[0];copy(em);if(!T){T=document.createElement('div');T.className='mtoast';T.setAttribute('role','status');T.setAttribute('aria-live','polite');if(T.showPopover)T.setAttribute('popover','manual');T.innerHTML='<span class="mt-ic"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3.5 8.4 2.9 2.9 6.1-6.6"/></svg></span><span class="mt-tx"><b></b><small></small></span>';document.body.appendChild(T)}T.querySelector('b').textContent='Адрес скопирован';T.querySelector('small').textContent=em;if(T.showPopover){try{T.hidePopover()}catch(_){}T.showPopover()}T.classList.remove('on');void T.offsetWidth;T.classList.add('on');clearTimeout(T._t);clearTimeout(T._h);T._t=setTimeout(function(){T.classList.remove('on');T._h=setTimeout(function(){if(T.hidePopover)try{T.hidePopover()}catch(_){}},450)},3000)})})();</script>
 <script>document.addEventListener('click',function(e){var a=e.target.closest('[data-cv]');if(!a)return;e.preventDefault();var n='Alexei_Grosul_CV'+(document.documentElement.lang==='ru'?'_RU':''),f='cv/'+n+'.'+'pdf',d=document.createElement('a');d.href=f;d.download=n+'.'+'pdf';document.body.appendChild(d);d.click();d.remove();});</script>
+<script>
+(function(){
+  var vs=document.querySelectorAll('video.cvid');if(!vs.length)return;
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches||!('IntersectionObserver' in window))return;
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){var v=e.target;if(e.isIntersecting){v.play().catch(function(){})}else{v.pause()}})},{threshold:.25});
+  vs.forEach(function(v){io.observe(v)});
+})();
+</script>

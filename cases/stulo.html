@@ -185,6 +185,17 @@ figure{margin:0}
 .kfoot a:hover{color:#fff}
 
 /* ---------- появление при прокрутке ---------- */
+.film{display:grid;grid-template-columns:minmax(0,400px) 1fr;gap:clamp(24px,4vw,64px);align-items:center;background:var(--band);border-radius:var(--r);padding:clamp(16px,2.4vw,32px)}
+.film-v{position:relative;aspect-ratio:9/16;border-radius:22px;overflow:hidden;background:#0b0f2e}
+.film-v video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.film-snd{position:absolute;right:14px;bottom:14px;width:40px;height:40px;border:0;border-radius:50%;display:grid;place-items:center;background:rgba(29,29,31,.6);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);color:#fff;cursor:pointer}
+.film-snd svg{width:18px;height:18px}
+.film-tx{list-style:none;margin:0;padding:0;display:grid;gap:22px}
+.film-tx li{display:grid;grid-template-columns:40px 1fr;column-gap:12px}
+.film-tx .n{grid-row:span 2;font-size:13px;color:var(--brand);font-variant-numeric:tabular-nums;padding-top:4px}
+.film-tx b{font-weight:500;font-size:19px}
+.film-tx p{margin:4px 0 0;font-size:16px;color:var(--ink-2);line-height:1.47}
+@media (max-width:900px){.film{grid-template-columns:1fr}.film-v{width:100%;max-width:400px;justify-self:center}}
 .rv{opacity:0;transform:translateY(24px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
 .rv.in{opacity:1;transform:none}
 @media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
@@ -365,6 +376,27 @@ figure{margin:0}
 <section class="sec">
   <div class="wrap">
     <div class="shead">
+      <h2 class="h2 rv">Brand film</h2>
+      <p class="body rv">A 14-second identity reel for social: from scattered paperwork to one clear plan. I built it in code from the real mark, tokens and screens, and cut it to a 120 BPM track.</p>
+    </div>
+    <div class="film rv">
+      <div class="film-v">
+        <video id="sfilm" src="../reel/stulo/stulo-reel-9x16.mp4?v=1" poster="../reel/stulo/stulo-reel-9x16.jpg?v=1" muted loop playsinline preload="metadata" aria-label="StuLo brand film"></video>
+        <button class="film-snd" id="sfilm-snd" type="button" aria-label="Turn sound on"></button>
+      </div>
+      <ol class="film-tx">
+        <li><span class="n">01</span><b>Construction</b><p>The mark is drawn on its grid, radius by radius.</p></li>
+        <li><span class="n">02</span><b>Before</b><p>Bills, notices and acronyms — the stress the product removes.</p></li>
+        <li><span class="n">03</span><b>After</b><p>The mark lands, and the same moments turn calm, framed by its shape.</p></li>
+        <li><span class="n">04</span><b>System</b><p>Landing, mobile flows, cards and print — one identity everywhere.</p></li>
+        <li><span class="n">05</span><b>Loop</b><p>The logo folds into the line the film starts from, so it loops without a seam.</p></li>
+      </ol>
+    </div>
+  </div>
+</section>
+<section class="sec">
+  <div class="wrap">
+    <div class="shead">
       <h2 class="h2 rv">UI design</h2>
       <p class="body rv">A dashboard that answers “what now?”, a PSLF tracker for the long game, and a sign-in that explains the value up front.</p>
     </div>
@@ -427,5 +459,18 @@ figure{margin:0}
 </script>
 <style>.mtoast{position:fixed;left:50%;bottom:32px;z-index:300;display:flex;align-items:center;gap:12px;padding:10px 20px 10px 10px;background:rgba(29,29,31,.92);-webkit-backdrop-filter:saturate(180%) blur(20px);backdrop-filter:saturate(180%) blur(20px);color:#fff;border-radius:999px;box-shadow:0 18px 40px -16px rgba(0,0,0,.5),0 0 0 .5px rgba(255,255,255,.08) inset;font-family:Inter,system-ui,-apple-system,sans-serif;transform:translate(-50%,24px) scale(.96);opacity:0;pointer-events:none;transition:opacity .25s ease,transform .45s cubic-bezier(.2,.9,.25,1.15)}.mtoast.on{opacity:1;transform:translate(-50%,0) scale(1)}.mtoast .mt-ic{flex:none;width:30px;height:30px;border-radius:50%;background:#30d158;color:#fff;display:grid;place-items:center}.mtoast .mt-ic svg{width:16px;height:16px}.mtoast .mt-tx{display:flex;flex-direction:column;line-height:1.25;white-space:nowrap}.mtoast b{font-weight:500;font-size:15px}.mtoast small{font-size:13px;color:rgba(255,255,255,.62)}.mtoast,.mtoast .mt-ic{corner-shape:round!important}.mtoast{box-shadow:0 18px 40px -16px rgba(0,0,0,.5),0 0 0 1px rgba(255,255,255,.16) inset}.mtoast[popover]{inset:auto;left:50%;bottom:32px;right:auto;top:auto;margin:0;border:0;overflow:visible;color:#fff}@media (prefers-reduced-motion:reduce){.mtoast{transition:opacity .2s}}</style>
 <script>(function(){var T;function copy(t){if(navigator.clipboard&&window.isSecureContext)return navigator.clipboard.writeText(t).catch(fb);fb();function fb(){var x=document.createElement('textarea');x.value=t;x.style.cssText='position:fixed;opacity:0';document.body.appendChild(x);x.select();try{document.execCommand('copy')}catch(_){}x.remove()}}document.addEventListener('click',function(e){var a=e.target.closest('a[href^="mailto:"]');if(!a||a.hasAttribute('data-open-sheet'))return;e.preventDefault();var em=a.getAttribute('href').slice(7).split('?')[0];copy(em);if(!T){T=document.createElement('div');T.className='mtoast';T.setAttribute('role','status');T.setAttribute('aria-live','polite');if(T.showPopover)T.setAttribute('popover','manual');T.innerHTML='<span class="mt-ic"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3.5 8.4 2.9 2.9 6.1-6.6"/></svg></span><span class="mt-tx"><b></b><small></small></span>';document.body.appendChild(T)}T.querySelector('b').textContent='Email copied';T.querySelector('small').textContent=em;if(T.showPopover){try{T.hidePopover()}catch(_){}T.showPopover()}T.classList.remove('on');void T.offsetWidth;T.classList.add('on');clearTimeout(T._t);clearTimeout(T._h);T._t=setTimeout(function(){T.classList.remove('on');T._h=setTimeout(function(){if(T.hidePopover)try{T.hidePopover()}catch(_){}},450)},3000)})})();</script>
+<script>
+(function(){
+  var v=document.getElementById('sfilm'),b=document.getElementById('sfilm-snd');if(!v)return;
+  var off='<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 6h2.5L8.5 3v10L5 10H2.5z" fill="currentColor"/><path d="m11 6 3.5 4M14.5 6 11 10"/></svg>',
+      on='<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 6h2.5L8.5 3v10L5 10H2.5z" fill="currentColor"/><path d="M11 5.5a3.5 3.5 0 0 1 0 5M12.8 3.8a6 6 0 0 1 0 8.4"/></svg>';
+  function sync(){b.innerHTML=v.muted?off:on;b.setAttribute('aria-label',v.muted?'Turn sound on':'Turn sound off')}
+  b.addEventListener('click',function(){v.muted=!v.muted;if(v.paused)v.play().catch(function(){});sync()});
+  v.addEventListener('volumechange',sync);sync();
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduce||!('IntersectionObserver' in window)){v.controls=true;return}
+  new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){v.play().catch(function(){})}else{v.pause()}})},{threshold:.3}).observe(v);
+})();
+</script>
 </body>
 </html>
